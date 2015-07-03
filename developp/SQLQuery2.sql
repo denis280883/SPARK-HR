@@ -1,0 +1,1 @@
+DELETE FROM dbo.rptlists where rptid='1003';
