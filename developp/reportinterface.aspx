@@ -157,6 +157,8 @@
                     <ItemTemplate>
                         <asp:Button ID="Button1" runat="server" CommandName="edit" Text="Edit" />
                         <asp:Button ID="Button2" runat="server" CommandName="delete" Text="Supprimer" />
+                        <asp:ImageButton ID="ImageButton1" runat="server" CommandName="edit" 
+                            Height="31px" ImageUrl="~/Pictures/modify.PNG" Width="31px" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
