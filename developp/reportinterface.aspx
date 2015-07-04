@@ -113,7 +113,7 @@
         </Columns>
     </asp:GridView>
 
-    <p id="demo">
+    <p id="demo"> J'attend</p>
 
         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False">
             <Columns>
@@ -295,17 +295,17 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="epGroups" runat="server">
-                            <asp:ListItem>NULL</asp:ListItem>
-                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
-                            <asp:ListItem>FALSE</asp:ListItem>
+                        <asp:ListBox ID="epGroups" runat="server" onload="epGroups_Load">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
                     <HeaderTemplate>
-                        usedforWeb
+                        Groups
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="LabelGroups" runat="server" Text='<%# eval("Groups") %>'></asp:Label>
+                        <asp:Label ID="eGroups" runat="server" Text='<%# eval("Groups") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
@@ -357,16 +357,16 @@
                 <asp:TemplateField>
                     <EditItemTemplate>
                         <asp:ListBox ID="epusedforWeb" runat="server">
-                            <asp:ListItem>NULL</asp:ListItem>
-                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
-                            <asp:ListItem>FALSE</asp:ListItem>
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
                     <HeaderTemplate>
                         usedforWeb
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="LabelusedforWeb" runat="server" Text='<%# eval("usedforWeb") %>'></asp:Label>
+                        <asp:Label ID="eusedforWeb" runat="server" Text='<%# eval("usedforWeb") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
@@ -382,17 +382,17 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="epIsReportBook" runat="server">
-                            <asp:ListItem>NULL</asp:ListItem>
-                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
-                            <asp:ListItem>FALSE</asp:ListItem>
+                        <asp:ListBox ID="epIsReportBook" runat="server" onload="epIsReportBook_Load">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
                     <HeaderTemplate>
                         isReportBook
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="LabelisReportBook" runat="server" Text='<%# eval("isReportBook") %>'></asp:Label>
+                        <asp:Label ID="eisReportBook" runat="server" Text='<%# eval("isReportBook") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
@@ -409,83 +409,87 @@
 
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="episcrystalreport" runat="server">
-                            <asp:ListItem>NULL</asp:ListItem>
-                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
-                            <asp:ListItem>FALSE</asp:ListItem>
+                        <asp:ListBox ID="episcrystalreport" runat="server" 
+                            onload="episcrystalreport_Load">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
                     <HeaderTemplate>
                         iscrystalreport
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Labeliscrystalreport" runat="server" Text='<%# eval("iscrystalreport") %>'></asp:Label>
+                        <asp:Label ID="eiscrystalreport" runat="server" Text='<%# eval("iscrystalreport") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="epshowpagebreak" runat="server">
-                            <asp:ListItem>NULL</asp:ListItem>
-                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
-                            <asp:ListItem>FALSE</asp:ListItem>
+                        <asp:ListBox ID="epshowpagebreak" runat="server" onload="epshowpagebreak_Load">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
                     <HeaderTemplate>
                         showpagebreak
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Labelshowpagebreak" runat="server" Text='<%# eval("showpagebreak") %>'></asp:Label>
+                        <asp:Label ID="eshowpagebreak" runat="server" Text='<%# eval("showpagebreak") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="epshowsortGroupGrid" runat="server">
-                            <asp:ListItem>NULL</asp:ListItem>
-                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
-                            <asp:ListItem>FALSE</asp:ListItem>
+                        <asp:ListBox ID="epshowsortGroupGrid" runat="server" 
+                            onload="epshowsortGroupGrid_Load">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
                     <HeaderTemplate>
                         showsortGroupGrid
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="LabelshowsortGroupGrid" runat="server" Text='<%# eval("showsortGroupGrid") %>'></asp:Label>
+                        <asp:Label ID="eshowsortGroupGrid" runat="server" Text='<%# eval("showsortGroupGrid") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="epshowLabelCompany" runat="server">
-                            <asp:ListItem>NULL</asp:ListItem>
-                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
-                            <asp:ListItem>FALSE</asp:ListItem>
+                        <asp:ListBox ID="epshowLabelCompany" runat="server" 
+                            onload="epshowLabelCompany_Load">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
                     <HeaderTemplate>
                         showLabelCompany
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="LabelshowLabelCompany" runat="server" Text='<%# eval("showLabelCompany") %>'></asp:Label>
+                        <asp:Label ID="eshowLabelCompany" runat="server" Text='<%# eval("showLabelCompany") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="epDatasetDistinctFieldSelectused" runat="server">
-                            <asp:ListItem>NULL</asp:ListItem>
-                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
-                            <asp:ListItem>FALSE</asp:ListItem>
+                        <asp:ListBox ID="epDatasetDistinctFieldSelectused" runat="server" 
+                            onload="epDatasetDistinctFieldSelectused_Load1">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
                     <HeaderTemplate>
                         DatasetDistinctFieldSelectused
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="LabelDatasetDistinctFieldSelectused" runat="server" Text='<%# eval("DatasetDistinctFieldSelectused") %>'></asp:Label>
+                        <asp:Label ID="elDatasetDistinctFieldSelectused" runat="server" Text='<%# eval("DatasetDistinctFieldSelectused") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
-        J'attend</p>
+        
 
     </form>
 

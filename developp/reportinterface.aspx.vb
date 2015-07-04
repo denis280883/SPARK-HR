@@ -28,6 +28,15 @@ Partial Class reportinterface
     Dim cnt As New SqlConnection("data source=.\sqling051;initial catalog=reportsinterface;persist security info=True;user id=spark;workstation id=wnb-ing036;packet size=4096;password=SPARK2008")
     Dim da As New SqlDataAdapter
 
+    Dim lbDatasetDistinctFieldSelectused As String
+    Dim lbshowLabelCompany As String
+    Dim lbshowsortGroupGrid As String
+    Dim lbshowpagebreak As String
+    Dim lbiscrystalreport As String
+    Dim lbisReportBook As String
+    Dim lbusedforWeb As String
+    Dim lbGroups As String
+
     Sub FillData()
         msql = "select * from dbo.rptlists;"
         cmd = cnt.CreateCommand()
@@ -148,8 +157,21 @@ Partial Class reportinterface
         FillData()
     End Sub
 
+
     Protected Sub GridView2_RowEditing(sender As Object, e As System.Web.UI.WebControls.GridViewEditEventArgs) Handles GridView2.RowEditing
         GridView2.EditIndex = e.NewEditIndex
+        'Response.Redirect("document.getElementById('demo').innerHTML = 'Hello ma poule';")
+        'Response.Write("<script language=javascript>document.getElementById('demo').innerHTML = 'Hello ma poule';</script>")
+
+        Dim showLabelCompany As Label = CType(GridView2.Rows(e.NewEditIndex).FindControl("eshowLabelCompany"), Label)
+        lbDatasetDistinctFieldSelectused = CType(GridView2.Rows(e.NewEditIndex).FindControl("elDatasetDistinctFieldSelectused"), Label).Text
+        lbshowLabelCompany = CType(GridView2.Rows(e.NewEditIndex).FindControl("eshowLabelCompany"), Label).Text
+        lbshowsortGroupGrid = CType(GridView2.Rows(e.NewEditIndex).FindControl("eshowsortGroupGrid"), Label).Text
+        lbshowpagebreak = CType(GridView2.Rows(e.NewEditIndex).FindControl("eshowpagebreak"), Label).Text
+        lbiscrystalreport = CType(GridView2.Rows(e.NewEditIndex).FindControl("eiscrystalreport"), Label).Text
+        lbisReportBook = CType(GridView2.Rows(e.NewEditIndex).FindControl("eisReportBook"), Label).Text
+        lbusedforWeb = CType(GridView2.Rows(e.NewEditIndex).FindControl("eusedforWeb"), Label).Text
+        lbGroups = CType(GridView2.Rows(e.NewEditIndex).FindControl("eGroups"), Label).Text
         FillData()
     End Sub
 
@@ -253,5 +275,71 @@ Partial Class reportinterface
         End Try
         GridView2.EditIndex = -1
         FillData()
+    End Sub
+
+    Protected Sub epDatasetDistinctFieldSelectused_Load1(sender As Object, e As System.EventArgs)
+        Dim lb As ListBox = DirectCast(sender, ListBox)
+        If lbDatasetDistinctFieldSelectused = "" Then
+            lb.SelectedValue = "Null"
+        Else
+            lb.SelectedValue = lbDatasetDistinctFieldSelectused
+        End If
+    End Sub
+
+    Protected Sub epshowLabelCompany_Load(sender As Object, e As System.EventArgs)
+        Dim lb As ListBox = DirectCast(sender, ListBox)
+        If lbshowLabelCompany = "" Then
+            lb.SelectedValue = "Null"
+        Else
+            lb.SelectedValue = lbshowLabelCompany
+        End If
+    End Sub
+
+    Protected Sub epIsReportBook_Load(sender As Object, e As System.EventArgs)
+        Dim lb As ListBox = DirectCast(sender, ListBox)
+        If lbisReportBook = "" Then
+            lb.SelectedValue = "Null"
+        Else
+            lb.SelectedValue = lbisReportBook
+        End If
+    End Sub
+
+    Protected Sub episcrystalreport_Load(sender As Object, e As System.EventArgs)
+        Dim lb As ListBox = DirectCast(sender, ListBox)
+        If lbiscrystalreport = "" Then
+            lb.SelectedValue = "Null"
+        Else
+            lb.SelectedValue = lbiscrystalreport
+        End If
+    End Sub
+
+    Protected Sub epshowpagebreak_Load(sender As Object, e As System.EventArgs)
+        Dim lb As ListBox = DirectCast(sender, ListBox)
+        If lbshowpagebreak = "" Then
+            lb.SelectedValue = "Null"
+        Else
+            lb.SelectedValue = lbshowpagebreak
+        End If
+
+
+    End Sub
+
+    Protected Sub epshowsortGroupGrid_Load(sender As Object, e As System.EventArgs)
+        Dim lb As ListBox = DirectCast(sender, ListBox)
+        If lbshowsortGroupGrid = "" Then
+            lb.SelectedValue = "Null"
+        Else
+            lb.SelectedValue = lbshowsortGroupGrid
+        End If
+
+    End Sub
+    Protected Sub epGroups_Load(sender As Object, e As System.EventArgs)
+        Dim lb As ListBox = DirectCast(sender, ListBox)
+        If lbGroups = "" Then
+            lb.SelectedValue = "Null"
+        Else
+            lb.SelectedValue = lbGroups
+        End If
+
     End Sub
 End Class
