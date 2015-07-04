@@ -126,8 +126,10 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:Button ID="Button3" runat="server" CommandName="update" Text="modifier" />
-                        <asp:Button ID="Button4" runat="server" Text="Cancel" />
+                        <asp:ImageButton ID="ImageBtnUpdate" runat="server" CommandName="update" 
+                            Height="22px" ImageUrl="~/Pictures/update.PNG" Width="22px" />
+                        <asp:ImageButton ID="ImageBtnCancel" runat="server" CommandName="Cancel" 
+                            Height="22px" ImageUrl="~/Pictures/undo.PNG" Width="22px" />
                     </EditItemTemplate>
                     <HeaderTemplate>
                         Editer<br />
@@ -137,10 +139,12 @@
                             Height="14px" ImageUrl="~/Pictures/modify.PNG" Width="14px" />
                         <asp:ImageButton ID="ImageBtnDel" runat="server" CommandName="delete" 
                             Height="14px" ImageUrl="~/Pictures/delete.PNG" Width="14px" />
-
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="ernum" runat="server" Text='<%# bind("rptid") %>'></asp:TextBox>
+                    </EditItemTemplate>
                     <HeaderTemplate>
                         Numero
                     </HeaderTemplate>
