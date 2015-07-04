@@ -174,6 +174,305 @@
                         <asp:Label ID="Label3" runat="server" Text='<%# eval("rptthemeid") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="eprptname" runat="server" Text='<%# bind("rptname") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        rptname
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Labelrptname" runat="server" Text='<%# eval("rptname") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="eprptsql" runat="server" Text='<%# bind("rptsql") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        rptsql
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Labelrptsql" runat="server" Text='<%# eval("rptsql") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="eprptAcc" runat="server" Text='<%# bind("rptAcc") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        rptAcc
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Labelrptacc" runat="server" Text='<%# eval("rptAcc") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="eprptOra" runat="server" Text='<%# bind("rptOra") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        rptOra
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelrptOra" runat="server" Text='<%# eval("rptOra") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="epconditions" runat="server" Text='<%# bind("conditions") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        conditions
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Labelconditions" runat="server" Text='<%# eval("conditions") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="epforeignTablewhere" runat="server" Text='<%# bind("foreignTablewhere") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        foreignTablewhere
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelforeignTablewhere" runat="server" Text='<%# eval("foreignTablewhere") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:CheckBox ID="CheckBox4" runat="server" 
+                            Checked='<%# bind("desactive") %>' />
+                    </EditItemTemplate>
+
+                    <HeaderTemplate>
+                        desactive
+                    </HeaderTemplate>
+
+                    <ItemTemplate>
+                        <asp:CheckBox ID="CheckBox3" runat="server" 
+                            Checked='<%# eval("desactive") %>' Enabled="False" 
+                            EnableViewState="False" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="eptrier" runat="server" Text='<%# bind("trier") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        Trier
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Labeltrier" runat="server" Text='<%# eval("trier") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:CheckBox ID="CheckBox5" runat="server" 
+                            Checked='<%# bind("donneafiltrer") %>' />
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        donneafiltrer
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:CheckBox ID="CheckBox6" runat="server" 
+                            Checked='<%# eval("donneafiltrer") %>' Enabled="False" 
+                            EnableViewState="False" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="epForcegroupBySQL" runat="server" Text='<%# bind("ForcegroupBySQL") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        ForcegroupBySQL
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelForcegroupBySQL" runat="server" Text='<%# eval("ForcegroupBySQL") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="epgroups" runat="server" Text='<%# bind("Groups") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        Groups
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelGroups" runat="server" Text='<%# eval("Groups") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="eploopOverTable" runat="server" Text='<%# bind("loopOverTable") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        loopOverTable
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelloopOverTable" runat="server" Text='<%# eval("loopOverTable") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="eploopOverField" runat="server" Text='<%# bind("loopOverField") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        loopOverField
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelloopOverField" runat="server" Text='<%# eval("loopOverField") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="eploopoverfieldType" runat="server" 
+                            Text='<%# bind("loopoverfieldType") %>' MaxLength="1"></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        loopoverfieldType
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelloopoverfieldType" runat="server" Text='<%# eval("loopoverfieldType") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="eplastSqlexecute" runat="server" Text='<%# bind("lastSqlexecute") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        lastSqlexecute
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabellastSqlexecute" runat="server" Text='<%# eval("lastSqlexecute") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="epusedforWeb" runat="server" Text='<%# bind("usedforWeb") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        usedforWeb
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelusedforWeb" runat="server" Text='<%# eval("usedforWeb") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="eprptCategory" runat="server" Text='<%# bind("rptCategory") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        rptCategory
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelrptCategory" runat="server" Text='<%# eval("rptCategory") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:ListBox ID="LbIsReportBook" runat="server">
+                            <asp:ListItem>NULL</asp:ListItem>
+                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
+                            <asp:ListItem>FALSE</asp:ListItem>
+                        </asp:ListBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        isReportBook
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelisReportBook" runat="server" Text='<%# eval("isReportBook") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="epReportBookLoopField" runat="server" Text='<%# bind("ReportBookLoopField") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        ReportBookLoopField
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelReportBookLoopField" runat="server" Text='<%# eval("ReportBookLoopField") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:ListBox ID="Lbiscrystalreport" runat="server">
+                            <asp:ListItem>NULL</asp:ListItem>
+                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
+                            <asp:ListItem>FALSE</asp:ListItem>
+                        </asp:ListBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        iscrystalreport
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Labeliscrystalreport" runat="server" Text='<%# eval("iscrystalreport") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:ListBox ID="Lbshowpagebreak" runat="server">
+                            <asp:ListItem>NULL</asp:ListItem>
+                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
+                            <asp:ListItem>FALSE</asp:ListItem>
+                        </asp:ListBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        showpagebreak
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Labelshowpagebreak" runat="server" Text='<%# eval("showpagebreak") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:ListBox ID="LbshowsortGroupGrid" runat="server">
+                            <asp:ListItem>NULL</asp:ListItem>
+                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
+                            <asp:ListItem>FALSE</asp:ListItem>
+                        </asp:ListBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        showsortGroupGrid
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelshowsortGroupGrid" runat="server" Text='<%# eval("showsortGroupGrid") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:ListBox ID="LbshowLabelCompany" runat="server">
+                            <asp:ListItem>NULL</asp:ListItem>
+                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
+                            <asp:ListItem>FALSE</asp:ListItem>
+                        </asp:ListBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        showLabelCompany
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelshowLabelCompany" runat="server" Text='<%# eval("showLabelCompany") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:ListBox ID="LbDatasetDistinctFieldSelectused" runat="server">
+                            <asp:ListItem>NULL</asp:ListItem>
+                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
+                            <asp:ListItem>FALSE</asp:ListItem>
+                        </asp:ListBox>
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        DatasetDistinctFieldSelectused
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="LabelDatasetDistinctFieldSelectused" runat="server" Text='<%# eval("DatasetDistinctFieldSelectused") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
         J'attend</p>
