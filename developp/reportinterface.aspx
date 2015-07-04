@@ -133,8 +133,6 @@
                         Editer<br />
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Button ID="Button1" runat="server" CommandName="edit" Text="Edit" />
-                        <asp:Button ID="Button2" runat="server" CommandName="delete" Text="Supprimer" />
                         <asp:ImageButton ID="ImageBtnEdit" runat="server" CommandName="edit" 
                             Height="14px" ImageUrl="~/Pictures/modify.PNG" Width="14px" />
                         <asp:ImageButton ID="ImageBtnDel" runat="server" CommandName="delete" 
