@@ -212,14 +212,37 @@ Partial Class reportinterface
         Dim DatasetDistinctFieldSelectused As ListBox = CType(GridView2.Rows(e.RowIndex).FindControl("epDatasetDistinctFieldSelectused"), ListBox)
 
         cmd.Parameters.Add("@rpdid", SqlDbType.Int, 4).Value = rpdid.Text
-
+        cmd.Parameters.Add("@rpttype", SqlDbType.VarChar).Value = rpttype.Text
+        cmd.Parameters.Add("@rptthemeid", SqlDbType.VarChar).Value = rptthemeid.Text
+        cmd.Parameters.Add("@rptname", SqlDbType.VarChar).Value = rptname.Text
+        cmd.Parameters.Add("@rptsql", SqlDbType.VarChar).Value = rptsql.Text
+        cmd.Parameters.Add("@rptAcc", SqlDbType.VarChar).Value = rptAcc.Text
+        cmd.Parameters.Add("@rptOra", SqlDbType.VarChar).Value = rptOra.Text
+        cmd.Parameters.Add("@conditions", SqlDbType.VarChar).Value = conditions.Text
+        cmd.Parameters.Add("@foreignTablewhere", SqlDbType.VarChar).Value = foreignTablewhere.Text
+        cmd.Parameters.Add("@Desactive", SqlDbType.Bit).Value = Desactive.Enabled
+        cmd.Parameters.Add("@trier", SqlDbType.VarChar).Value = trier.Text
+        cmd.Parameters.Add("@donneafiltrer", SqlDbType.Bit).Value = donneafiltrer.Enabled
+        cmd.Parameters.Add("@Groups", SqlDbType.Bit).Value = ForcegroupBySQL.Text
+        cmd.Parameters.Add("@loopOverTable", SqlDbType.VarChar).Value = loopOverTable.Text
+        cmd.Parameters.Add("@loopOverField", SqlDbType.VarChar).Value = loopOverField.Text
+        cmd.Parameters.Add("@loopoverfieldType", SqlDbType.VarChar).Value = loopoverfieldType.Text
+        cmd.Parameters.Add("@lastSqlexecut", SqlDbType.VarChar).Value = lastSqlexecut.Text
+        cmd.Parameters.Add("@usedforWeb", SqlDbType.Bit).Value = usedforWeb.Text
+        cmd.Parameters.Add("@isReportBook", SqlDbType.Bit).Value = isReportBook.Text
+        cmd.Parameters.Add("@ReportBookLoopField", SqlDbType.VarChar).Value = ReportBookLoopField.Text
+        cmd.Parameters.Add("@iscrystalreport", SqlDbType.Bit).Value = iscrystalreport.Text
+        cmd.Parameters.Add("@showpagebreak", SqlDbType.Bit).Value = showpagebreak.Text
+        cmd.Parameters.Add("@showsortGroupGrid", SqlDbType.Bit).Value = showsortGroupGrid.Text
+        cmd.Parameters.Add("@showLabelCompany", SqlDbType.Bit).Value = showLabelCompany.Text
+        cmd.Parameters.Add("@DatasetDistinctFieldSelectused", SqlDbType.Bit).Value = DatasetDistinctFieldSelectused.Text
         Try
 
             If MsgBox(CTEASKDELLINE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEDELLINEFIELD) = MsgBoxResult.Yes Then
 
-                'cnt.Open()
-                'cmd.ExecuteNonQuery()
-                'cnt.Close()
+                cnt.Open()
+                cmd.ExecuteNonQuery()
+                cnt.Close()
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
