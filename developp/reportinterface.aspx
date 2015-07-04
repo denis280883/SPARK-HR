@@ -117,6 +117,32 @@
         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False">
             <Columns>
                 <asp:TemplateField>
+                    <EditItemTemplate>
+                        &nbsp;&nbsp;
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:CheckBox ID="CheckBox2" runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <EditItemTemplate>
+                        <asp:Button ID="Button3" runat="server" CommandName="update" Text="modifier" />
+                        <asp:Button ID="Button4" runat="server" Text="Cancel" />
+                    </EditItemTemplate>
+                    <HeaderTemplate>
+                        Editer<br />
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:Button ID="Button1" runat="server" CommandName="edit" Text="Edit" />
+                        <asp:Button ID="Button2" runat="server" CommandName="delete" Text="Supprimer" />
+                        <asp:ImageButton ID="ImageBtnEdit" runat="server" CommandName="edit" 
+                            Height="14px" ImageUrl="~/Pictures/modify.PNG" Width="14px" />
+                        <asp:ImageButton ID="ImageBtnDel" runat="server" CommandName="delete" 
+                            Height="14px" ImageUrl="~/Pictures/delete.PNG" Width="14px" />
+
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
                     <HeaderTemplate>
                         Numero
                     </HeaderTemplate>
@@ -144,21 +170,6 @@
                     </HeaderTemplate>
                     <ItemTemplate>
                         <asp:Label ID="Label3" runat="server" Text='<%# eval("rptthemeid") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField>
-                    <EditItemTemplate>
-                        <asp:Button ID="Button3" runat="server" CommandName="update" Text="modifier" />
-                        <asp:Button ID="Button4" runat="server" Text="Cancel" />
-                    </EditItemTemplate>
-                    <HeaderTemplate>
-                        Editer<br />
-                    </HeaderTemplate>
-                    <ItemTemplate>
-                        <asp:Button ID="Button1" runat="server" CommandName="edit" Text="Edit" />
-                        <asp:Button ID="Button2" runat="server" CommandName="delete" Text="Supprimer" />
-                        <asp:ImageButton ID="ImageButton1" runat="server" CommandName="edit" 
-                            Height="31px" ImageUrl="~/Pictures/modify.PNG" Width="31px" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
