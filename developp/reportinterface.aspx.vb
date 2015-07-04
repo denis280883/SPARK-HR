@@ -17,6 +17,8 @@ Partial Class reportinterface
     Const CTEBtnDelete = "BtnDelete"
     Const CTEDELLINEFIELD = "Supprimer ligne de données"
     Const CTEASKDELLINE = "Voulez-vous supprimer les données avec le code: "
+    Const CTEUPDLINEFIELD = "Mise à jour des données"
+    Const CTEASKUPDATE = "Voulez-vous enregistrer les données avec le code: "
     Const CTENUMID = "rptid"
 
     Public TestReport As String
@@ -200,7 +202,7 @@ Partial Class reportinterface
         Dim loopOverTable As TextBox = CType(GridView2.Rows(e.RowIndex).FindControl("eploopOverTable"), TextBox)
         Dim loopOverField As TextBox = CType(GridView2.Rows(e.RowIndex).FindControl("eploopOverField"), TextBox)
         Dim loopoverfieldType As TextBox = CType(GridView2.Rows(e.RowIndex).FindControl("eploopoverfieldType"), TextBox)
-        Dim lastSqlexecut As TextBox = CType(GridView2.Rows(e.RowIndex).FindControl("eplastSqlexecute"), TextBox)
+        Dim lastSqlexecute As TextBox = CType(GridView2.Rows(e.RowIndex).FindControl("eplastSqlexecute"), TextBox)
         Dim usedforWeb As ListBox = CType(GridView2.Rows(e.RowIndex).FindControl("epusedforWeb"), ListBox)
         Dim rptCategory As TextBox = CType(GridView2.Rows(e.RowIndex).FindControl("eprptCategory"), TextBox)
         Dim isReportBook As ListBox = CType(GridView2.Rows(e.RowIndex).FindControl("epIsReportBook"), ListBox)
@@ -211,34 +213,36 @@ Partial Class reportinterface
         Dim showLabelCompany As ListBox = CType(GridView2.Rows(e.RowIndex).FindControl("epshowLabelCompany"), ListBox)
         Dim DatasetDistinctFieldSelectused As ListBox = CType(GridView2.Rows(e.RowIndex).FindControl("epDatasetDistinctFieldSelectused"), ListBox)
 
-        cmd.Parameters.Add("@rpdid", SqlDbType.Int, 4).Value = rpdid.Text
-        cmd.Parameters.Add("@rpttype", SqlDbType.VarChar).Value = rpttype.Text
-        cmd.Parameters.Add("@rptthemeid", SqlDbType.VarChar).Value = rptthemeid.Text
-        cmd.Parameters.Add("@rptname", SqlDbType.VarChar).Value = rptname.Text
-        cmd.Parameters.Add("@rptsql", SqlDbType.VarChar).Value = rptsql.Text
-        cmd.Parameters.Add("@rptAcc", SqlDbType.VarChar).Value = rptAcc.Text
-        cmd.Parameters.Add("@rptOra", SqlDbType.VarChar).Value = rptOra.Text
-        cmd.Parameters.Add("@conditions", SqlDbType.VarChar).Value = conditions.Text
-        cmd.Parameters.Add("@foreignTablewhere", SqlDbType.VarChar).Value = foreignTablewhere.Text
-        cmd.Parameters.Add("@Desactive", SqlDbType.Bit).Value = Desactive.Enabled
-        cmd.Parameters.Add("@trier", SqlDbType.VarChar).Value = trier.Text
-        cmd.Parameters.Add("@donneafiltrer", SqlDbType.Bit).Value = donneafiltrer.Enabled
-        cmd.Parameters.Add("@Groups", SqlDbType.Bit).Value = ForcegroupBySQL.Text
-        cmd.Parameters.Add("@loopOverTable", SqlDbType.VarChar).Value = loopOverTable.Text
-        cmd.Parameters.Add("@loopOverField", SqlDbType.VarChar).Value = loopOverField.Text
-        cmd.Parameters.Add("@loopoverfieldType", SqlDbType.VarChar).Value = loopoverfieldType.Text
-        cmd.Parameters.Add("@lastSqlexecut", SqlDbType.VarChar).Value = lastSqlexecut.Text
-        cmd.Parameters.Add("@usedforWeb", SqlDbType.Bit).Value = usedforWeb.Text
-        cmd.Parameters.Add("@isReportBook", SqlDbType.Bit).Value = isReportBook.Text
-        cmd.Parameters.Add("@ReportBookLoopField", SqlDbType.VarChar).Value = ReportBookLoopField.Text
-        cmd.Parameters.Add("@iscrystalreport", SqlDbType.Bit).Value = iscrystalreport.Text
-        cmd.Parameters.Add("@showpagebreak", SqlDbType.Bit).Value = showpagebreak.Text
-        cmd.Parameters.Add("@showsortGroupGrid", SqlDbType.Bit).Value = showsortGroupGrid.Text
-        cmd.Parameters.Add("@showLabelCompany", SqlDbType.Bit).Value = showLabelCompany.Text
-        cmd.Parameters.Add("@DatasetDistinctFieldSelectused", SqlDbType.Bit).Value = DatasetDistinctFieldSelectused.Text
+        cmd.Parameters.Add("@rpdid", SqlDbType.Int, 4).Value = rpdid.Text '00
+        cmd.Parameters.Add("@rpttype", SqlDbType.VarChar).Value = rpttype.Text '01
+        cmd.Parameters.Add("@rptthemeid", SqlDbType.VarChar).Value = rptthemeid.Text '02
+        cmd.Parameters.Add("@rptname", SqlDbType.VarChar).Value = rptname.Text '03
+        cmd.Parameters.Add("@rptsql", SqlDbType.VarChar).Value = rptsql.Text '04
+        cmd.Parameters.Add("@rptAcc", SqlDbType.VarChar).Value = rptAcc.Text '05
+        cmd.Parameters.Add("@rptOra", SqlDbType.VarChar).Value = rptOra.Text '06
+        cmd.Parameters.Add("@conditions", SqlDbType.VarChar).Value = conditions.Text '07
+        cmd.Parameters.Add("@foreignTablewhere", SqlDbType.VarChar).Value = foreignTablewhere.Text '08
+        cmd.Parameters.Add("@Desactive", SqlDbType.Bit).Value = Desactive.Enabled '09 BOOLEAN
+        cmd.Parameters.Add("@trier", SqlDbType.VarChar).Value = trier.Text '10
+        cmd.Parameters.Add("@donneafiltrer", SqlDbType.Bit).Value = donneafiltrer.Enabled '11 BOOLEAN
+        cmd.Parameters.Add("@ForcegroupBySQL", SqlDbType.VarChar).Value = ForcegroupBySQL.Text '11
+        cmd.Parameters.Add("@Groups", SqlDbType.VarChar).Value = ForcegroupBySQL.Text '12
+        cmd.Parameters.Add("@loopOverTable", SqlDbType.VarChar).Value = loopOverTable.Text '13
+        cmd.Parameters.Add("@loopOverField", SqlDbType.VarChar).Value = loopOverField.Text '14
+        cmd.Parameters.Add("@loopoverfieldType", SqlDbType.VarChar).Value = loopoverfieldType.Text '15
+        cmd.Parameters.Add("@lastSqlexecute", SqlDbType.VarChar).Value = lastSqlexecute.Text '16
+        cmd.Parameters.Add("@usedforWeb", SqlDbType.Bit).Value = usedforWeb.Text '17
+        cmd.Parameters.Add("@rptCategory", SqlDbType.VarChar).Value = rptCategory.Text '17
+        cmd.Parameters.Add("@isReportBook", SqlDbType.Bit).Value = isReportBook.Text '18
+        cmd.Parameters.Add("@ReportBookLoopField", SqlDbType.VarChar).Value = ReportBookLoopField.Text '19
+        cmd.Parameters.Add("@iscrystalreport", SqlDbType.Bit).Value = iscrystalreport.Text '20
+        cmd.Parameters.Add("@showpagebreak", SqlDbType.Bit).Value = showpagebreak.Text '21
+        cmd.Parameters.Add("@showsortGroupGrid", SqlDbType.Bit).Value = showsortGroupGrid.Text '22
+        cmd.Parameters.Add("@showLabelCompany", SqlDbType.Bit).Value = showLabelCompany.Text '23
+        cmd.Parameters.Add("@DatasetDistinctFieldSelectused", SqlDbType.Bit).Value = DatasetDistinctFieldSelectused.Text '24
         Try
 
-            If MsgBox(CTEASKDELLINE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEDELLINEFIELD) = MsgBoxResult.Yes Then
+            If MsgBox(CTEASKUPDATE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
 
                 cnt.Open()
                 cmd.ExecuteNonQuery()
@@ -247,6 +251,7 @@ Partial Class reportinterface
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+        GridView2.EditIndex = -1
         FillData()
     End Sub
 End Class
