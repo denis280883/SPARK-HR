@@ -114,6 +114,7 @@
     </asp:GridView>
 
     <p id="demo">
+
         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False">
             <Columns>
                 <asp:TemplateField>
@@ -143,13 +144,13 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:TextBox ID="ernum" runat="server" Text='<%# bind("rptid") %>'></asp:TextBox>
+                        <asp:TextBox ID="enum" runat="server" Text='<%# bind("rptid") %>'></asp:TextBox>
                     </EditItemTemplate>
                     <HeaderTemplate>
                         Numero
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="enum" runat="server" Text='<%# eval ("rptid") %>'></asp:Label>
+                        <asp:Label ID="labelnum" runat="server" Text='<%# eval ("rptid") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
@@ -242,7 +243,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:CheckBox ID="CheckBox4" runat="server" 
+                        <asp:CheckBox ID="epdesactive" runat="server" 
                             Checked='<%# bind("desactive") %>' />
                     </EditItemTemplate>
 
@@ -251,7 +252,7 @@
                     </HeaderTemplate>
 
                     <ItemTemplate>
-                        <asp:CheckBox ID="CheckBox3" runat="server" 
+                        <asp:CheckBox ID="edesactive" runat="server" 
                             Checked='<%# eval("desactive") %>' Enabled="False" 
                             EnableViewState="False" />
                     </ItemTemplate>
@@ -269,14 +270,14 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:CheckBox ID="CheckBox5" runat="server" 
+                        <asp:CheckBox ID="epdonneafiltrer" runat="server" 
                             Checked='<%# bind("donneafiltrer") %>' />
                     </EditItemTemplate>
                     <HeaderTemplate>
                         donneafiltrer
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:CheckBox ID="CheckBox6" runat="server" 
+                        <asp:CheckBox ID="edonneafiltrer" runat="server" 
                             Checked='<%# eval("donneafiltrer") %>' Enabled="False" 
                             EnableViewState="False" />
                     </ItemTemplate>
@@ -294,10 +295,14 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:TextBox ID="epgroups" runat="server" Text='<%# bind("Groups") %>'></asp:TextBox>
+                        <asp:ListBox ID="epGroups" runat="server">
+                            <asp:ListItem>NULL</asp:ListItem>
+                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
+                            <asp:ListItem>FALSE</asp:ListItem>
+                        </asp:ListBox>
                     </EditItemTemplate>
                     <HeaderTemplate>
-                        Groups
+                        usedforWeb
                     </HeaderTemplate>
                     <ItemTemplate>
                         <asp:Label ID="LabelGroups" runat="server" Text='<%# eval("Groups") %>'></asp:Label>
@@ -348,9 +353,14 @@
                         <asp:Label ID="LabellastSqlexecute" runat="server" Text='<%# eval("lastSqlexecute") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
+
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:TextBox ID="epusedforWeb" runat="server" Text='<%# bind("usedforWeb") %>'></asp:TextBox>
+                        <asp:ListBox ID="epusedforWeb" runat="server">
+                            <asp:ListItem>NULL</asp:ListItem>
+                            <asp:ListItem Selected="True">TRUE</asp:ListItem>
+                            <asp:ListItem>FALSE</asp:ListItem>
+                        </asp:ListBox>
                     </EditItemTemplate>
                     <HeaderTemplate>
                         usedforWeb
@@ -372,7 +382,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="LbIsReportBook" runat="server">
+                        <asp:ListBox ID="epIsReportBook" runat="server">
                             <asp:ListItem>NULL</asp:ListItem>
                             <asp:ListItem Selected="True">TRUE</asp:ListItem>
                             <asp:ListItem>FALSE</asp:ListItem>
@@ -399,7 +409,7 @@
 
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="Lbiscrystalreport" runat="server">
+                        <asp:ListBox ID="episcrystalreport" runat="server">
                             <asp:ListItem>NULL</asp:ListItem>
                             <asp:ListItem Selected="True">TRUE</asp:ListItem>
                             <asp:ListItem>FALSE</asp:ListItem>
@@ -414,7 +424,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="Lbshowpagebreak" runat="server">
+                        <asp:ListBox ID="epshowpagebreak" runat="server">
                             <asp:ListItem>NULL</asp:ListItem>
                             <asp:ListItem Selected="True">TRUE</asp:ListItem>
                             <asp:ListItem>FALSE</asp:ListItem>
@@ -429,7 +439,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="LbshowsortGroupGrid" runat="server">
+                        <asp:ListBox ID="epshowsortGroupGrid" runat="server">
                             <asp:ListItem>NULL</asp:ListItem>
                             <asp:ListItem Selected="True">TRUE</asp:ListItem>
                             <asp:ListItem>FALSE</asp:ListItem>
@@ -444,7 +454,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="LbshowLabelCompany" runat="server">
+                        <asp:ListBox ID="epshowLabelCompany" runat="server">
                             <asp:ListItem>NULL</asp:ListItem>
                             <asp:ListItem Selected="True">TRUE</asp:ListItem>
                             <asp:ListItem>FALSE</asp:ListItem>
@@ -460,7 +470,7 @@
 
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="LbDatasetDistinctFieldSelectused" runat="server">
+                        <asp:ListBox ID="epDatasetDistinctFieldSelectused" runat="server">
                             <asp:ListItem>NULL</asp:ListItem>
                             <asp:ListItem Selected="True">TRUE</asp:ListItem>
                             <asp:ListItem>FALSE</asp:ListItem>
