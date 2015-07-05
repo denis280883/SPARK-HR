@@ -135,8 +135,8 @@
                             Height="22px" ImageUrl="~/Pictures/undo.PNG" Width="22px" />
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:ImageButton ID="ImageButton1" runat="server" Height="30px" 
-                            ImageUrl="~/Pictures/add.png" Width="30px" />
+                        <asp:ImageButton ID="btnAddData" runat="server" CommandName="ajout" 
+                            Height="30px" ImageUrl="~/Pictures/add.png" Width="30px" />
                     </FooterTemplate>
                     <HeaderTemplate>
                         Editer<br />
