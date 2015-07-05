@@ -177,7 +177,7 @@ Partial Class reportinterface
 
     Protected Sub GridView2_RowDeleting(sender As Object, e As System.Web.UI.WebControls.GridViewDeleteEventArgs) Handles GridView2.RowDeleting
         Dim rpdid As Label
-        rpdid = CType(GridView2.Rows(e.RowIndex).FindControl("enum"), Label)
+        rpdid = CType(GridView2.Rows(e.RowIndex).FindControl("labelnum"), Label)
 
         msql = "delete from " + CTETableName + " where " + CTENUMID + "=" + GridView2.Rows(e.RowIndex).Cells(3).Text
         msql = "delete from dbo.rptlists where rptid=@rpdid"
@@ -343,6 +343,10 @@ Partial Class reportinterface
 
     End Sub
 
+
+
+
+
     Protected Sub GridView2_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridView2.RowCommand
         If e.CommandName = "ajout" Then
             msql = "insert into dbo.rptlists(rptid, rpttype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, desactive, trier, donneafiltrer, ForcegroupBySQL, Groups, loopOverTable, loopOverField, loopoverfieldType, lastSqlexecute, usedforWeb, rptCategory, isReportBook, ReportBookLoopField, iscrystalreport, showpagebreak, showsortGroupGrid, showLabelCompany, DatasetDistinctFieldSelectused) values(@rpdid, @rpttype, @rptthemeid, @rptname, @rptsql, @rptAcc, @rptOra, @conditions, @foreignTablewhere, @desactive, @trier, @donneafiltrer, @ForcegroupBySQL, @Groups, @loopOverTable, @loopOverField, @loopoverfieldType, @lastSqlexecute, @usedforWeb, @rptCategory, @isReportBook, @ReportBookLoopField, @iscrystalreport, @showpagebreak, @showsortGroupGrid, @showLabelCompany, @DatasetDistinctFieldSelectused)"
@@ -400,7 +404,7 @@ Partial Class reportinterface
             cmd.Parameters.Add("@lastSqlexecute", SqlDbType.VarChar).Value = lastSqlexecute.Text '16
             cmd.Parameters.Add("@usedforWeb", SqlDbType.Bit).Value = usedforWeb.Text '17
             cmd.Parameters.Add("@rptCategory", SqlDbType.VarChar).Value = rptCategory.Text '17
-            cmd.Parameters.Add("@isReportBook", SqlDbType.Bit).Value = False 'isReportBook.Text '18
+            InserDataBooleanWithValueNull("@isReportBook", isReportBook.Text)
             cmd.Parameters.Add("@ReportBookLoopField", SqlDbType.VarChar).Value = ReportBookLoopField.Text '19
             cmd.Parameters.Add("@iscrystalreport", SqlDbType.Bit).Value = False 'iscrystalreport.Text '20
             cmd.Parameters.Add("@showpagebreak", SqlDbType.Bit).Value = False 'showpagebreak.Text '21
@@ -419,4 +423,22 @@ Partial Class reportinterface
             FillData()
         End If
     End Sub
+    Sub InserDataBooleanWithValueNull(Variabl As String, ValueVariabl As String)
+        'cmd.Parameters.Add("@isReportBook", SqlDbType.Bit).Value = False 'DBNull.Value 'ConvertStringBoolean(isReportBook.Text) '19
+        'cmd.Parameters("@isReportBook").IsNullable = True
+        'cmd.Parameters("@isReportBook").Value = DBNull.Value
+        cmd.Parameters.Add(Variabl, SqlDbType.Bit).Value = False
+        cmd.Parameters(Variabl).IsNullable = True
+        If ValueVariabl = "Null" Then
+            cmd.Parameters(Variabl).Value = DBNull.Value
+        Else
+            cmd.Parameters(Variabl).Value = ValueVariabl
+        End If
+
+    End Sub
+    Function ConvertStringBoolean(value As String) As Boolean
+        If (value <> "Null") Then
+            ConvertStringBoolean = Convert.ToBoolean(value)
+        End If
+    End Function
 End Class
