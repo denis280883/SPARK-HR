@@ -115,7 +115,9 @@
 
     <p id="demo"> J'attend</p>
 
-        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
+        CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True">
+            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:TemplateField>
                     <EditItemTemplate>
@@ -146,6 +148,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="enum" runat="server" Text='<%# bind("rptid") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="fnum" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         Numero
                     </HeaderTemplate>
@@ -157,6 +162,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="erpttype" runat="server" Text='<%# bind("rpttype") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="frpttype" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         rpttype
                     </HeaderTemplate>
@@ -168,6 +176,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eprptthemeid" runat="server" Text='<%# bind("rptthemeid") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="frptthemeid" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         rptthemeid
                     </HeaderTemplate>
@@ -179,6 +190,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eprptname" runat="server" Text='<%# bind("rptname") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="frptname" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         rptname
                     </HeaderTemplate>
@@ -190,6 +204,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eprptsql" runat="server" Text='<%# bind("rptsql") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="frptsql" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         rptsql
                     </HeaderTemplate>
@@ -201,6 +218,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eprptAcc" runat="server" Text='<%# bind("rptAcc") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="frptAcc" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         rptAcc
                     </HeaderTemplate>
@@ -212,6 +232,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eprptOra" runat="server" Text='<%# bind("rptOra") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="frptOra" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         rptOra
                     </HeaderTemplate>
@@ -223,6 +246,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="epconditions" runat="server" Text='<%# bind("conditions") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="fconditions" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         conditions
                     </HeaderTemplate>
@@ -234,6 +260,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="epforeignTablewhere" runat="server" Text='<%# bind("foreignTablewhere") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="fforeignTablewhere" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         foreignTablewhere
                     </HeaderTemplate>
@@ -246,6 +275,11 @@
                         <asp:CheckBox ID="epdesactive" runat="server" 
                             Checked='<%# bind("desactive") %>' />
                     </EditItemTemplate>
+
+                    <FooterTemplate>
+                        <asp:CheckBox ID="fdesactive" runat="server" 
+                            Checked='<%# bind("desactive") %>' />
+                    </FooterTemplate>
 
                     <HeaderTemplate>
                         desactive
@@ -261,6 +295,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eptrier" runat="server" Text='<%# bind("trier") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="ftrier" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         Trier
                     </HeaderTemplate>
@@ -273,6 +310,10 @@
                         <asp:CheckBox ID="epdonneafiltrer" runat="server" 
                             Checked='<%# bind("donneafiltrer") %>' />
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:CheckBox ID="fdonneafiltrer" runat="server" 
+                            Checked='<%# bind("donneafiltrer") %>' />
+                    </FooterTemplate>
                     <HeaderTemplate>
                         donneafiltrer
                     </HeaderTemplate>
@@ -286,6 +327,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="epForcegroupBySQL" runat="server" Text='<%# bind("ForcegroupBySQL") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="fForcegroupBySQL" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         ForcegroupBySQL
                     </HeaderTemplate>
@@ -301,6 +345,13 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:ListBox ID="fGroups" runat="server" onload="epGroups_Load">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
+                        </asp:ListBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         Groups
                     </HeaderTemplate>
@@ -312,6 +363,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eploopOverTable" runat="server" Text='<%# bind("loopOverTable") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="floopOverTable" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         loopOverTable
                     </HeaderTemplate>
@@ -323,6 +377,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eploopOverField" runat="server" Text='<%# bind("loopOverField") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="floopOverField" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         loopOverField
                     </HeaderTemplate>
@@ -335,6 +392,9 @@
                         <asp:TextBox ID="eploopoverfieldType" runat="server" 
                             Text='<%# bind("loopoverfieldType") %>' MaxLength="1"></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="floopoverfieldType" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         loopoverfieldType
                     </HeaderTemplate>
@@ -346,6 +406,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eplastSqlexecute" runat="server" Text='<%# bind("lastSqlexecute") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="flastSqlexecute" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         lastSqlexecute
                     </HeaderTemplate>
@@ -362,6 +425,13 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:ListBox ID="fusedforWeb" runat="server">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
+                        </asp:ListBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         usedforWeb
                     </HeaderTemplate>
@@ -373,6 +443,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eprptCategory" runat="server" Text='<%# bind("rptCategory") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="frptCategory" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         rptCategory
                     </HeaderTemplate>
@@ -388,6 +461,13 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:ListBox ID="fIsReportBook" runat="server" onload="epIsReportBook_Load">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
+                        </asp:ListBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         isReportBook
                     </HeaderTemplate>
@@ -399,6 +479,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="epReportBookLoopField" runat="server" Text='<%# bind("ReportBookLoopField") %>'></asp:TextBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:TextBox ID="fReportBookLoopField" runat="server"></asp:TextBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         ReportBookLoopField
                     </HeaderTemplate>
@@ -416,6 +499,14 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:ListBox ID="fiscrystalreport" runat="server" 
+                            onload="episcrystalreport_Load">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
+                        </asp:ListBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         iscrystalreport
                     </HeaderTemplate>
@@ -431,6 +522,13 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:ListBox ID="fshowpagebreak" runat="server" onload="epshowpagebreak_Load">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
+                        </asp:ListBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         showpagebreak
                     </HeaderTemplate>
@@ -447,6 +545,14 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:ListBox ID="fshowsortGroupGrid" runat="server" 
+                            onload="epshowsortGroupGrid_Load">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
+                        </asp:ListBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         showsortGroupGrid
                     </HeaderTemplate>
@@ -463,6 +569,14 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:ListBox ID="fshowLabelCompany" runat="server" 
+                            onload="epshowLabelCompany_Load">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
+                        </asp:ListBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         showLabelCompany
                     </HeaderTemplate>
@@ -480,6 +594,14 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
+                    <FooterTemplate>
+                        <asp:ListBox ID="fDatasetDistinctFieldSelectused" runat="server" 
+                            onload="epDatasetDistinctFieldSelectused_Load1">
+                            <asp:ListItem>Null</asp:ListItem>
+                            <asp:ListItem Selected="True">True</asp:ListItem>
+                            <asp:ListItem>False</asp:ListItem>
+                        </asp:ListBox>
+                    </FooterTemplate>
                     <HeaderTemplate>
                         DatasetDistinctFieldSelectused
                     </HeaderTemplate>
@@ -488,6 +610,16 @@
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
+            <EditRowStyle BackColor="#999999" />
+            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
         
 
@@ -495,13 +627,7 @@
 
      <div data-role="main" class="ui-content">
     <a href="#myPopupDialog" data-rel="popup" data-position-to="window" data-transition="fade" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Open Dialog Popuper">
-        <h1>Header Text</h1>
-      </div>
-
-      <div data-role="main" class="ui-content">
-        <h2>Welcome to my Popup Dialog!</h2>
-        <p id="tutu">jQuery Mobile is FUN!</p>
-        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-back ui-btn-icon-left" data-rel="back">Go Back</a>
+        >Go Back</a>
       </div>
 
 
