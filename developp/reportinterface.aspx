@@ -79,6 +79,7 @@
                         <asp:ImageButton ID="ImageBtnDel" runat="server" CommandName="delete" 
                             Height="14px" ImageUrl="~/Pictures/delete.PNG" Width="14px" />
                         <asp:ImageButton ID="ImageBtnDuplicate" runat="server" CommandName="duplicate" 
+                            CommandArgument='<%#Container.DataItemIndex%>'
                             Height="22px" ImageUrl="~/Pictures/copier-modifier-icone-4892-96.png" 
                             Width="22px" />
                     </ItemTemplate>
@@ -108,7 +109,7 @@
                         rpttype
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Label2" runat="server" Text='<%# eval("rpttype") %>'></asp:Label>
+                        <asp:Label ID="labelrpttype" runat="server" Text='<%# eval("rpttype") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
@@ -122,7 +123,7 @@
                         rptthemeid
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Label3" runat="server" Text='<%# eval("rptthemeid") %>'></asp:Label>
+                        <asp:Label ID="Labelrptthemeid" runat="server" Text='<%# eval("rptthemeid") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>

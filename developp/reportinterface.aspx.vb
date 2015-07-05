@@ -322,7 +322,10 @@ Partial Class reportinterface
     End Sub
 
 
-    Protected Sub GridView2_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridView2.RowCommand 'Handles GridView2.RowCommand ' Handles GridView2.RowCommand
+    Protected Sub GridView2_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridView2.RowCommand
+
+        Dim Index As String = e.CommandArgument.GetType.ToString()
+
 
 
         If e.CommandName = "ajout" Then
@@ -390,7 +393,7 @@ Partial Class reportinterface
             Dim rptOra As TextBox = CType(GridView2.FooterRow.FindControl("frptOra"), TextBox)
             Dim conditions As TextBox = CType(GridView2.FooterRow.FindControl("fconditions"), TextBox)
             Dim foreignTablewhere As TextBox = CType(GridView2.FooterRow.FindControl("fforeignTablewhere"), TextBox)
-            Dim Desactive As CheckBox = CType(GridView2.FooterRow.FindControl("fdesactive"), CheckBox)
+            Dim Desactive As CheckBox = CType(GridView2.FooterRow.FindControl("edesactive"), CheckBox)
             Dim trier As TextBox = CType(GridView2.FooterRow.FindControl("ftrier"), TextBox)
             Dim donneafiltrer As CheckBox = CType(GridView2.FooterRow.FindControl("fdonneafiltrer"), CheckBox)
             Dim ForcegroupBySQL As TextBox = CType(GridView2.FooterRow.FindControl("fForcegroupBySQL"), TextBox)
@@ -408,10 +411,37 @@ Partial Class reportinterface
             Dim showsortGroupGrid As ListBox = CType(GridView2.FooterRow.FindControl("fshowsortGroupGrid"), ListBox)
             Dim showLabelCompany As ListBox = CType(GridView2.FooterRow.FindControl("fshowLabelCompany"), ListBox)
             Dim DatasetDistinctFieldSelectused As ListBox = CType(GridView2.FooterRow.FindControl("fDatasetDistinctFieldSelectused"), ListBox)
-            rpdid.Text = CType(GridView2.FooterRow.FindControl("labelnum"), Label).Text
+            'rpdid.Text = CType(GridView2.FooterRow.FindControl("labelnum"), Label).Text
 
             'CType(GridView2.Rows(e.CommandSource).FindControl("labelnum"), Label).Text
-            'rpdid.Text = CType(GridView2.Rows(e.CommandSource.§).FindControl("labelnum"), Label) 'CType(GridView2.Rows(
+            rpdid.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("labelnum"), Label).Text
+            rpttype.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("labelrpttype"), Label).Text
+            rptthemeid.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelrptthemeid"), Label).Text
+            rptname.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelrptname"), Label).Text
+            rptsql.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelrptsql"), Label).Text
+            rptAcc.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelrptacc"), Label).Text
+            rptOra.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelrptOra"), Label).Text
+            conditions.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelconditions"), Label).Text
+            foreignTablewhere.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelforeignTablewhere"), Label).Text
+            Desactive = CType(GridView2.Rows(e.CommandArgument).FindControl("edesactive"), CheckBox)
+            trier.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labeltrier"), Label).Text
+            donneafiltrer = CType(GridView2.Rows(e.CommandArgument).FindControl("edonneafiltrer"), CheckBox)
+            ForcegroupBySQL.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelForcegroupBySQL"), Label).Text
+            Groups.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eGroups"), Label).Text)
+            loopOverTable.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelloopOverTable"), Label).Text
+            loopOverField.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelloopOverField"), Label).Text
+            loopoverfieldType.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelloopoverfieldType"), Label).Text
+            lastSqlexecute.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabellastSqlexecute"), Label).Text
+            usedforWeb.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eusedforWeb"), Label).Text)
+            rptCategory.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelrptCategory"), Label).Text
+            isReportBook.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eisReportBook"), Label).Text)
+            ReportBookLoopField.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelReportBookLoopField"), Label).Text
+            iscrystalreport.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eiscrystalreport"), Label).Text)
+            showpagebreak.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowpagebreak"), Label).Text)
+            showsortGroupGrid.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowsortGroupGrid"), Label).Text)
+            showLabelCompany.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowLabelCompany"), Label).Text)
+            DatasetDistinctFieldSelectused.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("elDatasetDistinctFieldSelectused"), Label).Text)
+            FillData()
         End If
     End Sub
     Sub InserDataBooleanWithValueNull(Variabl As String, ValueVariabl As String)
@@ -431,5 +461,13 @@ Partial Class reportinterface
         If (value <> "Null") Then
             ConvertStringBoolean = Convert.ToBoolean(value)
         End If
+    End Function
+    Function ConvertNullBoolean(value As String) As String
+        If (value = "") Then
+            ConvertNullBoolean = "Null"
+        Else
+            ConvertNullBoolean = value
+        End If
+
     End Function
 End Class
