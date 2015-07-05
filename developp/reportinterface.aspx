@@ -130,7 +130,8 @@
                 <asp:TemplateField>
                     <EditItemTemplate>
                         <asp:ImageButton ID="ImageBtnUpdate" runat="server" CommandName="update" 
-                            Height="22px" ImageUrl="~/Pictures/update.PNG" Width="22px" />
+                            Height="22px" ImageUrl="~/Pictures/update.PNG" Width="22px" 
+                            onclick="ImageBtnUpdate_Click" />
                         <asp:ImageButton ID="ImageBtnCancel" runat="server" CommandName="Cancel" 
                             Height="22px" ImageUrl="~/Pictures/undo.PNG" Width="22px" />
                     </EditItemTemplate>
@@ -423,7 +424,7 @@
 
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="epusedforWeb" runat="server">
+                        <asp:ListBox ID="epusedforWeb" runat="server" onload="epusedforWeb_Load">
                             <asp:ListItem>Null</asp:ListItem>
                             <asp:ListItem Selected="True">True</asp:ListItem>
                             <asp:ListItem>False</asp:ListItem>

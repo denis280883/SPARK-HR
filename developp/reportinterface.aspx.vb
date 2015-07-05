@@ -36,6 +36,7 @@ Partial Class reportinterface
     Dim lbisReportBook As String
     Dim lbusedforWeb As String
     Dim lbGroups As String
+    Dim ButtonClick As Boolean = False
 
     Sub FillData()
         msql = "select * from dbo.rptlists;"
@@ -173,6 +174,7 @@ Partial Class reportinterface
         lbusedforWeb = CType(GridView2.Rows(e.NewEditIndex).FindControl("eusedforWeb"), Label).Text
         lbGroups = CType(GridView2.Rows(e.NewEditIndex).FindControl("eGroups"), Label).Text
         FillData()
+        ButtonClick = True
     End Sub
 
     Protected Sub GridView2_RowDeleting(sender As Object, e As System.Web.UI.WebControls.GridViewDeleteEventArgs) Handles GridView2.RowDeleting
@@ -235,42 +237,13 @@ Partial Class reportinterface
         Dim showLabelCompany As ListBox = CType(GridView2.Rows(e.RowIndex).FindControl("epshowLabelCompany"), ListBox)
         Dim DatasetDistinctFieldSelectused As ListBox = CType(GridView2.Rows(e.RowIndex).FindControl("epDatasetDistinctFieldSelectused"), ListBox)
 
-        cmd.Parameters.Add("@rpdid", SqlDbType.Int, 4).Value = rpdid.Text '00
-        cmd.Parameters.Add("@rpttype", SqlDbType.VarChar).Value = rpttype.Text '01
-        cmd.Parameters.Add("@rptthemeid", SqlDbType.VarChar).Value = rptthemeid.Text '02
-        cmd.Parameters.Add("@rptname", SqlDbType.VarChar).Value = rptname.Text '03
-        cmd.Parameters.Add("@rptsql", SqlDbType.VarChar).Value = rptsql.Text '04
-        cmd.Parameters.Add("@rptAcc", SqlDbType.VarChar).Value = rptAcc.Text '05
-        cmd.Parameters.Add("@rptOra", SqlDbType.VarChar).Value = rptOra.Text '06
-        cmd.Parameters.Add("@conditions", SqlDbType.VarChar).Value = conditions.Text '07
-        cmd.Parameters.Add("@foreignTablewhere", SqlDbType.VarChar).Value = foreignTablewhere.Text '08
-        cmd.Parameters.Add("@Desactive", SqlDbType.Bit).Value = Desactive.Enabled '09 BOOLEAN
-        cmd.Parameters.Add("@trier", SqlDbType.VarChar).Value = trier.Text '10
-        cmd.Parameters.Add("@donneafiltrer", SqlDbType.Bit).Value = donneafiltrer.Enabled '11 BOOLEAN
-        cmd.Parameters.Add("@ForcegroupBySQL", SqlDbType.VarChar).Value = ForcegroupBySQL.Text '11
-        InserDataBooleanWithValueNull("@Groups", Groups.Text) 'cmd.Parameters.Add("@Groups", SqlDbType.VarChar).Value = Groups.Text '12
-        cmd.Parameters.Add("@loopOverTable", SqlDbType.VarChar).Value = loopOverTable.Text '13
-        cmd.Parameters.Add("@loopOverField", SqlDbType.VarChar).Value = loopOverField.Text '14
-        cmd.Parameters.Add("@loopoverfieldType", SqlDbType.VarChar).Value = loopoverfieldType.Text '15
-        cmd.Parameters.Add("@lastSqlexecute", SqlDbType.VarChar).Value = lastSqlexecute.Text '16
-        InserDataBooleanWithValueNull("@usedforWeb", usedforWeb.Text) 'cmd.Parameters.Add("@usedforWeb", SqlDbType.Bit).Value = usedforWeb.Text '17
-        cmd.Parameters.Add("@rptCategory", SqlDbType.VarChar).Value = rptCategory.Text '17
-        InserDataBooleanWithValueNull("@isReportBook", isReportBook.Text)'cmd.Parameters.Add("@isReportBook", SqlDbType.Bit).Value = isReportBook.Text '18
-        cmd.Parameters.Add("@ReportBookLoopField", SqlDbType.VarChar).Value = ReportBookLoopField.Text '19
-        InserDataBooleanWithValueNull("@iscrystalreport", iscrystalreport.Text) 'cmd.Parameters.Add("@iscrystalreport", SqlDbType.Bit).Value = False 'iscrystalreport.Text '20
-        InserDataBooleanWithValueNull("@showpagebreak", showpagebreak.Text) 'cmd.Parameters.Add("@showpagebreak", SqlDbType.Bit).Value = False 'showpagebreak.Text '21
-        InserDataBooleanWithValueNull("@showsortGroupGrid", showsortGroupGrid.Text) 'cmd.Parameters.Add("@showsortGroupGrid", SqlDbType.Bit).Value = False 'showsortGroupGrid.Text '22
-        InserDataBooleanWithValueNull("@showLabelCompany", showLabelCompany.Text) 'cmd.Parameters.Add("@showLabelCompany", SqlDbType.Bit).Value = False 'showLabelCompany.Text '23
-        InserDataBooleanWithValueNull("@DatasetDistinctFieldSelectused", DatasetDistinctFieldSelectused.Text) 'cmd.Parameters.Add("@DatasetDistinctFieldSelectused", SqlDbType.Bit).Value = False 'DatasetDistinctFieldSelectused.Text '24
 
-
-
-
-        'cmd.Parameters.Add("@iscrystalreport", SqlDbType.Bit).Value = iscrystalreport.Text '20
-        'cmd.Parameters.Add("@showpagebreak", SqlDbType.Bit).Value = showpagebreak.Text '21
-        'cmd.Parameters.Add("@showsortGroupGrid", SqlDbType.Bit).Value = showsortGroupGrid.Text '22
-        'cmd.Parameters.Add("@showLabelCompany", SqlDbType.Bit).Value = showLabelCompany.Text '23
-        'cmd.Parameters.Add("@DatasetDistinctFieldSelectused", SqlDbType.Bit).Value = DatasetDistinctFieldSelectused.Text '24
+        AddCParamSQLcmd(rpdid.Text, rpttype.Text, rptthemeid.Text, rptname.Text, rptsql.Text, rptAcc.Text, rptOra.Text, conditions.Text, foreignTablewhere.Text, _
+                   Desactive.Checked, trier.Text, donneafiltrer.Checked, ForcegroupBySQL.Text, Groups.Text, _
+                   loopOverTable.Text, loopOverField.Text, loopoverfieldType.Text, lastSqlexecute.Text, _
+                   usedforWeb.Text, rptCategory.Text, isReportBook.Text, ReportBookLoopField.Text, _
+                   iscrystalreport.Text, showpagebreak.Text, showsortGroupGrid.Text, showLabelCompany.Text, _
+                   DatasetDistinctFieldSelectused.Text)
         Try
 
             If MsgBox(CTEASKUPDATE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
@@ -284,72 +257,97 @@ Partial Class reportinterface
         End Try
         GridView2.EditIndex = -1
         FillData()
+        ButtonClick = False
     End Sub
 
     Protected Sub epDatasetDistinctFieldSelectused_Load1(sender As Object, e As System.EventArgs)
         Dim lb As ListBox = DirectCast(sender, ListBox)
-        If lbDatasetDistinctFieldSelectused = "" Then
-            lb.SelectedValue = "Null"
-        Else
-            lb.SelectedValue = lbDatasetDistinctFieldSelectused
+        If ButtonClick Then
+            If lbDatasetDistinctFieldSelectused = "" Then
+                lb.SelectedValue = "Null"
+            Else
+                lb.SelectedValue = lbDatasetDistinctFieldSelectused
+            End If
+            ButtonClick = False
         End If
     End Sub
 
     Protected Sub epshowLabelCompany_Load(sender As Object, e As System.EventArgs)
         Dim lb As ListBox = DirectCast(sender, ListBox)
-        If lbshowLabelCompany = "" Then
-            lb.SelectedValue = "Null"
-        Else
-            lb.SelectedValue = lbshowLabelCompany
+        If ButtonClick Then
+            If lbshowLabelCompany = "" Then
+                lb.SelectedValue = "Null"
+            Else
+                lb.SelectedValue = lbshowLabelCompany
+            End If
         End If
     End Sub
 
     Protected Sub epIsReportBook_Load(sender As Object, e As System.EventArgs)
         Dim lb As ListBox = DirectCast(sender, ListBox)
-        If lbisReportBook = "" Then
-            lb.SelectedValue = "Null"
-        Else
-            lb.SelectedValue = lbisReportBook
+        If ButtonClick Then
+            If lbisReportBook = "" Then
+                lb.SelectedValue = "Null"
+            Else
+                lb.SelectedValue = lbisReportBook
+            End If
         End If
     End Sub
 
     Protected Sub episcrystalreport_Load(sender As Object, e As System.EventArgs)
         Dim lb As ListBox = DirectCast(sender, ListBox)
-        If lbiscrystalreport = "" Then
-            lb.SelectedValue = "Null"
-        Else
-            lb.SelectedValue = lbiscrystalreport
+        If ButtonClick Then
+            If lbiscrystalreport = "" Then
+                lb.SelectedValue = "Null"
+            Else
+                lb.SelectedValue = lbiscrystalreport
+            End If
         End If
     End Sub
 
     Protected Sub epshowpagebreak_Load(sender As Object, e As System.EventArgs)
         Dim lb As ListBox = DirectCast(sender, ListBox)
-        If lbshowpagebreak = "" Then
-            lb.SelectedValue = "Null"
-        Else
-            lb.SelectedValue = lbshowpagebreak
+        If ButtonClick Then
+            If lbshowpagebreak = "" Then
+                lb.SelectedValue = "Null"
+            Else
+                lb.SelectedValue = lbshowpagebreak
+            End If
         End If
-
 
     End Sub
 
     Protected Sub epshowsortGroupGrid_Load(sender As Object, e As System.EventArgs)
         Dim lb As ListBox = DirectCast(sender, ListBox)
-        If lbshowsortGroupGrid = "" Then
-            lb.SelectedValue = "Null"
-        Else
-            lb.SelectedValue = lbshowsortGroupGrid
+        If ButtonClick Then
+            If lbshowsortGroupGrid = "" Then
+                lb.SelectedValue = "Null"
+            Else
+                lb.SelectedValue = lbshowsortGroupGrid
+            End If
         End If
-
     End Sub
+
     Protected Sub epGroups_Load(sender As Object, e As System.EventArgs)
         Dim lb As ListBox = DirectCast(sender, ListBox)
-        If lbGroups = "" Then
-            lb.SelectedValue = "Null"
-        Else
-            lb.SelectedValue = lbGroups
+        If ButtonClick Then
+            If lbGroups = "" Then
+                lb.SelectedValue = "Null"
+            Else
+                lb.SelectedValue = lbGroups
+            End If
         End If
+    End Sub
 
+    Protected Sub epusedforWeb_Load(sender As Object, e As System.EventArgs)
+        Dim lb As ListBox = DirectCast(sender, ListBox)
+        If ButtonClick Then
+            If lbusedforWeb = "" Then
+                lb.SelectedValue = "Null"
+            Else
+                lb.SelectedValue = lbusedforWeb
+            End If
+        End If
     End Sub
 
 
@@ -388,9 +386,6 @@ Partial Class reportinterface
         InserDataBooleanWithValueNull("@showsortGroupGrid", showsortGroupGrid) 'cmd.Parameters.Add("@showsortGroupGrid", SqlDbType.Bit).Value = False 'showsortGroupGrid.Text '22
         InserDataBooleanWithValueNull("@showLabelCompany", showLabelCompany) 'cmd.Parameters.Add("@showLabelCompany", SqlDbType.Bit).Value = False 'showLabelCompany.Text '23
         InserDataBooleanWithValueNull("@DatasetDistinctFieldSelectused", DatasetDistinctFieldSelectused) 'cmd.Parameters.Add("@DatasetDistinctFieldSelectused", SqlDbType.Bit).Value = False 'DatasetDistinctFieldSelectused.Text '24
-
-
-
     End Sub
 
 
@@ -444,6 +439,9 @@ Partial Class reportinterface
             GridView2.EditIndex = -1
             FillData()
         End If
+        If e.CommandName = "edit" Then
+            ButtonClick = True
+        End If
     End Sub
     Sub InserDataBooleanWithValueNull(Variabl As String, ValueVariabl As String)
         'cmd.Parameters.Add("@isReportBook", SqlDbType.Bit).Value = False 'DBNull.Value 'ConvertStringBoolean(isReportBook.Text) '19
@@ -463,4 +461,12 @@ Partial Class reportinterface
             ConvertStringBoolean = Convert.ToBoolean(value)
         End If
     End Function
+
+    Protected Sub fDatasetDistinctFieldSelectused_SelectedIndexChanged(sender As Object, e As System.EventArgs)
+        MsgBox("Test")
+    End Sub
+
+    Protected Sub ImageBtnUpdate_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs)
+        ButtonClick = True
+    End Sub
 End Class
