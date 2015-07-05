@@ -465,8 +465,4 @@ Partial Class reportinterface
     Protected Sub fDatasetDistinctFieldSelectused_SelectedIndexChanged(sender As Object, e As System.EventArgs)
         MsgBox("Test")
     End Sub
-
-    Protected Sub ImageBtnUpdate_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs)
-        ButtonClick = True
-    End Sub
 End Class

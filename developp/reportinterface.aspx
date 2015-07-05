@@ -130,8 +130,7 @@
                 <asp:TemplateField>
                     <EditItemTemplate>
                         <asp:ImageButton ID="ImageBtnUpdate" runat="server" CommandName="update" 
-                            Height="22px" ImageUrl="~/Pictures/update.PNG" Width="22px" 
-                            onclick="ImageBtnUpdate_Click" />
+                            Height="22px" ImageUrl="~/Pictures/update.PNG" Width="22px" />
                         <asp:ImageButton ID="ImageBtnCancel" runat="server" CommandName="Cancel" 
                             Height="22px" ImageUrl="~/Pictures/undo.PNG" Width="22px" />
                     </EditItemTemplate>
