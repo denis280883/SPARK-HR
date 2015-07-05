@@ -350,7 +350,7 @@
                         </asp:ListBox>
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:ListBox ID="fGroups" runat="server" onload="epGroups_Load">
+                        <asp:ListBox ID="fGroups" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
                             <asp:ListItem Selected="True">True</asp:ListItem>
                             <asp:ListItem>False</asp:ListItem>
@@ -466,7 +466,7 @@
                         </asp:ListBox>
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:ListBox ID="fIsReportBook" runat="server" onload="epIsReportBook_Load">
+                        <asp:ListBox ID="fIsReportBook" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
                             <asp:ListItem Selected="True">True</asp:ListItem>
                             <asp:ListItem>False</asp:ListItem>
@@ -504,8 +504,7 @@
                         </asp:ListBox>
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:ListBox ID="fiscrystalreport" runat="server" 
-                            onload="episcrystalreport_Load">
+                        <asp:ListBox ID="fiscrystalreport" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
                             <asp:ListItem Selected="True">True</asp:ListItem>
                             <asp:ListItem>False</asp:ListItem>
@@ -527,7 +526,7 @@
                         </asp:ListBox>
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:ListBox ID="fshowpagebreak" runat="server" onload="epshowpagebreak_Load">
+                        <asp:ListBox ID="fshowpagebreak" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
                             <asp:ListItem Selected="True">True</asp:ListItem>
                             <asp:ListItem>False</asp:ListItem>
@@ -550,8 +549,7 @@
                         </asp:ListBox>
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:ListBox ID="fshowsortGroupGrid" runat="server" 
-                            onload="epshowsortGroupGrid_Load">
+                        <asp:ListBox ID="fshowsortGroupGrid" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
                             <asp:ListItem Selected="True">True</asp:ListItem>
                             <asp:ListItem>False</asp:ListItem>
@@ -574,8 +572,7 @@
                         </asp:ListBox>
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:ListBox ID="fshowLabelCompany" runat="server" 
-                            onload="epshowLabelCompany_Load">
+                        <asp:ListBox ID="fshowLabelCompany" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
                             <asp:ListItem Selected="True">True</asp:ListItem>
                             <asp:ListItem>False</asp:ListItem>
@@ -599,8 +596,7 @@
                         </asp:ListBox>
                     </EditItemTemplate>
                     <FooterTemplate>
-                        <asp:ListBox ID="fDatasetDistinctFieldSelectused" runat="server" 
-                            onload="epDatasetDistinctFieldSelectused_Load1">
+                        <asp:ListBox ID="fDatasetDistinctFieldSelectused" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
                             <asp:ListItem Selected="True">True</asp:ListItem>
                             <asp:ListItem>False</asp:ListItem>
