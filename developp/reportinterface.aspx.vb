@@ -84,78 +84,11 @@ Partial Class reportinterface
         'DELETE FROM dbo.rptlists where rptid='1003';
     End Sub
 
-    Sub RefreshData(tablename As String)
-        'Dim msql As String
-        msql = "select * from dbo.rptlists;"
-        'Dim cmd As New SqlCommand
-        'Dim ds As New DataSet
-        'Dim da As New SqlDataAdapter
-        da = New SqlDataAdapter()
-        cmd.CommandText = msql
-        da.SelectCommand = cmd
-        ds = New DataSet()
 
-        da.Fill(ds)
-        GridView1.DataSource = ds
-        GridView1.DataBind()
-    End Sub
 
     Protected Sub btnRptName_Click(sender As Object, e As System.EventArgs) Handles btnDeleteSelect.Click
         'MsgBox(GridView1.DataSource.ToString())
 
-    End Sub
-
-    Protected Sub GridView1_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs)
-
-        Select Case e.CommandName
-            Case CTEBtnDuplicate
-                MsgBox("Dupliquer")
-            Case CTEBtnEdit
-                'Response.Redirect("DataEdit.aspx", False)
-                'Dim DataSQL As DataEdit
-                'DataSQL = CType(Page.LoadControl("~/DataEdit.ascx"), DataEdit)
-
-                Dim test As String = GridView1.Rows(e.CommandArgument).Cells(3).Text
-                'Response.Write("<script>window.open('Author.aspx?Author=" + Me.txtAuthor.Text + "')</script>")
-                'Response.Write("<script>window.open('DataEditPage.aspx?" + CTENUMID + "=" + GridView1.Rows(e.CommandArgument).Cells(3).Text + "')</script>")
-
-                GridView1.AutoGenerateEditButton = True
-
-
-                'Dim MyScript As String = "<script>function myFunction22() { var person = prompt('Please enter your name', 'Harry Potter');if (person != null) { document.getElementById('demo').innerHTML = 'Hello ' + person + '! How are you today?';}}</script>"
-                '"<script>alert('Konaklama Başarıyla Eklendi');</script>"
-                '    Response.Write(MyScript)
-
-                'Response.Write("<button onclick='myFunction()'>Try it</button>")
-                'Response.Write("<button onclick='#myPopupDialog'>Try it</button>")
-                '    <a href="#myPopupDialog" data-rel="popup" data-position-to="window" data-transition="fade" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Open Dialog Popup</a>
-            Case CTEBtnDelete
-                'MsgBox("Delete")
-                'GridView1.Rows(3).Cells(3).Text 1002
-                If MsgBox(CTEASKDELLINE + GridView1.Rows(e.CommandArgument).Cells(3).Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEDELLINEFIELD) = MsgBoxResult.Yes Then
-                    DeleteField(CTETableName, "rptid", GridView1.Rows(e.CommandArgument).Cells(3).Text)
-                    'GridView1.Rows(4).Cells(3).Delete
-                    'GridView1.DeleteRow(e.CommandArgument)
-                    'MsgBox("Suppresion avec succès")
-                    'RefreshData(CTETableName)
-
-                    GridView1.DataSource = ds
-
-
-
-
-                    'Response.Redirect("reportinterface.aspx")
-                    'GridView1.DataBind()
-                End If
-            Case Else
-                MsgBox("NON DEFINI")
-        End Select
-
-    End Sub
-
-    Protected Sub GridView1_RowEditing(sender As Object, e As System.Web.UI.WebControls.GridViewEditEventArgs) Handles GridView1.RowEditing
-        GridView1.EditIndex = e.NewEditIndex
-        FillData()
     End Sub
 
 
@@ -389,7 +322,9 @@ Partial Class reportinterface
     End Sub
 
 
-    Protected Sub GridView2_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridView2.RowCommand
+    Protected Sub GridView2_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridView2.RowCommand 'Handles GridView2.RowCommand ' Handles GridView2.RowCommand
+
+
         If e.CommandName = "ajout" Then
             msql = "insert into dbo.rptlists(rptid, rpttype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, desactive, trier, donneafiltrer, ForcegroupBySQL, Groups, loopOverTable, loopOverField, loopoverfieldType, lastSqlexecute, usedforWeb, rptCategory, isReportBook, ReportBookLoopField, iscrystalreport, showpagebreak, showsortGroupGrid, showLabelCompany, DatasetDistinctFieldSelectused) values(@rpdid, @rpttype, @rptthemeid, @rptname, @rptsql, @rptAcc, @rptOra, @conditions, @foreignTablewhere, @desactive, @trier, @donneafiltrer, @ForcegroupBySQL, @Groups, @loopOverTable, @loopOverField, @loopoverfieldType, @lastSqlexecute, @usedforWeb, @rptCategory, @isReportBook, @ReportBookLoopField, @iscrystalreport, @showpagebreak, @showsortGroupGrid, @showLabelCompany, @DatasetDistinctFieldSelectused)"
             cmd = New SqlCommand(msql, cnt)
@@ -442,6 +377,42 @@ Partial Class reportinterface
         If e.CommandName = "edit" Then
             ButtonClick = True
         End If
+
+        If e.CommandName = "duplicate" Then
+
+
+            Dim rpdid As TextBox = CType(GridView2.FooterRow.FindControl("fnum"), TextBox)
+            Dim rpttype As TextBox = CType(GridView2.FooterRow.FindControl("frpttype"), TextBox)
+            Dim rptthemeid As TextBox = CType(GridView2.FooterRow.FindControl("frptthemeid"), TextBox)
+            Dim rptname As TextBox = CType(GridView2.FooterRow.FindControl("frptname"), TextBox)
+            Dim rptsql As TextBox = CType(GridView2.FooterRow.FindControl("frptsql"), TextBox)
+            Dim rptAcc As TextBox = CType(GridView2.FooterRow.FindControl("frptAcc"), TextBox)
+            Dim rptOra As TextBox = CType(GridView2.FooterRow.FindControl("frptOra"), TextBox)
+            Dim conditions As TextBox = CType(GridView2.FooterRow.FindControl("fconditions"), TextBox)
+            Dim foreignTablewhere As TextBox = CType(GridView2.FooterRow.FindControl("fforeignTablewhere"), TextBox)
+            Dim Desactive As CheckBox = CType(GridView2.FooterRow.FindControl("fdesactive"), CheckBox)
+            Dim trier As TextBox = CType(GridView2.FooterRow.FindControl("ftrier"), TextBox)
+            Dim donneafiltrer As CheckBox = CType(GridView2.FooterRow.FindControl("fdonneafiltrer"), CheckBox)
+            Dim ForcegroupBySQL As TextBox = CType(GridView2.FooterRow.FindControl("fForcegroupBySQL"), TextBox)
+            Dim Groups As ListBox = CType(GridView2.FooterRow.FindControl("fGroups"), ListBox)
+            Dim loopOverTable As TextBox = CType(GridView2.FooterRow.FindControl("floopOverTable"), TextBox)
+            Dim loopOverField As TextBox = CType(GridView2.FooterRow.FindControl("floopOverField"), TextBox)
+            Dim loopoverfieldType As TextBox = CType(GridView2.FooterRow.FindControl("floopoverfieldType"), TextBox)
+            Dim lastSqlexecute As TextBox = CType(GridView2.FooterRow.FindControl("flastSqlexecute"), TextBox)
+            Dim usedforWeb As ListBox = CType(GridView2.FooterRow.FindControl("fusedforWeb"), ListBox)
+            Dim rptCategory As TextBox = CType(GridView2.FooterRow.FindControl("frptCategory"), TextBox)
+            Dim isReportBook As ListBox = CType(GridView2.FooterRow.FindControl("fIsReportBook"), ListBox)
+            Dim ReportBookLoopField As TextBox = CType(GridView2.FooterRow.FindControl("fReportBookLoopField"), TextBox)
+            Dim iscrystalreport As ListBox = CType(GridView2.FooterRow.FindControl("fiscrystalreport"), ListBox)
+            Dim showpagebreak As ListBox = CType(GridView2.FooterRow.FindControl("fshowpagebreak"), ListBox)
+            Dim showsortGroupGrid As ListBox = CType(GridView2.FooterRow.FindControl("fshowsortGroupGrid"), ListBox)
+            Dim showLabelCompany As ListBox = CType(GridView2.FooterRow.FindControl("fshowLabelCompany"), ListBox)
+            Dim DatasetDistinctFieldSelectused As ListBox = CType(GridView2.FooterRow.FindControl("fDatasetDistinctFieldSelectused"), ListBox)
+            rpdid.Text = CType(GridView2.FooterRow.FindControl("labelnum"), Label).Text
+
+            'CType(GridView2.Rows(e.CommandSource).FindControl("labelnum"), Label).Text
+            'rpdid.Text = CType(GridView2.Rows(e.CommandSource.§).FindControl("labelnum"), Label) 'CType(GridView2.Rows(
+        End If
     End Sub
     Sub InserDataBooleanWithValueNull(Variabl As String, ValueVariabl As String)
         'cmd.Parameters.Add("@isReportBook", SqlDbType.Bit).Value = False 'DBNull.Value 'ConvertStringBoolean(isReportBook.Text) '19
@@ -461,8 +432,4 @@ Partial Class reportinterface
             ConvertStringBoolean = Convert.ToBoolean(value)
         End If
     End Function
-
-    Protected Sub fDatasetDistinctFieldSelectused_SelectedIndexChanged(sender As Object, e As System.EventArgs)
-        MsgBox("Test")
-    End Sub
 End Class
