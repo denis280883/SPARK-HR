@@ -248,20 +248,29 @@ Partial Class reportinterface
         cmd.Parameters.Add("@trier", SqlDbType.VarChar).Value = trier.Text '10
         cmd.Parameters.Add("@donneafiltrer", SqlDbType.Bit).Value = donneafiltrer.Enabled '11 BOOLEAN
         cmd.Parameters.Add("@ForcegroupBySQL", SqlDbType.VarChar).Value = ForcegroupBySQL.Text '11
-        cmd.Parameters.Add("@Groups", SqlDbType.VarChar).Value = ForcegroupBySQL.Text '12
+        InserDataBooleanWithValueNull("@Groups", Groups.Text) 'cmd.Parameters.Add("@Groups", SqlDbType.VarChar).Value = Groups.Text '12
         cmd.Parameters.Add("@loopOverTable", SqlDbType.VarChar).Value = loopOverTable.Text '13
         cmd.Parameters.Add("@loopOverField", SqlDbType.VarChar).Value = loopOverField.Text '14
         cmd.Parameters.Add("@loopoverfieldType", SqlDbType.VarChar).Value = loopoverfieldType.Text '15
         cmd.Parameters.Add("@lastSqlexecute", SqlDbType.VarChar).Value = lastSqlexecute.Text '16
-        cmd.Parameters.Add("@usedforWeb", SqlDbType.Bit).Value = usedforWeb.Text '17
+        InserDataBooleanWithValueNull("@usedforWeb", usedforWeb.Text) 'cmd.Parameters.Add("@usedforWeb", SqlDbType.Bit).Value = usedforWeb.Text '17
         cmd.Parameters.Add("@rptCategory", SqlDbType.VarChar).Value = rptCategory.Text '17
-        cmd.Parameters.Add("@isReportBook", SqlDbType.Bit).Value = isReportBook.Text '18
+        InserDataBooleanWithValueNull("@isReportBook", isReportBook.Text)'cmd.Parameters.Add("@isReportBook", SqlDbType.Bit).Value = isReportBook.Text '18
         cmd.Parameters.Add("@ReportBookLoopField", SqlDbType.VarChar).Value = ReportBookLoopField.Text '19
-        cmd.Parameters.Add("@iscrystalreport", SqlDbType.Bit).Value = iscrystalreport.Text '20
-        cmd.Parameters.Add("@showpagebreak", SqlDbType.Bit).Value = showpagebreak.Text '21
-        cmd.Parameters.Add("@showsortGroupGrid", SqlDbType.Bit).Value = showsortGroupGrid.Text '22
-        cmd.Parameters.Add("@showLabelCompany", SqlDbType.Bit).Value = showLabelCompany.Text '23
-        cmd.Parameters.Add("@DatasetDistinctFieldSelectused", SqlDbType.Bit).Value = DatasetDistinctFieldSelectused.Text '24
+        InserDataBooleanWithValueNull("@iscrystalreport", iscrystalreport.Text) 'cmd.Parameters.Add("@iscrystalreport", SqlDbType.Bit).Value = False 'iscrystalreport.Text '20
+        InserDataBooleanWithValueNull("@showpagebreak", showpagebreak.Text) 'cmd.Parameters.Add("@showpagebreak", SqlDbType.Bit).Value = False 'showpagebreak.Text '21
+        InserDataBooleanWithValueNull("@showsortGroupGrid", showsortGroupGrid.Text) 'cmd.Parameters.Add("@showsortGroupGrid", SqlDbType.Bit).Value = False 'showsortGroupGrid.Text '22
+        InserDataBooleanWithValueNull("@showLabelCompany", showLabelCompany.Text) 'cmd.Parameters.Add("@showLabelCompany", SqlDbType.Bit).Value = False 'showLabelCompany.Text '23
+        InserDataBooleanWithValueNull("@DatasetDistinctFieldSelectused", DatasetDistinctFieldSelectused.Text) 'cmd.Parameters.Add("@DatasetDistinctFieldSelectused", SqlDbType.Bit).Value = False 'DatasetDistinctFieldSelectused.Text '24
+
+
+
+
+        'cmd.Parameters.Add("@iscrystalreport", SqlDbType.Bit).Value = iscrystalreport.Text '20
+        'cmd.Parameters.Add("@showpagebreak", SqlDbType.Bit).Value = showpagebreak.Text '21
+        'cmd.Parameters.Add("@showsortGroupGrid", SqlDbType.Bit).Value = showsortGroupGrid.Text '22
+        'cmd.Parameters.Add("@showLabelCompany", SqlDbType.Bit).Value = showLabelCompany.Text '23
+        'cmd.Parameters.Add("@DatasetDistinctFieldSelectused", SqlDbType.Bit).Value = DatasetDistinctFieldSelectused.Text '24
         Try
 
             If MsgBox(CTEASKUPDATE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
@@ -393,24 +402,26 @@ Partial Class reportinterface
             cmd.Parameters.Add("@rptOra", SqlDbType.VarChar).Value = rptOra.Text '06
             cmd.Parameters.Add("@conditions", SqlDbType.VarChar).Value = conditions.Text '07
             cmd.Parameters.Add("@foreignTablewhere", SqlDbType.VarChar).Value = foreignTablewhere.Text '08
-            cmd.Parameters.Add("@Desactive", SqlDbType.Bit).Value = Desactive.Enabled '09 BOOLEAN
+            cmd.Parameters.Add("@Desactive", SqlDbType.Bit).Value = Desactive.Checked '09 BOOLEAN
             cmd.Parameters.Add("@trier", SqlDbType.VarChar).Value = trier.Text '10
-            cmd.Parameters.Add("@donneafiltrer", SqlDbType.Bit).Value = donneafiltrer.Enabled '11 BOOLEAN
+            cmd.Parameters.Add("@donneafiltrer", SqlDbType.Bit).Value = donneafiltrer.Checked '11 BOOLEAN
             cmd.Parameters.Add("@ForcegroupBySQL", SqlDbType.VarChar).Value = ForcegroupBySQL.Text '11
-            cmd.Parameters.Add("@Groups", SqlDbType.VarChar).Value = ForcegroupBySQL.Text '12
+            InserDataBooleanWithValueNull("@Groups", Groups.Text) 'cmd.Parameters.Add("@Groups", SqlDbType.Bit).Value = Groups.Text '12
+
+
             cmd.Parameters.Add("@loopOverTable", SqlDbType.VarChar).Value = loopOverTable.Text '13
             cmd.Parameters.Add("@loopOverField", SqlDbType.VarChar).Value = loopOverField.Text '14
             cmd.Parameters.Add("@loopoverfieldType", SqlDbType.VarChar).Value = loopoverfieldType.Text '15
             cmd.Parameters.Add("@lastSqlexecute", SqlDbType.VarChar).Value = lastSqlexecute.Text '16
-            cmd.Parameters.Add("@usedforWeb", SqlDbType.Bit).Value = usedforWeb.Text '17
+            InserDataBooleanWithValueNull("@usedforWeb", usedforWeb.Text) 'cmd.Parameters.Add("@usedforWeb", SqlDbType.Bit).Value = usedforWeb.Text '17
             cmd.Parameters.Add("@rptCategory", SqlDbType.VarChar).Value = rptCategory.Text '17
             InserDataBooleanWithValueNull("@isReportBook", isReportBook.Text)
             cmd.Parameters.Add("@ReportBookLoopField", SqlDbType.VarChar).Value = ReportBookLoopField.Text '19
-            cmd.Parameters.Add("@iscrystalreport", SqlDbType.Bit).Value = False 'iscrystalreport.Text '20
-            cmd.Parameters.Add("@showpagebreak", SqlDbType.Bit).Value = False 'showpagebreak.Text '21
-            cmd.Parameters.Add("@showsortGroupGrid", SqlDbType.Bit).Value = False 'showsortGroupGrid.Text '22
-            cmd.Parameters.Add("@showLabelCompany", SqlDbType.Bit).Value = False 'showLabelCompany.Text '23
-            cmd.Parameters.Add("@DatasetDistinctFieldSelectused", SqlDbType.Bit).Value = False 'DatasetDistinctFieldSelectused.Text '24
+            InserDataBooleanWithValueNull("@iscrystalreport", iscrystalreport.Text) 'cmd.Parameters.Add("@iscrystalreport", SqlDbType.Bit).Value = False 'iscrystalreport.Text '20
+            InserDataBooleanWithValueNull("@showpagebreak", showpagebreak.Text) 'cmd.Parameters.Add("@showpagebreak", SqlDbType.Bit).Value = False 'showpagebreak.Text '21
+            InserDataBooleanWithValueNull("@showsortGroupGrid", showsortGroupGrid.Text) 'cmd.Parameters.Add("@showsortGroupGrid", SqlDbType.Bit).Value = False 'showsortGroupGrid.Text '22
+            InserDataBooleanWithValueNull("@showLabelCompany", showLabelCompany.Text) 'cmd.Parameters.Add("@showLabelCompany", SqlDbType.Bit).Value = False 'showLabelCompany.Text '23
+            InserDataBooleanWithValueNull("@DatasetDistinctFieldSelectused", DatasetDistinctFieldSelectused.Text) 'cmd.Parameters.Add("@DatasetDistinctFieldSelectused", SqlDbType.Bit).Value = False 'DatasetDistinctFieldSelectused.Text '24
 
             Try
                 cnt.Open()
