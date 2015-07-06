@@ -471,9 +471,6 @@ Partial Class reportinterface
 
     End Sub
     Sub InserDataBooleanWithValueNull(Variabl As String, ValueVariabl As String)
-        'cmd.Parameters.Add("@isReportBook", SqlDbType.Bit).Value = False 'DBNull.Value 'ConvertStringBoolean(isReportBook.Text) '19
-        'cmd.Parameters("@isReportBook").IsNullable = True
-        'cmd.Parameters("@isReportBook").Value = DBNull.Value
         cmd.Parameters.Add(Variabl, SqlDbType.Bit).Value = False
         cmd.Parameters(Variabl).IsNullable = True
         If ValueVariabl = "Null" Then
@@ -489,7 +486,6 @@ Partial Class reportinterface
         Else
             ConvertNullBoolean = value
         End If
-
     End Function
     Function GetMaxRptid() As Integer
 
@@ -505,14 +501,76 @@ Partial Class reportinterface
             GetMaxRptid = 0
         End Try
     End Function
+    Sub InsertCopySelect(i As Integer)
+        msql = "insert into dbo.rptlists(rptid, rpttype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, desactive, trier, donneafiltrer, ForcegroupBySQL, Groups, loopOverTable, loopOverField, loopoverfieldType, lastSqlexecute, usedforWeb, rptCategory, isReportBook, ReportBookLoopField, iscrystalreport, showpagebreak, showsortGroupGrid, showLabelCompany, DatasetDistinctFieldSelectused) values(@rpdid, @rpttype, @rptthemeid, @rptname, @rptsql, @rptAcc, @rptOra, @conditions, @foreignTablewhere, @desactive, @trier, @donneafiltrer, @ForcegroupBySQL, @Groups, @loopOverTable, @loopOverField, @loopoverfieldType, @lastSqlexecute, @usedforWeb, @rptCategory, @isReportBook, @ReportBookLoopField, @iscrystalreport, @showpagebreak, @showsortGroupGrid, @showLabelCompany, @DatasetDistinctFieldSelectused)"
+        cmd = New SqlCommand(msql, cnt)
 
+        Dim rpttype As String = CType(GridView2.Rows(i).FindControl("labelrpttype"), Label).Text
+        Dim rptthemeid As String = CType(GridView2.Rows(i).FindControl("Labelrptthemeid"), Label).Text
+        Dim rptname As String = CType(GridView2.Rows(i).FindControl("Labelrptname"), Label).Text
+        Dim rptsql As String = CType(GridView2.Rows(i).FindControl("Labelrptsql"), Label).Text
+        Dim rptAcc As String = CType(GridView2.Rows(i).FindControl("Labelrptacc"), Label).Text
+        Dim rptOra As String = CType(GridView2.Rows(i).FindControl("LabelrptOra"), Label).Text
+        Dim conditions As String = CType(GridView2.Rows(i).FindControl("Labelconditions"), Label).Text
+        Dim foreignTablewhere As String = CType(GridView2.Rows(i).FindControl("LabelforeignTablewhere"), Label).Text
+        Dim Desactive As Boolean = Convert.ToBoolean(CType(GridView2.Rows(i).FindControl("Labeldesactive"), Label).Text)
+        Dim trier As String = CType(GridView2.Rows(i).FindControl("Labeltrier"), Label).Text
+        Dim donneafiltrer As Boolean = Convert.ToBoolean(CType(GridView2.Rows(i).FindControl("Labeldonnerafiltrer"), Label).Text)
+        Dim ForcegroupBySQL As String = CType(GridView2.Rows(i).FindControl("LabelForcegroupBySQL"), Label).Text
+        Dim Groups As String = ConvertNullBoolean(CType(GridView2.Rows(i).FindControl("eGroups"), Label).Text)
+        Dim loopOverTable As String = CType(GridView2.Rows(i).FindControl("LabelloopOverTable"), Label).Text
+        Dim loopOverField As String = CType(GridView2.Rows(i).FindControl("LabelloopOverField"), Label).Text
+        Dim loopoverfieldType As String = CType(GridView2.Rows(i).FindControl("LabelloopoverfieldType"), Label).Text
+        Dim lastSqlexecute As String = CType(GridView2.Rows(i).FindControl("LabellastSqlexecute"), Label).Text
+        Dim usedforWeb As String = ConvertNullBoolean(CType(GridView2.Rows(i).FindControl("eusedforWeb"), Label).Text)
+        Dim rptCategory As String = CType(GridView2.Rows(i).FindControl("LabelrptCategory"), Label).Text
+        Dim isReportBook As String = ConvertNullBoolean(CType(GridView2.Rows(i).FindControl("eisReportBook"), Label).Text)
+        Dim ReportBookLoopField As String = CType(GridView2.Rows(i).FindControl("LabelReportBookLoopField"), Label).Text
+        Dim iscrystalreport As String = ConvertNullBoolean(CType(GridView2.Rows(i).FindControl("eiscrystalreport"), Label).Text)
+        Dim showpagebreak As String = ConvertNullBoolean(CType(GridView2.Rows(i).FindControl("eshowpagebreak"), Label).Text)
+        Dim showsortGroupGrid As String = ConvertNullBoolean(CType(GridView2.Rows(i).FindControl("eshowsortGroupGrid"), Label).Text)
+        Dim showLabelCompany As String = ConvertNullBoolean(CType(GridView2.Rows(i).FindControl("eshowLabelCompany"), Label).Text)
+        Dim DatasetDistinctFieldSelectused As String = ConvertNullBoolean(CType(GridView2.Rows(i).FindControl("elDatasetDistinctFieldSelectused"), Label).Text)
+
+
+        AddCParamSQLcmd(Convert.ToString(GetMaxRptid()), rpttype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, _
+           Desactive, trier, donneafiltrer, ForcegroupBySQL, Groups, _
+           loopOverTable, loopOverField, loopoverfieldType, lastSqlexecute, _
+           usedforWeb, rptCategory, isReportBook, ReportBookLoopField, _
+           iscrystalreport, showpagebreak, showsortGroupGrid, showLabelCompany, _
+           DatasetDistinctFieldSelectused)
+        Try
+            cnt.Open()
+            cmd.ExecuteNonQuery()
+            cnt.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+        GridView2.EditIndex = -1
+        FillData()
+
+
+    End Sub
     Protected Sub BtnCopySelect_Click(sender As Object, e As System.EventArgs) Handles BtnCopySelect.Click
         Dim i As Integer
         For i = 0 To GridView2.Rows.Count - 1
             If CType(GridView2.Rows(i).FindControl("cbField"), CheckBox).Checked Then
-                MsgBox("Coché:" + Convert.ToString(i))
+                If (Not cbNotAskUser.Checked) Then
+
+                    If MsgBox(CTEASKUPDATE + Convert.ToString(GetMaxRptid()) + " emplacement checkbox a " + i.ToString() + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
+                        InsertCopySelect(i)
+                    End If
+                Else
+                    InsertCopySelect(i)
+                End If
+
+
             End If
 
+
         Next
+        GridView2.EditIndex = -1
+        FillData()
+
     End Sub
 End Class
