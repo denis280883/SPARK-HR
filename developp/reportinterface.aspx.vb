@@ -321,12 +321,9 @@ Partial Class reportinterface
         InserDataBooleanWithValueNull("@DatasetDistinctFieldSelectused", DatasetDistinctFieldSelectused) 'cmd.Parameters.Add("@DatasetDistinctFieldSelectused", SqlDbType.Bit).Value = False 'DatasetDistinctFieldSelectused.Text '24
     End Sub
 
-
     Protected Sub GridView2_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridView2.RowCommand
 
         Dim Index As String = e.CommandArgument.GetType.ToString()
-
-
 
         If e.CommandName = "ajout" Then
             msql = "insert into dbo.rptlists(rptid, rpttype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, desactive, trier, donneafiltrer, ForcegroupBySQL, Groups, loopOverTable, loopOverField, loopoverfieldType, lastSqlexecute, usedforWeb, rptCategory, isReportBook, ReportBookLoopField, iscrystalreport, showpagebreak, showsortGroupGrid, showLabelCompany, DatasetDistinctFieldSelectused) values(@rpdid, @rpttype, @rptthemeid, @rptname, @rptsql, @rptAcc, @rptOra, @conditions, @foreignTablewhere, @desactive, @trier, @donneafiltrer, @ForcegroupBySQL, @Groups, @loopOverTable, @loopOverField, @loopoverfieldType, @lastSqlexecute, @usedforWeb, @rptCategory, @isReportBook, @ReportBookLoopField, @iscrystalreport, @showpagebreak, @showsortGroupGrid, @showLabelCompany, @DatasetDistinctFieldSelectused)"
@@ -393,7 +390,7 @@ Partial Class reportinterface
             Dim rptOra As TextBox = CType(GridView2.FooterRow.FindControl("frptOra"), TextBox)
             Dim conditions As TextBox = CType(GridView2.FooterRow.FindControl("fconditions"), TextBox)
             Dim foreignTablewhere As TextBox = CType(GridView2.FooterRow.FindControl("fforeignTablewhere"), TextBox)
-            Dim Desactive As CheckBox = CType(GridView2.FooterRow.FindControl("edesactive"), CheckBox)
+            Dim Desactive As CheckBox = CType(GridView2.FooterRow.FindControl("fdesactive"), CheckBox)
             Dim trier As TextBox = CType(GridView2.FooterRow.FindControl("ftrier"), TextBox)
             Dim donneafiltrer As CheckBox = CType(GridView2.FooterRow.FindControl("fdonneafiltrer"), CheckBox)
             Dim ForcegroupBySQL As TextBox = CType(GridView2.FooterRow.FindControl("fForcegroupBySQL"), TextBox)
@@ -423,9 +420,9 @@ Partial Class reportinterface
             rptOra.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelrptOra"), Label).Text
             conditions.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelconditions"), Label).Text
             foreignTablewhere.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelforeignTablewhere"), Label).Text
-            Desactive = CType(GridView2.Rows(e.CommandArgument).FindControl("edesactive"), CheckBox)
+            Desactive.Checked = Convert.ToBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("Labeldesactive"), Label).Text)
             trier.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labeltrier"), Label).Text
-            donneafiltrer = CType(GridView2.Rows(e.CommandArgument).FindControl("edonneafiltrer"), CheckBox)
+            donneafiltrer.Checked = Convert.ToBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("Labeldonnerafiltrer"), Label))
             ForcegroupBySQL.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelForcegroupBySQL"), Label).Text
             Groups.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eGroups"), Label).Text)
             loopOverTable.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelloopOverTable"), Label).Text
@@ -441,7 +438,7 @@ Partial Class reportinterface
             showsortGroupGrid.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowsortGroupGrid"), Label).Text)
             showLabelCompany.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowLabelCompany"), Label).Text)
             DatasetDistinctFieldSelectused.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("elDatasetDistinctFieldSelectused"), Label).Text)
-            FillData()
+            'FillData()
         End If
     End Sub
     Sub InserDataBooleanWithValueNull(Variabl As String, ValueVariabl As String)

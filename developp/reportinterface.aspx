@@ -229,6 +229,8 @@
                         <asp:CheckBox ID="edesactive" runat="server" 
                             Checked='<%# eval("desactive") %>' Enabled="False" 
                             EnableViewState="False" />
+                        <asp:Label ID="Labeldesactive" runat="server" Text='<%# eval("desactive") %>' 
+                            Visible="False"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
@@ -261,6 +263,8 @@
                         <asp:CheckBox ID="edonneafiltrer" runat="server" 
                             Checked='<%# eval("donneafiltrer") %>' Enabled="False" 
                             EnableViewState="False" />
+                        <asp:Label ID="Labeldonnerafiltrer" runat="server" 
+                            Text='<%# eval("donneafiltrer") %>' Visible="False"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
