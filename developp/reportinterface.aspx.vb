@@ -337,8 +337,6 @@ Partial Class reportinterface
         Dim Index As String = e.CommandArgument.GetType.ToString()
         Dim Insert1Data As Boolean = False
 
-
-
         If e.CommandName = "edit" Then
             ButtonClick = True
         End If
@@ -403,7 +401,6 @@ Partial Class reportinterface
             showsortGroupGrid.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowsortGroupGrid"), Label).Text)
             showLabelCompany.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowLabelCompany"), Label).Text)
             DatasetDistinctFieldSelectused.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("elDatasetDistinctFieldSelectused"), Label).Text)
-
 
             If (Not cbNotAskUser.Checked) Then
                 If MsgBox(CTEASKUPDATE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
@@ -502,6 +499,8 @@ Partial Class reportinterface
         End Try
     End Function
     Sub InsertCopySelect(i As Integer)
+        Dim maxrpid As Integer = GetMaxRptid()
+
         msql = "insert into dbo.rptlists(rptid, rpttype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, desactive, trier, donneafiltrer, ForcegroupBySQL, Groups, loopOverTable, loopOverField, loopoverfieldType, lastSqlexecute, usedforWeb, rptCategory, isReportBook, ReportBookLoopField, iscrystalreport, showpagebreak, showsortGroupGrid, showLabelCompany, DatasetDistinctFieldSelectused) values(@rpdid, @rpttype, @rptthemeid, @rptname, @rptsql, @rptAcc, @rptOra, @conditions, @foreignTablewhere, @desactive, @trier, @donneafiltrer, @ForcegroupBySQL, @Groups, @loopOverTable, @loopOverField, @loopoverfieldType, @lastSqlexecute, @usedforWeb, @rptCategory, @isReportBook, @ReportBookLoopField, @iscrystalreport, @showpagebreak, @showsortGroupGrid, @showLabelCompany, @DatasetDistinctFieldSelectused)"
         cmd = New SqlCommand(msql, cnt)
 
@@ -533,12 +532,13 @@ Partial Class reportinterface
         Dim DatasetDistinctFieldSelectused As String = ConvertNullBoolean(CType(GridView2.Rows(i).FindControl("elDatasetDistinctFieldSelectused"), Label).Text)
 
 
-        AddCParamSQLcmd(Convert.ToString(GetMaxRptid()), rpttype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, _
+        AddCParamSQLcmd(maxrpid.ToString, rpttype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, _
            Desactive, trier, donneafiltrer, ForcegroupBySQL, Groups, _
            loopOverTable, loopOverField, loopoverfieldType, lastSqlexecute, _
            usedforWeb, rptCategory, isReportBook, ReportBookLoopField, _
            iscrystalreport, showpagebreak, showsortGroupGrid, showLabelCompany, _
            DatasetDistinctFieldSelectused)
+
         Try
             cnt.Open()
             cmd.ExecuteNonQuery()
@@ -547,9 +547,6 @@ Partial Class reportinterface
             MsgBox(ex.Message)
         End Try
         GridView2.EditIndex = -1
-        FillData()
-
-
     End Sub
     Protected Sub BtnCopySelect_Click(sender As Object, e As System.EventArgs) Handles BtnCopySelect.Click
         Dim i As Integer
@@ -559,6 +556,7 @@ Partial Class reportinterface
 
                     If MsgBox(CTEASKUPDATE + Convert.ToString(GetMaxRptid()) + " emplacement checkbox a " + i.ToString() + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
                         InsertCopySelect(i)
+
                     End If
                 Else
                     InsertCopySelect(i)
