@@ -41,9 +41,13 @@
     <div>
     
     </div>
-    <asp:Button ID="btnDeleteSelect" runat="server" Text="Suppresion" 
+    <asp:Button ID="btnDeleteSelect" runat="server" Text="Supprime selection" 
         Width="117px" />
+    <asp:Button ID="BtnCopySelect" runat="server" Text="Copie Selection" />
     <br />
+
+    <asp:CheckBox ID="cbNotAskUser" runat="server" 
+        Text="Sans confirmation de l'utilisateur" />
 
     <p id="demo"> J'attend</p>
 
@@ -56,7 +60,8 @@
                         &nbsp;&nbsp;
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:CheckBox ID="CheckBox2" runat="server" />
+                        <asp:CheckBox ID="cbField" runat="server" 
+                        CommandArgument='<%#Container.DataItemIndex%>'/>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>

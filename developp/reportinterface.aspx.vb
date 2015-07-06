@@ -120,9 +120,14 @@ Partial Class reportinterface
         'msql = "DELETE FROM " + tablename + " where " + colDel + "='" + numId + "';"
 
         Try
+            If (Not cbNotAskUser.Checked) Then
+                If MsgBox(CTEASKDELLINE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEDELLINEFIELD) = MsgBoxResult.Yes Then
 
-            If MsgBox(CTEASKDELLINE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEDELLINEFIELD) = MsgBoxResult.Yes Then
-
+                    cnt.Open()
+                    cmd.ExecuteNonQuery()
+                    cnt.Close()
+                End If
+            Else
                 cnt.Open()
                 cmd.ExecuteNonQuery()
                 cnt.Close()
@@ -179,8 +184,14 @@ Partial Class reportinterface
                    DatasetDistinctFieldSelectused.Text)
         Try
 
-            If MsgBox(CTEASKUPDATE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
+            If (Not cbNotAskUser.Checked) Then
+                If MsgBox(CTEASKUPDATE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
 
+                    cnt.Open()
+                    cmd.ExecuteNonQuery()
+                    cnt.Close()
+                End If
+            Else
                 cnt.Open()
                 cmd.ExecuteNonQuery()
                 cnt.Close()
@@ -324,7 +335,7 @@ Partial Class reportinterface
     Protected Sub GridView2_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridView2.RowCommand
 
         Dim Index As String = e.CommandArgument.GetType.ToString()
-
+        Dim Insert1Data As Boolean = False
 
 
 
@@ -392,9 +403,22 @@ Partial Class reportinterface
             showsortGroupGrid.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowsortGroupGrid"), Label).Text)
             showLabelCompany.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowLabelCompany"), Label).Text)
             DatasetDistinctFieldSelectused.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("elDatasetDistinctFieldSelectused"), Label).Text)
+
+
+            If (Not cbNotAskUser.Checked) Then
+                If MsgBox(CTEASKUPDATE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
+                    Insert1Data = True
+                End If
+            Else
+                Insert1Data = True
+            End If
+
         End If
 
-        If e.CommandName = "ajout" Then
+
+
+
+        If e.CommandName = "ajout" Or Insert1Data Then
             msql = "insert into dbo.rptlists(rptid, rpttype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, desactive, trier, donneafiltrer, ForcegroupBySQL, Groups, loopOverTable, loopOverField, loopoverfieldType, lastSqlexecute, usedforWeb, rptCategory, isReportBook, ReportBookLoopField, iscrystalreport, showpagebreak, showsortGroupGrid, showLabelCompany, DatasetDistinctFieldSelectused) values(@rpdid, @rpttype, @rptthemeid, @rptname, @rptsql, @rptAcc, @rptOra, @conditions, @foreignTablewhere, @desactive, @trier, @donneafiltrer, @ForcegroupBySQL, @Groups, @loopOverTable, @loopOverField, @loopoverfieldType, @lastSqlexecute, @usedforWeb, @rptCategory, @isReportBook, @ReportBookLoopField, @iscrystalreport, @showpagebreak, @showsortGroupGrid, @showLabelCompany, @DatasetDistinctFieldSelectused)"
             cmd = New SqlCommand(msql, cnt)
 
@@ -482,4 +506,13 @@ Partial Class reportinterface
         End Try
     End Function
 
+    Protected Sub BtnCopySelect_Click(sender As Object, e As System.EventArgs) Handles BtnCopySelect.Click
+        Dim i As Integer
+        For i = 0 To GridView2.Rows.Count - 1
+            If CType(GridView2.Rows(i).FindControl("cbField"), CheckBox).Checked Then
+                MsgBox("Coché:" + Convert.ToString(i))
+            End If
+
+        Next
+    End Sub
 End Class
