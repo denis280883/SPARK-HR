@@ -61,7 +61,7 @@
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:CheckBox ID="cbField" runat="server" 
-                        CommandArgument='<%#Container.DataItemIndex%>'/>
+                        />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
