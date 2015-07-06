@@ -325,9 +325,79 @@ Partial Class reportinterface
 
         Dim Index As String = e.CommandArgument.GetType.ToString()
 
+
+
+
+        If e.CommandName = "edit" Then
+            ButtonClick = True
+        End If
+
+        If e.CommandName = "duplicate" Then
+
+            Dim BigNum As Integer = GetMaxRptid()
+            Dim rpdid As TextBox = CType(GridView2.FooterRow.FindControl("fnum"), TextBox)
+            Dim rpttype As TextBox = CType(GridView2.FooterRow.FindControl("frpttype"), TextBox)
+            Dim rptthemeid As TextBox = CType(GridView2.FooterRow.FindControl("frptthemeid"), TextBox)
+            Dim rptname As TextBox = CType(GridView2.FooterRow.FindControl("frptname"), TextBox)
+            Dim rptsql As TextBox = CType(GridView2.FooterRow.FindControl("frptsql"), TextBox)
+            Dim rptAcc As TextBox = CType(GridView2.FooterRow.FindControl("frptAcc"), TextBox)
+            Dim rptOra As TextBox = CType(GridView2.FooterRow.FindControl("frptOra"), TextBox)
+            Dim conditions As TextBox = CType(GridView2.FooterRow.FindControl("fconditions"), TextBox)
+            Dim foreignTablewhere As TextBox = CType(GridView2.FooterRow.FindControl("fforeignTablewhere"), TextBox)
+            Dim Desactive As CheckBox = CType(GridView2.FooterRow.FindControl("fdesactive"), CheckBox)
+            Dim trier As TextBox = CType(GridView2.FooterRow.FindControl("ftrier"), TextBox)
+            Dim donneafiltrer As CheckBox = CType(GridView2.FooterRow.FindControl("fdonneafiltrer"), CheckBox)
+            Dim ForcegroupBySQL As TextBox = CType(GridView2.FooterRow.FindControl("fForcegroupBySQL"), TextBox)
+            Dim Groups As ListBox = CType(GridView2.FooterRow.FindControl("fGroups"), ListBox)
+            Dim loopOverTable As TextBox = CType(GridView2.FooterRow.FindControl("floopOverTable"), TextBox)
+            Dim loopOverField As TextBox = CType(GridView2.FooterRow.FindControl("floopOverField"), TextBox)
+            Dim loopoverfieldType As TextBox = CType(GridView2.FooterRow.FindControl("floopoverfieldType"), TextBox)
+            Dim lastSqlexecute As TextBox = CType(GridView2.FooterRow.FindControl("flastSqlexecute"), TextBox)
+            Dim usedforWeb As ListBox = CType(GridView2.FooterRow.FindControl("fusedforWeb"), ListBox)
+            Dim rptCategory As TextBox = CType(GridView2.FooterRow.FindControl("frptCategory"), TextBox)
+            Dim isReportBook As ListBox = CType(GridView2.FooterRow.FindControl("fIsReportBook"), ListBox)
+            Dim ReportBookLoopField As TextBox = CType(GridView2.FooterRow.FindControl("fReportBookLoopField"), TextBox)
+            Dim iscrystalreport As ListBox = CType(GridView2.FooterRow.FindControl("fiscrystalreport"), ListBox)
+            Dim showpagebreak As ListBox = CType(GridView2.FooterRow.FindControl("fshowpagebreak"), ListBox)
+            Dim showsortGroupGrid As ListBox = CType(GridView2.FooterRow.FindControl("fshowsortGroupGrid"), ListBox)
+            Dim showLabelCompany As ListBox = CType(GridView2.FooterRow.FindControl("fshowLabelCompany"), ListBox)
+            Dim DatasetDistinctFieldSelectused As ListBox = CType(GridView2.FooterRow.FindControl("fDatasetDistinctFieldSelectused"), ListBox)
+            'rpdid.Text = CType(GridView2.FooterRow.FindControl("labelnum"), Label).Text
+
+            'CType(GridView2.Rows(e.CommandSource).FindControl("labelnum"), Label).Text
+            rpdid.Text = BigNum 'CType(GridView2.Rows(e.CommandArgument).FindControl("labelnum"), Label).Text
+            rpttype.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("labelrpttype"), Label).Text
+            rptthemeid.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelrptthemeid"), Label).Text
+            rptname.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelrptname"), Label).Text
+            rptsql.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelrptsql"), Label).Text
+            rptAcc.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelrptacc"), Label).Text
+            rptOra.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelrptOra"), Label).Text
+            conditions.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelconditions"), Label).Text
+            foreignTablewhere.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelforeignTablewhere"), Label).Text
+            Desactive.Checked = Convert.ToBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("Labeldesactive"), Label).Text)
+            trier.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labeltrier"), Label).Text
+            donneafiltrer.Checked = Convert.ToBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("Labeldonnerafiltrer"), Label).Text)
+            ForcegroupBySQL.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelForcegroupBySQL"), Label).Text
+            Groups.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eGroups"), Label).Text)
+            loopOverTable.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelloopOverTable"), Label).Text
+            loopOverField.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelloopOverField"), Label).Text
+            loopoverfieldType.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelloopoverfieldType"), Label).Text
+            lastSqlexecute.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabellastSqlexecute"), Label).Text
+            usedforWeb.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eusedforWeb"), Label).Text)
+            rptCategory.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelrptCategory"), Label).Text
+            isReportBook.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eisReportBook"), Label).Text)
+            ReportBookLoopField.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelReportBookLoopField"), Label).Text
+            iscrystalreport.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eiscrystalreport"), Label).Text)
+            showpagebreak.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowpagebreak"), Label).Text)
+            showsortGroupGrid.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowsortGroupGrid"), Label).Text)
+            showLabelCompany.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowLabelCompany"), Label).Text)
+            DatasetDistinctFieldSelectused.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("elDatasetDistinctFieldSelectused"), Label).Text)
+        End If
+
         If e.CommandName = "ajout" Then
             msql = "insert into dbo.rptlists(rptid, rpttype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, desactive, trier, donneafiltrer, ForcegroupBySQL, Groups, loopOverTable, loopOverField, loopoverfieldType, lastSqlexecute, usedforWeb, rptCategory, isReportBook, ReportBookLoopField, iscrystalreport, showpagebreak, showsortGroupGrid, showLabelCompany, DatasetDistinctFieldSelectused) values(@rpdid, @rpttype, @rptthemeid, @rptname, @rptsql, @rptAcc, @rptOra, @conditions, @foreignTablewhere, @desactive, @trier, @donneafiltrer, @ForcegroupBySQL, @Groups, @loopOverTable, @loopOverField, @loopoverfieldType, @lastSqlexecute, @usedforWeb, @rptCategory, @isReportBook, @ReportBookLoopField, @iscrystalreport, @showpagebreak, @showsortGroupGrid, @showLabelCompany, @DatasetDistinctFieldSelectused)"
             cmd = New SqlCommand(msql, cnt)
+
 
 
             Dim rpdid As TextBox = CType(GridView2.FooterRow.FindControl("fnum"), TextBox)
@@ -374,72 +444,7 @@ Partial Class reportinterface
             GridView2.EditIndex = -1
             FillData()
         End If
-        If e.CommandName = "edit" Then
-            ButtonClick = True
-        End If
 
-        If e.CommandName = "duplicate" Then
-
-
-            Dim rpdid As TextBox = CType(GridView2.FooterRow.FindControl("fnum"), TextBox)
-            Dim rpttype As TextBox = CType(GridView2.FooterRow.FindControl("frpttype"), TextBox)
-            Dim rptthemeid As TextBox = CType(GridView2.FooterRow.FindControl("frptthemeid"), TextBox)
-            Dim rptname As TextBox = CType(GridView2.FooterRow.FindControl("frptname"), TextBox)
-            Dim rptsql As TextBox = CType(GridView2.FooterRow.FindControl("frptsql"), TextBox)
-            Dim rptAcc As TextBox = CType(GridView2.FooterRow.FindControl("frptAcc"), TextBox)
-            Dim rptOra As TextBox = CType(GridView2.FooterRow.FindControl("frptOra"), TextBox)
-            Dim conditions As TextBox = CType(GridView2.FooterRow.FindControl("fconditions"), TextBox)
-            Dim foreignTablewhere As TextBox = CType(GridView2.FooterRow.FindControl("fforeignTablewhere"), TextBox)
-            Dim Desactive As CheckBox = CType(GridView2.FooterRow.FindControl("fdesactive"), CheckBox)
-            Dim trier As TextBox = CType(GridView2.FooterRow.FindControl("ftrier"), TextBox)
-            Dim donneafiltrer As CheckBox = CType(GridView2.FooterRow.FindControl("fdonneafiltrer"), CheckBox)
-            Dim ForcegroupBySQL As TextBox = CType(GridView2.FooterRow.FindControl("fForcegroupBySQL"), TextBox)
-            Dim Groups As ListBox = CType(GridView2.FooterRow.FindControl("fGroups"), ListBox)
-            Dim loopOverTable As TextBox = CType(GridView2.FooterRow.FindControl("floopOverTable"), TextBox)
-            Dim loopOverField As TextBox = CType(GridView2.FooterRow.FindControl("floopOverField"), TextBox)
-            Dim loopoverfieldType As TextBox = CType(GridView2.FooterRow.FindControl("floopoverfieldType"), TextBox)
-            Dim lastSqlexecute As TextBox = CType(GridView2.FooterRow.FindControl("flastSqlexecute"), TextBox)
-            Dim usedforWeb As ListBox = CType(GridView2.FooterRow.FindControl("fusedforWeb"), ListBox)
-            Dim rptCategory As TextBox = CType(GridView2.FooterRow.FindControl("frptCategory"), TextBox)
-            Dim isReportBook As ListBox = CType(GridView2.FooterRow.FindControl("fIsReportBook"), ListBox)
-            Dim ReportBookLoopField As TextBox = CType(GridView2.FooterRow.FindControl("fReportBookLoopField"), TextBox)
-            Dim iscrystalreport As ListBox = CType(GridView2.FooterRow.FindControl("fiscrystalreport"), ListBox)
-            Dim showpagebreak As ListBox = CType(GridView2.FooterRow.FindControl("fshowpagebreak"), ListBox)
-            Dim showsortGroupGrid As ListBox = CType(GridView2.FooterRow.FindControl("fshowsortGroupGrid"), ListBox)
-            Dim showLabelCompany As ListBox = CType(GridView2.FooterRow.FindControl("fshowLabelCompany"), ListBox)
-            Dim DatasetDistinctFieldSelectused As ListBox = CType(GridView2.FooterRow.FindControl("fDatasetDistinctFieldSelectused"), ListBox)
-            'rpdid.Text = CType(GridView2.FooterRow.FindControl("labelnum"), Label).Text
-
-            'CType(GridView2.Rows(e.CommandSource).FindControl("labelnum"), Label).Text
-            rpdid.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("labelnum"), Label).Text
-            rpttype.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("labelrpttype"), Label).Text
-            rptthemeid.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelrptthemeid"), Label).Text
-            rptname.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelrptname"), Label).Text
-            rptsql.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelrptsql"), Label).Text
-            rptAcc.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelrptacc"), Label).Text
-            rptOra.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelrptOra"), Label).Text
-            conditions.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labelconditions"), Label).Text
-            foreignTablewhere.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelforeignTablewhere"), Label).Text
-            Desactive.Checked = Convert.ToBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("Labeldesactive"), Label).Text)
-            trier.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("Labeltrier"), Label).Text
-            donneafiltrer.Checked = Convert.ToBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("Labeldonnerafiltrer"), Label))
-            ForcegroupBySQL.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelForcegroupBySQL"), Label).Text
-            Groups.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eGroups"), Label).Text)
-            loopOverTable.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelloopOverTable"), Label).Text
-            loopOverField.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelloopOverField"), Label).Text
-            loopoverfieldType.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelloopoverfieldType"), Label).Text
-            lastSqlexecute.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabellastSqlexecute"), Label).Text
-            usedforWeb.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eusedforWeb"), Label).Text)
-            rptCategory.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelrptCategory"), Label).Text
-            isReportBook.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eisReportBook"), Label).Text)
-            ReportBookLoopField.Text = CType(GridView2.Rows(e.CommandArgument).FindControl("LabelReportBookLoopField"), Label).Text
-            iscrystalreport.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eiscrystalreport"), Label).Text)
-            showpagebreak.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowpagebreak"), Label).Text)
-            showsortGroupGrid.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowsortGroupGrid"), Label).Text)
-            showLabelCompany.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("eshowLabelCompany"), Label).Text)
-            DatasetDistinctFieldSelectused.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("elDatasetDistinctFieldSelectused"), Label).Text)
-            'FillData()
-        End If
     End Sub
     Sub InserDataBooleanWithValueNull(Variabl As String, ValueVariabl As String)
         'cmd.Parameters.Add("@isReportBook", SqlDbType.Bit).Value = False 'DBNull.Value 'ConvertStringBoolean(isReportBook.Text) '19
@@ -454,11 +459,6 @@ Partial Class reportinterface
         End If
 
     End Sub
-    Function ConvertStringBoolean(value As String) As Boolean
-        If (value <> "Null") Then
-            ConvertStringBoolean = Convert.ToBoolean(value)
-        End If
-    End Function
     Function ConvertNullBoolean(value As String) As String
         If (value = "") Then
             ConvertNullBoolean = "Null"
@@ -467,4 +467,19 @@ Partial Class reportinterface
         End If
 
     End Function
+    Function GetMaxRptid() As Integer
+
+        msql = "SELECT MAX (rptid) from rptlists;"
+        cmd = cnt.CreateCommand()
+        cmd.CommandText = msql
+        Try
+            cnt.Open()
+            GetMaxRptid = (Convert.ToInt16(cmd.ExecuteScalar)) + 1
+            cnt.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            GetMaxRptid = 0
+        End Try
+    End Function
+
 End Class
