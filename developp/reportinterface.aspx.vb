@@ -572,4 +572,18 @@ Partial Class reportinterface
 
     End Sub
 
+    Protected Sub BtnEnableUC_Click(sender As Object, e As System.EventArgs) Handles BtnEnableUC.Click
+        'MsgBox("Test")
+        Response.Write("<script language=javascript>alert('toto');</script>")
+        'Response.Write("<script language=javascript>document.getElementById('resizediv').style.display = 'none';</script>")
+        'Response.Redirect("document.getElementById('demo').innerHTML = 'Hello ma poule';")
+        'Response.Write("Hello World!")
+        'Response.Write("document.getElementById('demo').innerHTML = 'tt'")
+
+        'Response.Write("<script lang='javascript'>alert(document.getElementById('demo'));</script>")
+
+        Response.Write("<script lang='javascript'>document.getElementById('p1').innerHTML = 'MontText!';</script>")
+
+        'Response.Write("<script language=javascript>document.getElementById('demo').innerHTML = 'Hello ma poule';</script>")
+    End Sub
 End Class

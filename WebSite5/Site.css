@@ -86,17 +86,6 @@ div.DDNoItem
 }
 
 
-
-.relative
-{
-    position: relative;
-    width: 385px;
-    height: 10px;
-    top: 0px;
-    left: 0px;
-}
-
-
 /*	Navigation	*/
 
 div.DDNavigation
@@ -255,31 +244,4 @@ div.DDBottomHyperLink img
 {
     padding-right: 5px;
     border: none;
-}
-
-
-
-#gvdataread
-{
-    position: fixed;
-    top: 100px;
-    left:10px;
-}
-
-.DataEdit1
-{
-    position: fixed;
-    top: 10px;
-    left:10px;
-    width:100px;
-}
-
-#resizediv
-{
-     width: 150px;
-     height: 150px; 
-     padding: 0.5em;
-     background:#EB5E00;
-     color:#fff;
-     
 }

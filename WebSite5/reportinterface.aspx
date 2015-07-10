@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="reportinterface.aspx.vb" Inherits="reportinterface" %>
 
-<%@ Register  Src="DataEdit.ascx" TagName="DataEdit" TagPrefix="ucDE" %>
+
+<%@ Register TagPrefix="custdata" TagName="DataEdit" 
+    Src="DataEdit.ascx" %>
 
            <EditFormSettings  UserControlName ="DataEdit.ascx"      EditFormType="WebUserControl">
 
@@ -18,9 +20,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-<link href="~/Site.css" rel="stylesheet" type="text/css" />
-    <title>Edit Field database</title>
+<head runat="server">
+    <title>Edit</title>
 
 
     <script>
@@ -34,56 +35,95 @@
         }
     </script>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
-    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.23/themes/base/jquery-ui.css" type="text/css" media="all" />
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#resizediv").resizable();
-            $("#resizediv").draggable();
-        });
-    </script>
-
-
 </head>
 <body>
-
-
-    <form id="gvdataread" runat="server">
+    <form id="rptlists" runat="server">
+    <div>
     
-    <div id="resizediv" style="display:inline;">
-        <ucDE:DataEdit ID="DataEdit1" runat="server" Visible="true" />
     </div>
-
-    
-
-    <asp:Button ID="btnDeleteSelect" runat="server" Text="Supprime selection" 
+    <asp:Button ID="btnNewData" runat="server" Text="New Data" />
+    <asp:Button ID="btnDeleteSelect" runat="server" Text="Suppresion" 
         Width="117px" />
-    <asp:Button ID="BtnCopySelect" runat="server" Text="Copie Selection" />
-    <asp:Button ID="BtnEnableUC" runat="server" Text="Test UserControl" />
+    <asp:Button ID="Button1" runat="server" Text="Button" />
     <br />
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+        <Columns>
+            <asp:TemplateField HeaderText="Select">
+                <EditItemTemplate>
+                    <asp:CheckBox ID="CheckBox1" runat="server" />
+                </EditItemTemplate>
+                <HeaderTemplate>
+                    <asp:Label ID="Label1" runat="server" Text="Edit"></asp:Label>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <asp:CheckBox ID="CheckBox1" runat="server" />
+                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# bind("rptid") %>'></asp:TextBox>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:ButtonField ButtonType="Image" CommandName="edit" 
+                ImageUrl="~/Pictures/modify.PNG" Text="edit" />
+            <asp:ButtonField CommandName="delete" Text="Supprimer" />
+            <asp:ButtonField CommandName="update" Text="Modifier" />
+            <asp:ButtonField CommandName="Cancel" Text="Cancel" />
+            <asp:ButtonField ButtonType="Image" CommandName="BtnDuplicate" 
+                HeaderText="Dupliquer" ImageUrl="~/Pictures/copier-modifier-icone-4892-96.png" 
+                Text="Dupliquer" />
+            <asp:BoundField DataField="rptid" HeaderText="code" 
+                ApplyFormatInEditMode="True" />
+            <asp:BoundField DataField="rpttype" HeaderText="rpttype" />
+            <asp:BoundField DataField="rptthemeid" HeaderText="rptthemeid" />
+            <asp:BoundField DataField="rptname" HeaderText="rptname" />
+            <asp:BoundField DataField="rptsql" HeaderText="rptsql" />
+            <asp:BoundField DataField="rptAcc" HeaderText="rptAcc" />
+            <asp:BoundField DataField="rptOra" HeaderText="rptOra" />
+            <asp:BoundField DataField="conditions" HeaderText="conditions" />
+            <asp:BoundField DataField="foreignTablewhere" HeaderText="foreignTablewhere" />
+            <asp:CheckBoxField DataField="desactive" HeaderText="CheckBoxdisable" 
+                Text="desactive" />
+            <asp:BoundField DataField="trier" HeaderText="sort" />
+            <asp:CheckBoxField DataField="donneafiltrer" HeaderText="CheckBoxdatafilter" 
+                Text="donneafiltrer" />
+            <asp:BoundField DataField="ForcegroupBySQL" HeaderText="ForcegroupBySQL" />
+            <asp:CheckBoxField DataField="Groups" HeaderText="CheckBoxGroups" 
+                Text="Groups" />
+            <asp:BoundField DataField="loopOverTable" HeaderText="loopOverTable" />
+            <asp:BoundField DataField="loopOverField" HeaderText="loopOverField" />
+            <asp:BoundField DataField="loopoverfieldType" HeaderText="loopoverfieldType" />
+            <asp:BoundField DataField="lastSqlexecute" HeaderText="lastSqlexecute" />
+            <asp:CheckBoxField DataField="usedforWeb" HeaderText="CheckBoxusedforWeb" 
+                Text="usedforWeb" />
+            <asp:BoundField DataField="rptCategory" HeaderText="rptCategory" />
+            <asp:CheckBoxField DataField="isReportBook" HeaderText="CheckBoxisReportBook" 
+                Text="isReportBook" />
+            <asp:BoundField DataField="ReportBookLoopField" 
+                HeaderText="ReportBookLoopField" />
+            <asp:CheckBoxField DataField="iscrystalreport" 
+                HeaderText="CheckBoxiscrystalreport" Text="iscrystalreport" />
+            <asp:CheckBoxField DataField="showpagebreak" HeaderText="CheckBoxshowpagebreak" 
+                Text="showpagebreak" />
+            <asp:CheckBoxField DataField="showsortGroupGrid" 
+                HeaderText="CheckBoxshowsortGroupGrid" Text="showsortGroupGrid" />
+            <asp:CheckBoxField DataField="showLabelCompany" 
+                HeaderText="CheckBoxshowLabelCompany" Text="showLabelCompany" />
+            <asp:CheckBoxField DataField="DatasetDistinctFieldSelectused" 
+                HeaderText="CheckBoxDatasetDistinctFieldSelectused" 
+                Text="DatasetDistinctFieldSelectused" />
+            <asp:ButtonField ButtonType="Image" CommandName="BtnDelete" 
+                ImageUrl="~/Pictures/delete.PNG" Text="Delete" />
+            <asp:TemplateField></asp:TemplateField>
+        </Columns>
+    </asp:GridView>
 
-
-    
     <p id="demo"> J'attend</p>
-    <p id="p1">Hello World!</p>
 
-    <asp:CheckBox ID="cbNotAskUser" runat="server" 
-        Text="Sans confirmation de l'utilisateur" />
-
-
-        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
-        CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True">
-            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False">
             <Columns>
                 <asp:TemplateField>
                     <EditItemTemplate>
                         &nbsp;&nbsp;
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:CheckBox ID="cbField" runat="server" 
-                        />
+                        <asp:CheckBox ID="CheckBox2" runat="server" />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
@@ -93,10 +133,6 @@
                         <asp:ImageButton ID="ImageBtnCancel" runat="server" CommandName="Cancel" 
                             Height="22px" ImageUrl="~/Pictures/undo.PNG" Width="22px" />
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:ImageButton ID="btnAddData" runat="server" CommandName="ajout" 
-                            Height="30px" ImageUrl="~/Pictures/add.png" Width="30px" />
-                    </FooterTemplate>
                     <HeaderTemplate>
                         Editer<br />
                     </HeaderTemplate>
@@ -105,19 +141,12 @@
                             Height="14px" ImageUrl="~/Pictures/modify.PNG" Width="14px" />
                         <asp:ImageButton ID="ImageBtnDel" runat="server" CommandName="delete" 
                             Height="14px" ImageUrl="~/Pictures/delete.PNG" Width="14px" />
-                        <asp:ImageButton ID="ImageBtnDuplicate" runat="server" CommandName="duplicate" 
-                            CommandArgument='<%#Container.DataItemIndex%>'
-                            Height="22px" ImageUrl="~/Pictures/copier-modifier-icone-4892-96.png" 
-                            Width="22px" />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
                         <asp:TextBox ID="enum" runat="server" Text='<%# bind("rptid") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="fnum" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         Numero
                     </HeaderTemplate>
@@ -129,37 +158,28 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="erpttype" runat="server" Text='<%# bind("rpttype") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="frpttype" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         rpttype
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="labelrpttype" runat="server" Text='<%# eval("rpttype") %>'></asp:Label>
+                        <asp:Label ID="Label2" runat="server" Text='<%# eval("rpttype") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
                         <asp:TextBox ID="eprptthemeid" runat="server" Text='<%# bind("rptthemeid") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="frptthemeid" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         rptthemeid
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Labelrptthemeid" runat="server" Text='<%# eval("rptthemeid") %>'></asp:Label>
+                        <asp:Label ID="Label3" runat="server" Text='<%# eval("rptthemeid") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
                         <asp:TextBox ID="eprptname" runat="server" Text='<%# bind("rptname") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="frptname" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         rptname
                     </HeaderTemplate>
@@ -169,11 +189,8 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:TextBox ID="eprptsql" runat="server" Text='<%# bind("rptsql") %>' Height="75px"  TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="eprptsql" runat="server" Text='<%# bind("rptsql") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="frptsql" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         rptsql
                     </HeaderTemplate>
@@ -185,9 +202,6 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eprptAcc" runat="server" Text='<%# bind("rptAcc") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="frptAcc" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         rptAcc
                     </HeaderTemplate>
@@ -199,9 +213,6 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eprptOra" runat="server" Text='<%# bind("rptOra") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="frptOra" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         rptOra
                     </HeaderTemplate>
@@ -213,9 +224,6 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="epconditions" runat="server" Text='<%# bind("conditions") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="fconditions" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         conditions
                     </HeaderTemplate>
@@ -227,9 +235,6 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="epforeignTablewhere" runat="server" Text='<%# bind("foreignTablewhere") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="fforeignTablewhere" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         foreignTablewhere
                     </HeaderTemplate>
@@ -243,11 +248,6 @@
                             Checked='<%# bind("desactive") %>' />
                     </EditItemTemplate>
 
-                    <FooterTemplate>
-                        <asp:CheckBox ID="fdesactive" runat="server" 
-                            Checked='<%# bind("desactive") %>' />
-                    </FooterTemplate>
-
                     <HeaderTemplate>
                         desactive
                     </HeaderTemplate>
@@ -256,17 +256,12 @@
                         <asp:CheckBox ID="edesactive" runat="server" 
                             Checked='<%# eval("desactive") %>' Enabled="False" 
                             EnableViewState="False" />
-                        <asp:Label ID="Labeldesactive" runat="server" Text='<%# eval("desactive") %>' 
-                            Visible="False"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
                         <asp:TextBox ID="eptrier" runat="server" Text='<%# bind("trier") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="ftrier" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         Trier
                     </HeaderTemplate>
@@ -279,10 +274,6 @@
                         <asp:CheckBox ID="epdonneafiltrer" runat="server" 
                             Checked='<%# bind("donneafiltrer") %>' />
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:CheckBox ID="fdonneafiltrer" runat="server" 
-                            Checked='<%# bind("donneafiltrer") %>' />
-                    </FooterTemplate>
                     <HeaderTemplate>
                         donneafiltrer
                     </HeaderTemplate>
@@ -290,17 +281,12 @@
                         <asp:CheckBox ID="edonneafiltrer" runat="server" 
                             Checked='<%# eval("donneafiltrer") %>' Enabled="False" 
                             EnableViewState="False" />
-                        <asp:Label ID="Labeldonnerafiltrer" runat="server" 
-                            Text='<%# eval("donneafiltrer") %>' Visible="False"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
                         <asp:TextBox ID="epForcegroupBySQL" runat="server" Text='<%# bind("ForcegroupBySQL") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="fForcegroupBySQL" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         ForcegroupBySQL
                     </HeaderTemplate>
@@ -316,13 +302,6 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:ListBox ID="fGroups" runat="server">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         Groups
                     </HeaderTemplate>
@@ -334,9 +313,6 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eploopOverTable" runat="server" Text='<%# bind("loopOverTable") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="floopOverTable" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         loopOverTable
                     </HeaderTemplate>
@@ -348,9 +324,6 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eploopOverField" runat="server" Text='<%# bind("loopOverField") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="floopOverField" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         loopOverField
                     </HeaderTemplate>
@@ -363,9 +336,6 @@
                         <asp:TextBox ID="eploopoverfieldType" runat="server" 
                             Text='<%# bind("loopoverfieldType") %>' MaxLength="1"></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="floopoverfieldType" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         loopoverfieldType
                     </HeaderTemplate>
@@ -377,9 +347,6 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eplastSqlexecute" runat="server" Text='<%# bind("lastSqlexecute") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="flastSqlexecute" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         lastSqlexecute
                     </HeaderTemplate>
@@ -390,19 +357,12 @@
 
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:ListBox ID="epusedforWeb" runat="server" onload="epusedforWeb_Load">
+                        <asp:ListBox ID="epusedforWeb" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
                             <asp:ListItem Selected="True">True</asp:ListItem>
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:ListBox ID="fusedforWeb" runat="server">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         usedforWeb
                     </HeaderTemplate>
@@ -414,9 +374,6 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="eprptCategory" runat="server" Text='<%# bind("rptCategory") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="frptCategory" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         rptCategory
                     </HeaderTemplate>
@@ -432,13 +389,6 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:ListBox ID="fIsReportBook" runat="server">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         isReportBook
                     </HeaderTemplate>
@@ -450,9 +400,6 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="epReportBookLoopField" runat="server" Text='<%# bind("ReportBookLoopField") %>'></asp:TextBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:TextBox ID="fReportBookLoopField" runat="server"></asp:TextBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         ReportBookLoopField
                     </HeaderTemplate>
@@ -470,13 +417,6 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:ListBox ID="fiscrystalreport" runat="server">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         iscrystalreport
                     </HeaderTemplate>
@@ -492,13 +432,6 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:ListBox ID="fshowpagebreak" runat="server">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         showpagebreak
                     </HeaderTemplate>
@@ -515,13 +448,6 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:ListBox ID="fshowsortGroupGrid" runat="server">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         showsortGroupGrid
                     </HeaderTemplate>
@@ -538,13 +464,6 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:ListBox ID="fshowLabelCompany" runat="server">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         showLabelCompany
                     </HeaderTemplate>
@@ -562,13 +481,6 @@
                             <asp:ListItem>False</asp:ListItem>
                         </asp:ListBox>
                     </EditItemTemplate>
-                    <FooterTemplate>
-                        <asp:ListBox ID="fDatasetDistinctFieldSelectused" runat="server">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </FooterTemplate>
                     <HeaderTemplate>
                         DatasetDistinctFieldSelectused
                     </HeaderTemplate>
@@ -577,26 +489,22 @@
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
-            <EditRowStyle BackColor="#999999" />
-            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-            <SortedAscendingCellStyle BackColor="#E9E7E2" />
-            <SortedAscendingHeaderStyle BackColor="#506C8C" />
-            <SortedDescendingCellStyle BackColor="#FFFDF8" />
-            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
         
 
-
-    
-
-
-
     </form>
 
-     
+     <div data-role="main" class="ui-content">
+    <a href="#myPopupDialog" data-rel="popup" data-position-to="window" data-transition="fade" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Open Dialog Popuper">
+        <h1>Header Text</h1>
+      </div>
+
+      <div data-role="main" class="ui-content">
+        <h2>Welcome to my Popup Dialog!</h2>
+        <p id="tutu">jQuery Mobile is FUN!</p>
+        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-back ui-btn-icon-left" data-rel="back">Go Back</a>
+      </div>
+
+
 </body>
 </html>
