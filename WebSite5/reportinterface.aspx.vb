@@ -344,8 +344,12 @@ Partial Class reportinterface
     End Sub
 
     Protected Sub Button1_Click(sender As Object, e As System.EventArgs) Handles Button1.Click
-        Response.Write("<button onclick='myFunction()'>Try it</button>")
+        'Response.Write("<button onclick='myFunction()'>Try it</button>")
         'Response.Write("<script language=javascript>myFunction()</script>")
+        Response.Write("<script language=javascript>document.getElementById('demo').innerHTML = 'Tu bosses chez Harry ?';</script>")
+        ' Dim TableElem As HtmlElement = WebBrowser1.Document.GetElementById(TableID)
+
+
 
     End Sub
 End Class

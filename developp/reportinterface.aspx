@@ -34,6 +34,12 @@
         }
     </script>
 
+        <script>
+            function myFunction2() {
+                document.getElementById('resizediv').style.display = 'none'
+            }
+    </script>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.23/themes/base/jquery-ui.css" type="text/css" media="all" />
