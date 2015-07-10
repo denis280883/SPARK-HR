@@ -572,7 +572,4 @@ Partial Class reportinterface
 
     End Sub
 
-    Protected Sub BtnEnableUC_Click(sender As Object, e As System.EventArgs) Handles BtnEnableUC.Click
-        DataEdit1.Visible = Not DataEdit1.Visible
-    End Sub
 End Class

@@ -1,8 +1,6 @@
 ﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="reportinterface.aspx.vb" Inherits="reportinterface" %>
 
-
-<%@ Register TagPrefix="custdata" TagName="DataEdit" 
-    Src="DataEdit.ascx" %>
+<%@ Register  Src="DataEdit.ascx" TagName="DataEdit" TagPrefix="ucDE" %>
 
            <EditFormSettings  UserControlName ="DataEdit.ascx"      EditFormType="WebUserControl">
 
@@ -51,10 +49,7 @@
 </head>
 <body>
     <form id="rptlists" runat="server">
-    <div class = "relative">
-        <asp:Panel ID="Panel1" runat="server" Height="186px" BackColor="#990033">
-        </asp:Panel>
-    </div>
+    
     <asp:Button ID="btnDeleteSelect" runat="server" Text="Supprime selection" 
         Width="117px" />
     <asp:Button ID="BtnCopySelect" runat="server" Text="Copie Selection" />
@@ -589,7 +584,7 @@
     <a href="#myPopupDialog" data-rel="popup" data-position-to="window" data-transition="fade" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Open Dialog Popuper">
         >Go Back</a>
          <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-         <custdata:DataEdit ID="DataEdit1" runat="server" Visible="False" />
+         <ucDE:DataEdit ID="DataEdit1" runat="server" Visible="False" />
       </div>
 
 
