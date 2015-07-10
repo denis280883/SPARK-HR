@@ -21,6 +21,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+<link href="~/Site.css" rel="stylesheet" type="text/css" />
     <title>Edit</title>
 
 
@@ -38,16 +39,20 @@
 </head>
 <body>
     <form id="rptlists" runat="server">
-    <div>
-    
+    <div class = "relative">
+        <asp:Panel ID="Panel1" runat="server" Height="186px" BackColor="#990033">
+        </asp:Panel>
     </div>
     <asp:Button ID="btnDeleteSelect" runat="server" Text="Supprime selection" 
         Width="117px" />
     <asp:Button ID="BtnCopySelect" runat="server" Text="Copie Selection" />
+    <asp:Button ID="BtnEnableUC" runat="server" Text="Test UserControl" />
     <br />
 
     <asp:CheckBox ID="cbNotAskUser" runat="server" 
         Text="Sans confirmation de l'utilisateur" />
+
+
 
     <p id="demo"> J'attend</p>
 
@@ -568,13 +573,16 @@
         </asp:GridView>
         
 
-    </form>
-
      <div data-role="main" class="ui-content">
     <a href="#myPopupDialog" data-rel="popup" data-position-to="window" data-transition="fade" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Open Dialog Popuper">
         >Go Back</a>
+         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+         <custdata:DataEdit ID="DataEdit1" runat="server" Visible="False" />
       </div>
 
 
+    </form>
+
+     
 </body>
 </html>

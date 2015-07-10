@@ -3,7 +3,9 @@
     style="width:100%;">
     <tr>
         <td>
-            &nbsp;</td>
+            <asp:Panel ID="Panel1" runat="server" Height="363px">
+            </asp:Panel>
+        </td>
         <td>
             &nbsp;</td>
         <td>
@@ -19,7 +21,8 @@
     </tr>
     <tr>
         <td>
-            &nbsp;</td>
+            <asp:Button ID="Button1" runat="server" Text="Button" />
+        </td>
         <td>
             &nbsp;</td>
         <td>
