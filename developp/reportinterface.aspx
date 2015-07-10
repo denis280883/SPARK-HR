@@ -584,7 +584,7 @@
     <a href="#myPopupDialog" data-rel="popup" data-position-to="window" data-transition="fade" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Open Dialog Popuper">
         >Go Back</a>
          <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-         <ucDE:DataEdit ID="DataEdit1" runat="server" Visible="False" />
+         <ucDE:DataEdit ID="DataEdit1" runat="server" Visible="True" />
       </div>
 
 
