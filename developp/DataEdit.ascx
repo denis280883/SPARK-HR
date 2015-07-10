@@ -84,84 +84,118 @@
 <TR>
  <TD>Groups</TD>
  <TD>
-     <asp:ListBox ID="ListBox1" runat="server">
+     <asp:ListBox ID="eGroups" runat="server">
         <asp:ListItem>Null</asp:ListItem>
         <asp:ListItem Selected="True">True</asp:ListItem>
         <asp:ListItem>False</asp:ListItem>
      </asp:ListBox>
  </TD>
 </TR>
-
 <TR>
- <TD>Prénom</TD>
+ <TD>loopOverTable</TD>
  <TD>
- <INPUT type=text name="prenom">
+     <asp:TextBox ID="eloopOverTable" runat="server" Height="75px" TextMode="MultiLine"></asp:TextBox>
  </TD>
 </TR>
-
 <TR>
- <TD>Sexe</TD>
+ <TD>loopOverField</TD>
  <TD>
- Homme : <INPUT type=radio name="sexe" value="M">
- <br>Femme : <INPUT type=radio name="sexe" value="F">
+     <asp:TextBox ID="eloopOverField" runat="server" Height="75px" TextMode="MultiLine"></asp:TextBox>
  </TD>
 </TR>
-
 <TR>
- <TD>Fonction</TD>
+ <TD>loopoverfieldType</TD>
  <TD>
- <SELECT name="fonction">
-  <OPTION VALUE="enseignant">Enseignant</OPTION>
-  <OPTION VALUE="etudiant">Etudiant</OPTION>
-  <OPTION VALUE="ingenieur">Ingénieur</OPTION>
-  <OPTION VALUE="retraite">Retraité</OPTION>
-  <OPTION VALUE="autre">Autre</OPTION>
- </SELECT>
+     <asp:TextBox ID="eloopoverfieldType" runat="server"></asp:TextBox>
  </TD>
 </TR>
 <TR>
- <TD>Commentaires</TD>
+ <TD>lastSqlexecute</TD>
  <TD>
- <TEXTAREA rows="3" name="commentaires">
- Tapez ici vos commentaires</TEXTAREA>
+     <asp:TextBox ID="elastSqlexecute" runat="server" Height="75px" TextMode="MultiLine"></asp:TextBox>
  </TD>
 </TR>
-
 <TR>
- <TD COLSPAN=2>
- <INPUT type="submit" value="Envoyer">
+ <TD>usedforWeb</TD>
+ <TD>
+     <asp:ListBox ID="eusedforWeb" runat="server">
+        <asp:ListItem>Null</asp:ListItem>
+        <asp:ListItem Selected="True">True</asp:ListItem>
+        <asp:ListItem>False</asp:ListItem>
+     </asp:ListBox>
  </TD>
 </TR>
-
-
-
-
-    <tr>
-        <td>
-            <asp:Panel ID="Panel1" runat="server" Height="363px">
-            </asp:Panel>
-        </td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td>
-            <asp:Button ID="Button1" runat="server" Text="Button" />
-        </td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
+<TR>
+ <TD>rptCategory</TD>
+ <TD>
+     <asp:TextBox ID="erptCategory" runat="server"></asp:TextBox>
+ </TD>
+</TR>
+<TR>
+ <TD>isReportBook</TD>
+ <TD>
+     <asp:ListBox ID="eisReportBook" runat="server">
+        <asp:ListItem>Null</asp:ListItem>
+        <asp:ListItem Selected="True">True</asp:ListItem>
+        <asp:ListItem>False</asp:ListItem>
+     </asp:ListBox>
+ </TD>
+</TR>
+<TR>
+ <TD>ReportBookLoopField</TD>
+ <TD>
+     <asp:TextBox ID="eReportBookLoopField" runat="server"></asp:TextBox>
+ </TD>
+</TR>
+<TR>
+ <TD>iscrystalreport</TD>
+ <TD>
+     <asp:ListBox ID="eiscrystalreport" runat="server">
+        <asp:ListItem>Null</asp:ListItem>
+        <asp:ListItem Selected="True">True</asp:ListItem>
+        <asp:ListItem>False</asp:ListItem>
+     </asp:ListBox>
+ </TD>
+</TR>
+<TR>
+ <TD>showpagebreak</TD>
+ <TD>
+     <asp:ListBox ID="eshowpagebreak" runat="server">
+        <asp:ListItem>Null</asp:ListItem>
+        <asp:ListItem Selected="True">True</asp:ListItem>
+        <asp:ListItem>False</asp:ListItem>
+     </asp:ListBox>
+ </TD>
+</TR>
+<TR>
+ <TD>showsortGroupGrid</TD>
+ <TD>
+     <asp:ListBox ID="eshowsortGroupGrid" runat="server">
+        <asp:ListItem>Null</asp:ListItem>
+        <asp:ListItem Selected="True">True</asp:ListItem>
+        <asp:ListItem>False</asp:ListItem>
+     </asp:ListBox>
+ </TD>
+</TR>
+<TR>
+ <TD>showLabelCompany</TD>
+ <TD>
+     <asp:ListBox ID="eshowLabelCompany" runat="server">
+        <asp:ListItem>Null</asp:ListItem>
+        <asp:ListItem Selected="True">True</asp:ListItem>
+        <asp:ListItem>False</asp:ListItem>
+     </asp:ListBox>
+ </TD>
+</TR>
+<TR>
+ <TD>DatasetDistinctFieldSelectused</TD>
+ <TD>
+     <asp:ListBox ID="eDatasetDistinctFieldSelectused" runat="server">
+        <asp:ListItem>Null</asp:ListItem>
+        <asp:ListItem Selected="True">True</asp:ListItem>
+        <asp:ListItem>False</asp:ListItem>
+     </asp:ListBox>
+ </TD>
+</TR>
 </table>
 

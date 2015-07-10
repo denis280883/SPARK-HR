@@ -48,7 +48,7 @@
 
 </head>
 <body>
-    <form id="rptlists" runat="server">
+    <form id="gvdataread" runat="server">
     
     <asp:Button ID="btnDeleteSelect" runat="server" Text="Supprime selection" 
         Width="117px" />
@@ -59,9 +59,6 @@
     <asp:CheckBox ID="cbNotAskUser" runat="server" 
         Text="Sans confirmation de l'utilisateur" />
 
-
-
-    <p id="demo"> J'attend</p>
 
         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
         CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True">

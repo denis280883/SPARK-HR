@@ -85,6 +85,12 @@ div.DDNoItem
 	font-family:Trebuchet MS, Arial, sans-serif;
 }
 
+.DataEdit1
+{
+    position: fixed;
+    top: 10px;
+    left:900px
+}
 
 .relative
 {
@@ -254,4 +260,12 @@ div.DDBottomHyperLink img
 {
     padding-right: 5px;
     border: none;
+}
+
+.page
+{
+    width: 960px;
+    background-color: #fff;
+    margin: 20px auto 0px auto;
+    border: 1px solid #496077;
 }
