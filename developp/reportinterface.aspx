@@ -156,7 +156,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <EditItemTemplate>
-                        <asp:TextBox ID="eprptsql" runat="server" Text='<%# bind("rptsql") %>'></asp:TextBox>
+                        <asp:TextBox ID="eprptsql" runat="server" Text='<%# bind("rptsql") %>' Height="75px"  TextMode="MultiLine"></asp:TextBox>
                     </EditItemTemplate>
                     <FooterTemplate>
                         <asp:TextBox ID="frptsql" runat="server"></asp:TextBox>
@@ -577,12 +577,9 @@
         </asp:GridView>
         
 
-     <div data-role="main" class="ui-content">
-    <a href="#myPopupDialog" data-rel="popup" data-position-to="window" data-transition="fade" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Open Dialog Popuper">
-        >Go Back</a>
-         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-         <ucDE:DataEdit ID="DataEdit1" runat="server" Visible="True" />
-      </div>
+
+    <ucDE:DataEdit ID="DataEdit1" runat="server" Visible="True" />
+
 
 
     </form>
