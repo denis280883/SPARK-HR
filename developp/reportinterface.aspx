@@ -20,9 +20,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
 <link href="~/Site.css" rel="stylesheet" type="text/css" />
-    <title>Edit</title>
+    <title>Edit Field database</title>
 
 
     <script>
@@ -35,6 +35,18 @@
             }
         }
     </script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.23/themes/base/jquery-ui.css" type="text/css" media="all" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Panel1").resizable();
+            $("#Panel1").draggable();
+        });
+    </script>
+
 
 </head>
 <body>
