@@ -6,20 +6,7 @@ Imports System.Data.SqlClient
 
 Partial Class reportinterface
 
-
-
-
     Inherits System.Web.UI.Page
-
-    Const CTETableName = "dbo.rptlists"
-    Const CTEBtnDuplicate = "BtnDuplicate"
-    Const CTEBtnEdit = "BtnEdit"
-    Const CTEBtnDelete = "BtnDelete"
-    Const CTEDELLINEFIELD = "Supprimer ligne de données"
-    Const CTEASKDELLINE = "Voulez-vous supprimer les données avec le code: "
-    Const CTEUPDLINEFIELD = "Mise à jour des données"
-    Const CTEASKUPDATE = "Voulez-vous enregistrer les données avec le code: "
-    Const CTENUMID = "rptid"
 
     Public TestReport As String
     Dim msql As String = ""
@@ -37,6 +24,8 @@ Partial Class reportinterface
     Dim lbusedforWeb As String
     Dim lbGroups As String
     Dim ButtonClick As Boolean = False
+    Dim ShowEdit As Boolean = False
+
 
     Sub FillData()
         msql = "select * from dbo.rptlists;"
@@ -114,14 +103,15 @@ Partial Class reportinterface
         Dim rpdid As Label
         rpdid = CType(GridView2.Rows(e.RowIndex).FindControl("labelnum"), Label)
 
-        msql = "delete from " + CTETableName + " where " + CTENUMID + "=" + GridView2.Rows(e.RowIndex).Cells(3).Text
+
+        msql = "delete from " + CTES.CTETableName + " where " + CTES.CTENUMID + "=" + GridView2.Rows(e.RowIndex).Cells(3).Text
         msql = "delete from dbo.rptlists where rptid=@rpdid"
         cmd = New SqlCommand("delete from dbo.rptlists where rptid=" + rpdid.Text, cnt)
         'msql = "DELETE FROM " + tablename + " where " + colDel + "='" + numId + "';"
 
         Try
             If (Not cbNotAskUser.Checked) Then
-                If MsgBox(CTEASKDELLINE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEDELLINEFIELD) = MsgBoxResult.Yes Then
+                If MsgBox(CTES.CTEASKDELLINE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTES.CTEDELLINEFIELD) = MsgBoxResult.Yes Then
 
                     cnt.Open()
                     cmd.ExecuteNonQuery()
@@ -185,7 +175,7 @@ Partial Class reportinterface
         Try
 
             If (Not cbNotAskUser.Checked) Then
-                If MsgBox(CTEASKUPDATE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
+                If MsgBox(CTES.CTEASKUPDATE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTES.CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
 
                     cnt.Open()
                     cmd.ExecuteNonQuery()
@@ -403,7 +393,7 @@ Partial Class reportinterface
             DatasetDistinctFieldSelectused.SelectedValue = ConvertNullBoolean(CType(GridView2.Rows(e.CommandArgument).FindControl("elDatasetDistinctFieldSelectused"), Label).Text)
 
             If (Not cbNotAskUser.Checked) Then
-                If MsgBox(CTEASKUPDATE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
+                If MsgBox(CTES.CTEASKUPDATE + rpdid.Text + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTES.CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
                     Insert1Data = True
                 End If
             Else
@@ -554,7 +544,7 @@ Partial Class reportinterface
             If CType(GridView2.Rows(i).FindControl("cbField"), CheckBox).Checked Then
                 If (Not cbNotAskUser.Checked) Then
 
-                    If MsgBox(CTEASKUPDATE + Convert.ToString(GetMaxRptid()) + " emplacement checkbox a " + i.ToString() + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
+                    If MsgBox(CTES.CTEASKUPDATE + Convert.ToString(GetMaxRptid()) + " emplacement checkbox a " + i.ToString() + " ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, CTES.CTEUPDLINEFIELD) = MsgBoxResult.Yes Then
                         InsertCopySelect(i)
 
                     End If
@@ -573,7 +563,17 @@ Partial Class reportinterface
     End Sub
 
     Protected Sub BtnEnableUC_Click(sender As Object, e As System.EventArgs) Handles BtnEnableUC.Click
-        Response.Write("<button onclick='myFunction2()'>Try it</button>")
+        Response.Write("<button onclick='myFunction3()'>Try it</button>")
+        'ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "", "document.getElementById('demo').innerHTML = 'Tu bosses chez Harry ?';", True)
+        'ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "", "myFunction2();", True)
+        If ShowEdit Then
+            ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "", "HideEdit();", True)
+            ShowEdit = False
+        Else
+            ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "", "ShowEdit();", True)
+            ShowEdit = True
+        End If
+
 
         'lblJavaScript.Text = "<script type='text/javascript'>showDialogue();</script>"
 
@@ -589,5 +589,11 @@ Partial Class reportinterface
         'Response.Write("<script lang='javascript'>document.getElementById('p1').innerHTML = 'MontText!';</script>")
 
         'Response.Write("<script language=javascript>document.getElementById('demo').innerHTML = 'Hello ma poule';</script>")
+    End Sub
+
+    Protected Sub BtnAdd_Click(sender As Object, e As System.EventArgs) Handles BtnAdd.Click
+
+        ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "", "ShowEdit();", True)
+
     End Sub
 End Class

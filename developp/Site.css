@@ -261,9 +261,7 @@ div.DDBottomHyperLink img
 
 #gvdataread
 {
-    position: fixed;
-    top: 100px;
-    left:10px;
+
 }
 
 .DataEdit1
@@ -274,6 +272,22 @@ div.DDBottomHyperLink img
     width:100px;
 }
 
+#btnschoose
+{
+    position: fixed;
+    }
+
+#Grid
+{
+    position: absolute;
+    left: 0px;
+    top: 144px;
+    width: auto;
+    color: #00FF00;
+    z-index: -1;
+}
+
+
 #resizediv
 {
      width: 150px;
@@ -282,4 +296,15 @@ div.DDBottomHyperLink img
      background:#EB5E00;
      color:#fff;
      
+}
+
+
+
+#AskUser
+{
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    width: auto;
+    color: #00FF00;
 }

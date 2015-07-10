@@ -34,11 +34,39 @@
         }
     </script>
 
-        <script>
-            function myFunction2() {
-                document.getElementById('resizediv').style.display = 'none'
+    <script>
+        function myFunction2() {
+            alert(document.getElementById('resizediv').style.display);
+            if (document.getElementById('resizediv').style.display == 'none')
+                document.getElementById('resizediv').style.display = 'inline';
+            else
+                document.getElementById('resizediv').style.display = 'none';
             }
     </script>
+
+    <script>
+        function ShowEdit() {
+            //alert(document.getElementById('demm').innerHTML);
+            //document.getElementById('demm').innerHTML = 'True';
+            document.getElementById('resizediv').style.display = 'inline';
+
+            }
+    </script>
+
+
+        <script>
+            function HideEdit() {
+                document.getElementById('resizediv').style.display = 'none';
+            }
+    </script>
+
+
+    <script>
+            function myFunction3() {
+                document.getElementById('demo').innerHTML = 'Tu bosses chez Harry ?'
+            }
+    </script>
+
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.min.js" type="text/javascript"></script>
@@ -58,27 +86,37 @@
 
     <form id="gvdataread" runat="server">
     
-    <div id="resizediv" style="display:inline;">
+    <div id="resizediv" style="display:none;">
         <ucDE:DataEdit ID="DataEdit1" runat="server" Visible="true" />
     </div>
 
+   <p id="demm">FALSE</p>
     
+   <div id="btnschoose">
 
-    <asp:Button ID="btnDeleteSelect" runat="server" Text="Supprime selection" 
-        Width="117px" />
-    <asp:Button ID="BtnCopySelect" runat="server" Text="Copie Selection" />
-    <asp:Button ID="BtnEnableUC" runat="server" Text="Test UserControl" />
-    <br />
 
+    </div>
 
     
     <p id="demo"> J'attend</p>
     <p id="p1">Hello World!</p>
 
-    <asp:CheckBox ID="cbNotAskUser" runat="server" 
+
+
+      <div id=AskUser>
+
+          <asp:Button ID="btnDeleteSelect" runat="server" Text="Supprime selection" 
+        Width="117px" />
+    <asp:Button ID="BtnCopySelect" runat="server" Text="Copie Selection" />
+    <asp:Button ID="BtnEnableUC" runat="server" Text="Test UserControl" />
+    <asp:Button ID="BtnAdd" runat="server" Text="Ajout" />
+    <br />
+
+        <asp:CheckBox ID="cbNotAskUser" runat="server" 
         Text="Sans confirmation de l'utilisateur" />
+      </div>
 
-
+      <div id="Grid" >
         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
         CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -596,7 +634,7 @@
         </asp:GridView>
         
 
-
+        </div>
     
 
 
