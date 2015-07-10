@@ -40,16 +40,23 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#Panel1").resizable();
-            $("#Panel1").draggable();
+            $("#resizediv").resizable();
+            $("#resizediv").draggable();
         });
     </script>
 
 
 </head>
 <body>
+
+
+
     <form id="gvdataread" runat="server">
     
+    <div id="resizediv">
+        <ucDE:DataEdit ID="DataEdit1" runat="server" Visible="false" />
+    </div>
+
     <asp:Button ID="btnDeleteSelect" runat="server" Text="Supprime selection" 
         Width="117px" />
     <asp:Button ID="BtnCopySelect" runat="server" Text="Copie Selection" />
@@ -578,7 +585,7 @@
         
 
 
-    <ucDE:DataEdit ID="DataEdit1" runat="server" Visible="True" />
+    
 
 
 

@@ -273,3 +273,12 @@ div.DDBottomHyperLink img
     left:10px;
     width:100px;
 }
+
+#resizediv
+{
+     width: 150px;
+     height: 150px; 
+     padding: 0.5em;
+     background:#EB5E00;
+     color:#fff 
+}
