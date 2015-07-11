@@ -329,6 +329,8 @@ Partial Class reportinterface
 
         If e.CommandName = "edit" Then
             ButtonClick = True
+            DataEdit1.rptid = "test"
+            ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "", "ShowEdit();", True)
         End If
 
         If e.CommandName = "duplicate" Then
