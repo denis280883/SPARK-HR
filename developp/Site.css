@@ -308,3 +308,9 @@ div.DDBottomHyperLink img
     width: auto;
     color: #00FF00;
 }
+
+.HeaderFooter
+{
+    position: fixed
+}
+
