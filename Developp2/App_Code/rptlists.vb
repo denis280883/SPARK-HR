@@ -1,6 +1,15 @@
 ﻿Imports Microsoft.VisualBasic
+Imports System.Data.SqlClient
+Imports System.Data
 
 Public Class Rptlists
+
+    Private _msql As String
+    Dim _ds As New DataSet
+    Dim cmd As New SqlCommand
+    Dim cnt As New SqlConnection("data source=.\sqling051;initial catalog=reportsinterface;persist security info=True;user id=spark;workstation id=wnb-ing036;packet size=4096;password=SPARK2008")
+    Dim da As New SqlDataAdapter
+
 
     Private _rptid As Integer
     Private _rpttype As String
@@ -30,11 +39,44 @@ Public Class Rptlists
     Private _showLabelCompany As Boolean
     Private _DatasetDistinctFieldSelectused As Boolean
 
+
+
+
     Sub New(ByVal rptid As Integer, ByVal rpttype As String, ByVal rptthemeid As String, ByVal rptname As String)
         Me.rptid = rptid
         Me._rpttype = rpttype
     End Sub
 
+    Sub New()
+
+    End Sub
+
+    Public Sub FillData()
+        msql = "select * from dbo.rptlists;"
+        cmd = cnt.CreateCommand()
+        cmd.CommandText = msql
+        da.SelectCommand = cmd
+        da.Fill(ds)
+    End Sub
+
+    Property ds() As DataSet
+        Get
+            Return _ds
+        End Get
+        Set(value As DataSet)
+            _ds = value
+        End Set
+    End Property
+
+
+    Property msql() As String
+        Get
+            Return _msql
+        End Get
+        Set(value As String)
+            _msql = value
+        End Set
+    End Property
 
     Property rpttype() As String
         Get
@@ -43,7 +85,7 @@ Public Class Rptlists
         Set(value As String)
             _rpttype = value
         End Set
-    End Property   
+    End Property
 
     Property rptthemeid() As String
         Get
@@ -52,7 +94,7 @@ Public Class Rptlists
         Set(value As String)
             _rptthemeid = value
         End Set
-    End Property   
+    End Property
 
     Property rptname() As String
         Get
@@ -61,7 +103,7 @@ Public Class Rptlists
         Set(value As String)
             _rptname = value
         End Set
-    End Property   
+    End Property
 
 
     Property rptsql() As String
@@ -71,7 +113,7 @@ Public Class Rptlists
         Set(value As String)
             _rptsql = value
         End Set
-    End Property   
+    End Property
 
     Property rptAcc() As String
         Get
@@ -80,7 +122,7 @@ Public Class Rptlists
         Set(value As String)
             _rptAcc = value
         End Set
-    End Property   
+    End Property
 
     Property rptOra() As String
         Get
@@ -89,7 +131,7 @@ Public Class Rptlists
         Set(value As String)
             _rptOra = value
         End Set
-    End Property   
+    End Property
 
     Property conditions() As String
         Get
@@ -98,7 +140,7 @@ Public Class Rptlists
         Set(value As String)
             _conditions = value
         End Set
-    End Property   
+    End Property
     Property foreignTablewhere() As String
         Get
             Return _foreignTablewhere
@@ -106,7 +148,7 @@ Public Class Rptlists
         Set(value As String)
             _foreignTablewhere = value
         End Set
-    End Property   
+    End Property
 
     Property desactive() As Boolean
         Get
@@ -124,7 +166,7 @@ Public Class Rptlists
         Set(value As String)
             _trier = value
         End Set
-    End Property    
+    End Property
 
     Property donneafiltrer() As String
         Get
@@ -133,7 +175,7 @@ Public Class Rptlists
         Set(value As String)
             _donneafiltrer = value
         End Set
-    End Property    
+    End Property
 
     Property ForcegroupBySQL() As String
         Get
@@ -142,7 +184,7 @@ Public Class Rptlists
         Set(value As String)
             _ForcegroupBySQL = value
         End Set
-    End Property    
+    End Property
 
     Property Groups() As Boolean
         Get
@@ -170,7 +212,7 @@ Public Class Rptlists
         Set(value As String)
             _loopOverField = value
         End Set
-    End Property    
+    End Property
 
     Property loopoverfieldType() As String
         Get
@@ -179,7 +221,7 @@ Public Class Rptlists
         Set(value As String)
             _loopoverfieldType = value
         End Set
-    End Property    
+    End Property
 
     Property lastSqlexecute() As String
         Get

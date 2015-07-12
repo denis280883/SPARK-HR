@@ -1,74 +1,17 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="reportinterface.aspx.vb" Inherits="reportinterface" %>
-
-<%@ Register  Src="DataEdit.ascx" TagName="DataEdit" TagPrefix="ucDE" %>
-
-           <EditFormSettings  UserControlName ="DataEdit.ascx"      EditFormType="WebUserControl">
-
-                    <EditColumn UniqueName="EditCommandColumn1" >
-
-                    </EditColumn>
-
-                  <PopUpSettings     ScrollBars="Auto" Width="20px"/>
-
-                 <FormTableStyle Width="50%" BackColor="BlueViolet" />
-
-             </EditFormSettings>
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="rptlistsShow.ascx.vb" Inherits="UserControls_rptlistsShow" %>
+    <%@ Register src="rptlistsEdit.ascx" tagname="rptlistsEdit" tagprefix="uc1" %>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-<link href="~/Site.css" rel="stylesheet" type="text/css" />
-    <title>Edit Field database</title>
+<head id="Head1">
+
+    <link href="~/Site.css" rel="stylesheet" type="text/css" />
 
 
-    <script>
-        function myFunction() {
-            var test = document.getElementById("tutu").innerHTML;
-            var person = prompt("Please enter your name", "Harry Potter " + test);
-            if (person != null) {
-                document.getElementById("demo").innerHTML =
-        "Hello " + person + "! How are you today?";
-            }
-        }
-    </script>
-
-    <script>
-        function myFunction2() {
-            alert(document.getElementById('resizediv').style.display);
-            if (document.getElementById('resizediv').style.display == 'none')
-                document.getElementById('resizediv').style.display = 'inline';
-            else
-                document.getElementById('resizediv').style.display = 'none';
-            }
-    </script>
-
-    <script>
-        function ShowEdit() {
-            //alert(document.getElementById('demm').innerHTML);
-            //document.getElementById('demm').innerHTML = 'True';
-            document.getElementById('resizediv').style.display = 'inline';
-
-            }
-    </script>
-
-
-        <script>
-            function HideEdit() {
-                document.getElementById('resizediv').style.display = 'none';
-            }
-    </script>
-
-
-    <script>
-            function myFunction3() {
-                document.getElementById('demo').innerHTML = 'Tu bosses chez Harry ?'
-            }
-    </script>
-
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.23/themes/base/jquery-ui.css" type="text/css" media="all" />
 
@@ -83,37 +26,16 @@
 </head>
 <body>
 
+    <div id="Grid" style="position: relative">
 
-    <form id="gvdataread" runat="server">
-    
-    <div id="resizediv" style="display:none;">
-        <ucDE:DataEdit ID="DataEdit1" runat="server" Visible="True" />
-    </div>
-    
-   <div id="btnschoose">
+        <div id="resizediv" style="display:none;">
+            <uc1:rptlistsEdit ID="rptlistsEdit1" runat="server" Visible="True" />
+        </div>
 
-
-    </div>
-
-  
-      <div id=AskUser>
-          <p id="demo"> J'attend</p>
-           <p id="p1">Hello World!</p>
-          <asp:Button ID="btnDeleteSelect" runat="server" Text="Supprime selection" 
-        Width="117px" />
-    <asp:Button ID="BtnCopySelect" runat="server" Text="Copie Selection" />
-    <asp:Button ID="BtnEnableUC" runat="server" Text="Test UserControl" />
-    <asp:Button ID="BtnAdd" runat="server" Text="Ajout" />
-    <br />
-
-        <asp:CheckBox ID="cbNotAskUser" runat="server" 
-        Text="Sans confirmation de l'utilisateur" />
-      </div>
-
-      <div id="Grid" >
         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
-        CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True">
-            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+        CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True" 
+            CellSpacing="3">
+            <AlternatingRowStyle BackColor="White" ForeColor="#284775"  />
             <Columns>
                 <asp:TemplateField>
                     <EditItemTemplate>
@@ -125,12 +47,6 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
-                    <EditItemTemplate>
-                        <asp:ImageButton ID="ImageBtnUpdate" runat="server" CommandName="update" 
-                            Height="22px" ImageUrl="~/Pictures/update.PNG" Width="22px" />
-                        <asp:ImageButton ID="ImageBtnCancel" runat="server" CommandName="Cancel" 
-                            Height="22px" ImageUrl="~/Pictures/undo.PNG" Width="22px" />
-                    </EditItemTemplate>
                     <FooterTemplate>
                         <asp:ImageButton ID="btnAddData" runat="server" CommandName="ajout" 
                             Height="30px" ImageUrl="~/Pictures/add.png" Width="30px" />
@@ -139,7 +55,7 @@
                         Editer<br />
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:ImageButton ID="ImageBtnEdit" runat="server" CommandName="edit" 
+                        <asp:ImageButton ID="ImageBtnEdit" runat="server" CommandName="editUC" 
                             Height="14px" ImageUrl="~/Pictures/modify.PNG" Width="14px" />
                         <asp:ImageButton ID="ImageBtnDel" runat="server" CommandName="delete" 
                             Height="14px" ImageUrl="~/Pictures/delete.PNG" Width="14px" />
@@ -347,13 +263,6 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
-                    <EditItemTemplate>
-                        <asp:ListBox ID="epGroups" runat="server" onload="epGroups_Load">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </EditItemTemplate>
                     <FooterTemplate>
                         <asp:ListBox ID="fGroups" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
@@ -427,13 +336,6 @@
                 </asp:TemplateField>
 
                 <asp:TemplateField>
-                    <EditItemTemplate>
-                        <asp:ListBox ID="epusedforWeb" runat="server" onload="epusedforWeb_Load">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </EditItemTemplate>
                     <FooterTemplate>
                         <asp:ListBox ID="fusedforWeb" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
@@ -463,13 +365,6 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
-                    <EditItemTemplate>
-                        <asp:ListBox ID="epIsReportBook" runat="server" onload="epIsReportBook_Load">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </EditItemTemplate>
                     <FooterTemplate>
                         <asp:ListBox ID="fIsReportBook" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
@@ -500,14 +395,6 @@
                 </asp:TemplateField>
 
                 <asp:TemplateField>
-                    <EditItemTemplate>
-                        <asp:ListBox ID="episcrystalreport" runat="server" 
-                            onload="episcrystalreport_Load">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </EditItemTemplate>
                     <FooterTemplate>
                         <asp:ListBox ID="fiscrystalreport" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
@@ -523,13 +410,6 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
-                    <EditItemTemplate>
-                        <asp:ListBox ID="epshowpagebreak" runat="server" onload="epshowpagebreak_Load">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </EditItemTemplate>
                     <FooterTemplate>
                         <asp:ListBox ID="fshowpagebreak" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
@@ -545,14 +425,6 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
-                    <EditItemTemplate>
-                        <asp:ListBox ID="epshowsortGroupGrid" runat="server" 
-                            onload="epshowsortGroupGrid_Load">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </EditItemTemplate>
                     <FooterTemplate>
                         <asp:ListBox ID="fshowsortGroupGrid" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
@@ -568,14 +440,6 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
-                    <EditItemTemplate>
-                        <asp:ListBox ID="epshowLabelCompany" runat="server" 
-                            onload="epshowLabelCompany_Load">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </EditItemTemplate>
                     <FooterTemplate>
                         <asp:ListBox ID="fshowLabelCompany" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
@@ -592,14 +456,7 @@
                 </asp:TemplateField>
 
                 <asp:TemplateField>
-                    <EditItemTemplate>
-                        <asp:ListBox ID="epDatasetDistinctFieldSelectused" runat="server" 
-                            onload="epDatasetDistinctFieldSelectused_Load1">
-                            <asp:ListItem>Null</asp:ListItem>
-                            <asp:ListItem Selected="True">True</asp:ListItem>
-                            <asp:ListItem>False</asp:ListItem>
-                        </asp:ListBox>
-                    </EditItemTemplate>
+
                     <FooterTemplate>
                         <asp:ListBox ID="fDatasetDistinctFieldSelectused" runat="server">
                             <asp:ListItem>Null</asp:ListItem>
@@ -617,7 +474,10 @@
             </Columns>
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" CssClass= HeaderFooter />
+
+            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True"  
+                CssClass= "HeaderFooter" Font-Underline="False" />
+ 
             <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
             <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
@@ -626,15 +486,9 @@
             <SortedDescendingCellStyle BackColor="#FFFDF8" />
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
-        
+    </div>
 
-        </div>
-    
+   </body>
+   </html>
 
 
-
-    </form>
-
-     
-</body>
-</html>

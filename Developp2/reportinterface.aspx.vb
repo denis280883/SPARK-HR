@@ -6,11 +6,6 @@ Partial Class reportinterface
 
     Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load
 
-        Dim rptlists As Rptlists
-
-
-
-
         If Not IsPostBack Then
 
             'Test = ""
@@ -22,6 +17,8 @@ Partial Class reportinterface
             ' MsgBox("Fin")
         End If
     End Sub
+
+
 
 
 End Class

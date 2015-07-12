@@ -33,6 +33,8 @@ Partial Class reportinterface
         cmd.CommandText = msql
         da.SelectCommand = cmd
         da.Fill(ds)
+        Dim test As DataTableReader
+
 
         GridView2.DataSource = ds
         GridView2.DataBind()

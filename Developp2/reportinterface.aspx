@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="reportinterface.aspx.vb" Inherits="reportinterface" %>
 
+<%@ Register src="UserControls/rptlistsShow.ascx" tagname="rptlistsShow" tagprefix="uc1" %>
+<%@ Register src="UserControls/rptlistsEdit.ascx" tagname="rptlistsEdit" tagprefix="uc2" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -10,7 +13,10 @@
     <form id="form1" runat="server">
     <div>
     
+        <uc1:rptlistsShow ID="rptlistsShow1" runat="server" />
+    
     </div>
+    <asp:Button ID="Button1" runat="server" Text="Button" />
     </form>
 </body>
 </html>

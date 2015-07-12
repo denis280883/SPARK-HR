@@ -290,26 +290,26 @@ div.DDBottomHyperLink img
 
 #resizediv
 {
-     width: 150px;
-     height: 150px; 
-     padding: 0.5em;
-     background:#EB5E00;
-     color:#fff;
-     
+    width: 150px;
+    height: 150px;
+    padding: 0.5em;
+    background: #EB5E00;
+    color: #fff;
+    top: -1350px;
 }
-
 
 
 #AskUser
 {
     position: fixed;
+    left: 20px;
+    top: 20px;
+    width: auto;
     color: #00FF00;
-    background-color: #0000FF;
-    
 }
 
 .HeaderFooter
 {
-    position: fixed;
+    position:fixed;
 }
 
