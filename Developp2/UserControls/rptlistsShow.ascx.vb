@@ -11,15 +11,22 @@ Partial Class UserControls_rptlistsShow
         End If
     End Sub
 
+    Sub FillEdit(pos As Integer)
 
-    Sub ShowEdit()
-        rptlistsEdit1.Visible = True
+        'rptlistsEdit1(GridView2.Rows(pos))
+        rptlistsEdit1.FillData(GridView2.Rows(pos))
+    End Sub
 
+
+    Sub ShowEdit(pos As Integer)
+
+        ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "", "ShowEdit();", True)
+        FillEdit(pos)
     End Sub
 
     Protected Sub GridView2_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridView2.RowCommand
         If e.CommandName = "editUC" Then
-            ShowEdit()
+            ShowEdit(e.CommandArgument)
             'ButtonClick = True
             'DataEdit1.rptid = "test"
             'ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "", "ShowEdit();", True)

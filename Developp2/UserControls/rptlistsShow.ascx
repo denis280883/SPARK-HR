@@ -21,6 +21,14 @@
             $("#resizediv").draggable();
         });
     </script>
+        <script>
+            function ShowEdit() {
+                //alert(document.getElementById('demm').innerHTML);
+                //document.getElementById('demm').innerHTML = 'True';
+                document.getElementById('resizediv').style.display = 'inline';
+
+            }
+    </script>
 
 
 </head>
@@ -56,6 +64,7 @@
                     </HeaderTemplate>
                     <ItemTemplate>
                         <asp:ImageButton ID="ImageBtnEdit" runat="server" CommandName="editUC" 
+                            CommandArgument='<%#Container.DataItemIndex%>'
                             Height="14px" ImageUrl="~/Pictures/modify.PNG" Width="14px" />
                         <asp:ImageButton ID="ImageBtnDel" runat="server" CommandName="delete" 
                             Height="14px" ImageUrl="~/Pictures/delete.PNG" Width="14px" />
