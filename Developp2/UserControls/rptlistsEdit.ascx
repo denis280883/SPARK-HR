@@ -1,5 +1,7 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="rptlistsEdit.ascx.vb" Inherits="UserControls_rptlistsEdit" %>
 <style type="text/css">
+    
+   
     .style3
     {
         width: 10px;
@@ -11,7 +13,14 @@
 </style>
 
 
-<div style="left:300px; top:100px; width:415px; height:500px; overflow:auto;">
+
+
+
+<div style="left:300px; top:100px; width:415px; height:500px; overflow:auto;" 
+    dir="ltr">
+    <asp:ImageButton ID="BtnUpdate" runat="server" ImageUrl="~/Pictures/Update.PNG" />
+    <asp:ImageButton ID="BtnUndo" runat="server" ImageUrl="~/Pictures/Undo.PNG" />
+
     <table id="Table2" runat="Server" border="1" cellpadding="1" cellspacing="2" rules="none" 
         style="width:60%;" bgcolor="#669999" width="&lt;">
     <TR>
@@ -211,9 +220,6 @@
     </table>
 </div>
 
-<p>
-    <asp:Button ID="Button1" 
-         runat="server" Text="Button" />
-    </p>
+
 
 
