@@ -8,7 +8,7 @@
     }
     .style4
     {
-        width: 476px;
+        width: 954px;
     }
 </style>
 
@@ -16,13 +16,13 @@
 
 
 
-<div style="left:300px; top:100px; width:415px; height:500px; overflow:auto;" 
+<div style="left:300px; top:100px; width:1280px; height:500px; overflow:auto;" 
     dir="ltr">
     <asp:ImageButton ID="BtnUpdate" runat="server" ImageUrl="~/Pictures/Update.PNG" />
     <asp:ImageButton ID="BtnUndo" runat="server" ImageUrl="~/Pictures/Undo.PNG" />
 
     <table id="Table2" runat="Server" border="1" cellpadding="1" cellspacing="2" rules="none" 
-        style="width:60%;" bgcolor="#669999" width="&lt;">
+        style="width:60%; height: 1698px;" bgcolor="#669999" width="&lt;">
     <TR>
      <TD class="style3" style="width: 10px">rptid</TD>
      <TD class="style4">
@@ -50,31 +50,36 @@
     <TR>
      <TD class="style3" style="width: 10px">rptsql</TD>
      <TD class="style4">
-         <asp:TextBox ID="erptsql" runat="server" Height="75px" TextMode="MultiLine"></asp:TextBox>
+         <asp:TextBox ID="erptsql" runat="server" Height="75px" TextMode="MultiLine" 
+             Width="1024px"></asp:TextBox>
      </TD>
     </TR>
     <TR>
      <TD class="style3" style="width: 10px">rptAcc</TD>
      <TD class="style4">
-         <asp:TextBox ID="erptAcc" runat="server" Height="75px" TextMode="MultiLine"></asp:TextBox>
+         <asp:TextBox ID="erptAcc" runat="server" Height="75px" TextMode="MultiLine" 
+             Width="1024px"></asp:TextBox>
      </TD>
     </TR>
     <TR>
      <TD class="style3" style="width: 10px">rptOra</TD>
      <TD class="style4">
-         <asp:TextBox ID="erptOra" runat="server" Height="75px" TextMode="MultiLine"></asp:TextBox>
+         <asp:TextBox ID="erptOra" runat="server" Height="75px" TextMode="MultiLine" 
+             Width="1024px"></asp:TextBox>
      </TD>
     </TR>
     <TR>
      <TD class="style3" style="width: 10px">conditions</TD>
      <TD class="style4">
-         <asp:TextBox ID="econditions" runat="server" Height="75px" TextMode="MultiLine"></asp:TextBox>
+         <asp:TextBox ID="econditions" runat="server" Height="75px" TextMode="MultiLine" 
+             Width="1024px"></asp:TextBox>
      </TD>
     </TR>
     <TR>
      <TD class="style3" style="width: 10px">foreignTablewhere</TD>
      <TD class="style4">
-         <asp:TextBox ID="eforeignTablewhere" runat="server" Height="75px" TextMode="MultiLine"></asp:TextBox>
+         <asp:TextBox ID="eforeignTablewhere" runat="server" Height="343px" 
+             TextMode="MultiLine" Width="1024px"></asp:TextBox>
      </TD>
     </TR>
     <TR>
@@ -86,7 +91,8 @@
     <TR>
      <TD class="style3" style="width: 10px">trier</TD>
      <TD class="style4">
-         <asp:TextBox ID="etrier" runat="server" Height="75px" TextMode="MultiLine"></asp:TextBox>
+         <asp:TextBox ID="etrier" runat="server" Height="75px" TextMode="MultiLine" 
+             Width="1023px"></asp:TextBox>
      </TD>
     </TR>
     <TR>
@@ -98,7 +104,8 @@
     <TR>
      <TD class="style3" style="width: 10px">ForcegroupBySQL</TD>
      <TD class="style4">
-         <asp:TextBox ID="eForcegroupBySQL" runat="server" Height="75px" TextMode="MultiLine"></asp:TextBox>
+         <asp:TextBox ID="eForcegroupBySQL" runat="server" Height="75px" 
+             TextMode="MultiLine" Width="1024px"></asp:TextBox>
      </TD>
     </TR>
     <TR>
@@ -114,13 +121,15 @@
     <TR>
      <TD class="style3" style="width: 10px">loopOverTable</TD>
      <TD class="style4">
-         <asp:TextBox ID="eloopOverTable" runat="server" Height="75px" TextMode="MultiLine"></asp:TextBox>
+         <asp:TextBox ID="eloopOverTable" runat="server" Height="75px" 
+             TextMode="MultiLine" Width="1024px"></asp:TextBox>
      </TD>
     </TR>
     <TR>
      <TD class="style3" style="width: 10px">loopOverField</TD>
      <TD class="style4">
-         <asp:TextBox ID="eloopOverField" runat="server" Height="75px" TextMode="MultiLine"></asp:TextBox>
+         <asp:TextBox ID="eloopOverField" runat="server" Height="75px" 
+             TextMode="MultiLine" Width="1024px"></asp:TextBox>
      </TD>
     </TR>
     <TR>
@@ -132,7 +141,8 @@
     <TR>
      <TD class="style3" style="width: 10px">lastSqlexecute</TD>
      <TD class="style4">
-         <asp:TextBox ID="elastSqlexecute" runat="server" Height="75px" TextMode="MultiLine"></asp:TextBox>
+         <asp:TextBox ID="elastSqlexecute" runat="server" Height="75px" 
+             TextMode="MultiLine" Width="1024px"></asp:TextBox>
      </TD>
     </TR>
     <TR>

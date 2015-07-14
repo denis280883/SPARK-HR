@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="reportinterface.aspx.vb" Inherits="reportinterface" %>
 
-<%@ Register src="UserControls/rptlistsShow.ascx" tagname="rptlistsShow" tagprefix="uc1" %>
-<%@ Register src="UserControls/rptlistsEdit.ascx" tagname="rptlistsEdit" tagprefix="uc2" %>
+<%@ Register src="~/UserControls/rptlistsShow.ascx" tagname="rptlistsShow" tagprefix="uc1" %>
+<%@ Register src="~/UserControls/rptlistsEdit.ascx" tagname="rptlistsEdit" tagprefix="uc2" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 

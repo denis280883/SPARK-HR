@@ -5,11 +5,15 @@ Partial Class UserControls_rptlistsShow
 
     Dim rptlists As Rptlists = New Rptlists()
 
+
     Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load
+        'AddHandler rptlistsEdit1.tbClick, AddressOf tb_OnClick
+
         If Not IsPostBack Then
             ShowData()
         End If
     End Sub
+
 
     Sub FillEdit(pos As Integer)
 
@@ -27,6 +31,7 @@ Partial Class UserControls_rptlistsShow
     Protected Sub GridView2_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridView2.RowCommand
         If e.CommandName = "editUC" Then
             ShowEdit(e.CommandArgument)
+
             'ButtonClick = True
             'DataEdit1.rptid = "test"
             'ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "", "ShowEdit();", True)
@@ -39,5 +44,13 @@ Partial Class UserControls_rptlistsShow
         GridView2.DataSource = rptlists.ds
         GridView2.DataBind()
     End Sub
+
+    Private Sub tb_OnClick()
+        'Throw New NotImplementedException
+    End Sub
+
+
+
+
 
 End Class

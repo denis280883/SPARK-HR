@@ -17,6 +17,7 @@ Partial Class UserControls_rptlistsEdit
         trier = CType(gridViewRow.FindControl("Labeltrier"), Label).Text
         donneafiltrer = CType(gridViewRow.FindControl("Labeldonnerafiltrer"), Label).Text
         ForcegroupBySQL = CType(gridViewRow.FindControl("LabelForcegroupBySQL"), Label).Text
+        Groups = ConvertNullBoolean(CType(gridViewRow.FindControl("eGroups"), Label).Text)
         'Groups = CType(gridViewRow.FindControl("eGroups"), Label).Text
         loopOverTable = CType(gridViewRow.FindControl("LabelloopOverTable"), Label).Text
         loopOverField = CType(gridViewRow.FindControl("LabelloopOverField"), Label).Text
@@ -39,6 +40,14 @@ Partial Class UserControls_rptlistsEdit
     Sub New()
 
     End Sub
+
+    Function ConvertNullBoolean(value As String) As String
+        If (value = "") Then
+            ConvertNullBoolean = "Null"
+        Else
+            ConvertNullBoolean = value
+        End If
+    End Function
 
 
     Property rptid() As Integer
@@ -158,12 +167,12 @@ Partial Class UserControls_rptlistsEdit
         End Set
     End Property
 
-    Property Groups() As Boolean
+    Property Groups() As String
         Get
             Return eGroups.Text
         End Get
-        Set(value As Boolean)
-            eGroups.Text = value
+        Set(value As String)
+            eGroups.SelectedValue = value
         End Set
     End Property
 
@@ -289,5 +298,10 @@ Partial Class UserControls_rptlistsEdit
 
 
 
+    Public Event tbClick(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs)
 
+
+    Protected Sub BtnUpdate_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles BtnUpdate.Click
+        RaiseEvent tbClick(sender, e)
+    End Sub
 End Class
