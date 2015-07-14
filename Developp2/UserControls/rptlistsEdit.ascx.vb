@@ -298,10 +298,10 @@ Partial Class UserControls_rptlistsEdit
 
 
 
-    Public Event tbClick(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs)
+    Public Event Start(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs)
 
 
     Protected Sub BtnUpdate_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles BtnUpdate.Click
-        RaiseEvent tbClick(sender, e)
+        RaiseEvent Start(sender, e)
     End Sub
 End Class

@@ -8,11 +8,15 @@ Partial Class UserControls_rptlistsShow
 
     Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load
         'AddHandler rptlistsEdit1.tbClick, AddressOf tb_OnClick
-
+        AddHandler rptlistsEdit1.Start, AddressOf Me.tb_OnClick
         If Not IsPostBack Then
             ShowData()
         End If
     End Sub
+
+    Friend WithEvents MySender As UserControls_rptlistsEdit
+
+
 
 
     Sub FillEdit(pos As Integer)
@@ -46,6 +50,7 @@ Partial Class UserControls_rptlistsShow
     End Sub
 
     Private Sub tb_OnClick()
+        MsgBox("TT")
         'Throw New NotImplementedException
     End Sub
 
