@@ -33,14 +33,21 @@ Partial Class UserControls_rptlistsShow
     End Sub
 
     Protected Sub GridView2_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridView2.RowCommand
-        If e.CommandName = "editUC" Then
-            ShowEdit(e.CommandArgument)
-            rptlists.CommandClick = "edit"
-            rptlistsEdit1.ModeEdit = "edit"
-            'ButtonClick = True
-            'DataEdit1.rptid = "test"
-            'ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "", "ShowEdit();", True)
-        End If
+
+        Select Case e.CommandName
+            Case "editUC"
+                ShowEdit(e.CommandArgument)
+                rptlists.CommandClick = "edit"
+                rptlistsEdit1.ModeEdit = "edit"
+            Case "duplicate"
+
+                rptlists.InsertCopySelect(e.CommandArgument, GridView2.Rows(e.CommandArgument))
+
+                'rptlists.InsertCopySelect(Convert.ToInt32(e.CommandArgument) 'rptid As String, rpptype As String, rptthemeid As String, rptname As String, rptsql As String, rptAcc As String, rptOra As String, conditions As String, foreignTablewhere As String, desactive As String, trier As String, donneafiltrer As String, ForcegroupBySQL As String, Groups As String, loopOverTable As String, loopOverField As String, loopoverfieldType As String, lastSqlexecute As String, usedforWeb As String, rptCategory As String, isReportBook As String, ReportBookLoopField As String, iscrystalreport As String, showpagebreak As String, showsortGroupGrid As String, showLabelCompany As String, DatasetDistinctFieldSelectused As String)
+            Case Else
+
+        End Select
+
     End Sub
 
 
@@ -56,9 +63,9 @@ Partial Class UserControls_rptlistsShow
 
             rptlists.UpdateData(rptlistsEdit1.rptid, rptlistsEdit1.rpttype, rptlistsEdit1.rptthemeid, rptlistsEdit1.rptname, rptlistsEdit1.rptsql, rptlistsEdit1.rptAcc, rptlistsEdit1.rptOra, rptlistsEdit1.conditions, rptlistsEdit1.foreignTablewhere, rptlistsEdit1.desactive, rptlistsEdit1.trier, rptlistsEdit1.donneafiltrer, rptlistsEdit1.ForcegroupBySQL, rptlistsEdit1.Groups, rptlistsEdit1.loopOverTable, rptlistsEdit1.loopOverField, rptlistsEdit1.loopoverfieldType, rptlistsEdit1.lastSqlexecute, rptlistsEdit1.usedforWeb, rptlistsEdit1.rptCategory, rptlistsEdit1.isReportBook, rptlistsEdit1.ReportBookLoopField, rptlistsEdit1.iscrystalreport, rptlistsEdit1.showpagebreak, rptlistsEdit1.showsortGroupGrid, rptlistsEdit1.showLabelCompany, rptlistsEdit1.DatasetDistinctFieldSelectused)
             GridView2.EditIndex = -1
-            rptlists.FillData()
+            'rptlists.FillData()
 
-
+            ShowData()
         End If
         'Throw New NotImplementedException
     End Sub

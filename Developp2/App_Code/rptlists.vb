@@ -103,11 +103,11 @@ Public Class Rptlists
     End Sub
 
 
-    Public Sub UpdateData(rptid As Integer, rpptype As String, rptthemeid As String, rptname As String, rptsql As String, rptAcc As String, rptOra As String, conditions As String, foreignTablewhere As String, desactive As Boolean, trier As String, donneafiltrer As String, ForcegroupBySQL As String, Groups As String, loopOverTable As String, loopOverField As String, loopoverfieldType As String, lastSqlexecute As String, usedforWeb As String, rptCategory As String, isReportBook As String, ReportBookLoopField As String, iscrystalreport As String, showpagebreak As String, showsortGroupGrid As String, showLabelCompany As String, DatasetDistinctFieldSelectused As String)
+    Public Sub UpdateData(rptid As String, rpptype As String, rptthemeid As String, rptname As String, rptsql As String, rptAcc As String, rptOra As String, conditions As String, foreignTablewhere As String, desactive As String, trier As String, donneafiltrer As String, ForcegroupBySQL As String, Groups As String, loopOverTable As String, loopOverField As String, loopoverfieldType As String, lastSqlexecute As String, usedforWeb As String, rptCategory As String, isReportBook As String, ReportBookLoopField As String, iscrystalreport As String, showpagebreak As String, showsortGroupGrid As String, showLabelCompany As String, DatasetDistinctFieldSelectused As String)
         msql = "update dbo.rptlists set  rptid=@rpdid, rpttype=@rpttype, rptthemeid=@rptthemeid, rptname=@rptname, rptsql=@rptsql, rptAcc=@rptAcc, rptOra=@rptOra, conditions=@conditions, foreignTablewhere=@foreignTablewhere, desactive=@desactive, trier=@trier, donneafiltrer=@donneafiltrer, ForcegroupBySQL=@ForcegroupBySQL, Groups=@Groups, loopOverTable=@loopOverTable, loopOverField=@loopOverField, loopoverfieldType=@loopoverfieldType, lastSqlexecute=@lastSqlexecute, usedforWeb=@usedforWeb, rptCategory=@rptCategory, isReportBook=@isReportBook, ReportBookLoopField=@ReportBookLoopField, iscrystalreport=@iscrystalreport, showpagebreak=@showpagebreak, showsortGroupGrid=@showsortGroupGrid, showLabelCompany=@showLabelCompany, DatasetDistinctFieldSelectused=@DatasetDistinctFieldSelectused where rptid=@rpdid"
         cmd = New SqlCommand(msql, cnt)
 
-        AddCParamSQLcmd(rptid, rpttype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, _
+        AddCParamSQLcmd(rptid, rpptype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, _
            desactive, trier, donneafiltrer, ForcegroupBySQL, Groups, _
            loopOverTable, loopOverField, loopoverfieldType, lastSqlexecute, _
            usedforWeb, rptCategory, isReportBook, ReportBookLoopField, _
@@ -124,7 +124,88 @@ Public Class Rptlists
 
     End Sub
 
+    Function GetMaxRptid() As Integer
 
+        msql = "SELECT MAX (rptid) from rptlists;"
+        cmd = cnt.CreateCommand()
+        cmd.CommandText = msql
+        Try
+            cnt.Open()
+            GetMaxRptid = (Convert.ToInt16(cmd.ExecuteScalar)) + 1
+            cnt.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            GetMaxRptid = 0
+        End Try
+    End Function
+
+    Function ConvertNullBoolean(value As String) As String
+        If (value = "") Then
+            ConvertNullBoolean = "Null"
+        Else
+            ConvertNullBoolean = value
+        End If
+    End Function
+
+    Public Sub FillData(ByVal gridViewRow As GridViewRow)
+
+        rptid = Convert.ToInt32(CType(gridViewRow.FindControl("labelnum"), Label).Text)
+        rpttype = CType(gridViewRow.FindControl("labelrpttype"), Label).Text
+        rptthemeid = CType(gridViewRow.FindControl("Labelrptthemeid"), Label).Text
+        rptname = CType(gridViewRow.FindControl("Labelrptname"), Label).Text
+        rptsql = CType(gridViewRow.FindControl("Labelrptsql"), Label).Text
+        rptAcc = CType(gridViewRow.FindControl("Labelrptacc"), Label).Text
+        rptOra = CType(gridViewRow.FindControl("LabelrptOra"), Label).Text
+        conditions = CType(gridViewRow.FindControl("Labelconditions"), Label).Text
+        foreignTablewhere = CType(gridViewRow.FindControl("LabelforeignTablewhere"), Label).Text
+        desactive = CType(gridViewRow.FindControl("Labeldesactive"), Label).Text
+        trier = CType(gridViewRow.FindControl("Labeltrier"), Label).Text
+        donneafiltrer = CType(gridViewRow.FindControl("Labeldonnerafiltrer"), Label).Text
+        ForcegroupBySQL = CType(gridViewRow.FindControl("LabelForcegroupBySQL"), Label).Text
+        Groups = ConvertNullBoolean(CType(gridViewRow.FindControl("eGroups"), Label).Text)
+        'Groups = CType(gridViewRow.FindControl("eGroups"), Label).Text
+        loopOverTable = CType(gridViewRow.FindControl("LabelloopOverTable"), Label).Text
+        loopOverField = CType(gridViewRow.FindControl("LabelloopOverField"), Label).Text
+        loopoverfieldType = CType(gridViewRow.FindControl("LabelloopoverfieldType"), Label).Text
+        lastSqlexecute = CType(gridViewRow.FindControl("LabellastSqlexecute"), Label).Text
+        usedforWeb = ConvertNullBoolean(CType(gridViewRow.FindControl("eusedforWeb"), Label).Text)
+        rptCategory = CType(gridViewRow.FindControl("LabelrptCategory"), Label).Text
+        isReportBook = ConvertNullBoolean(CType(gridViewRow.FindControl("eisReportBook"), Label).Text)
+        ReportBookLoopField = CType(gridViewRow.FindControl("LabelReportBookLoopField"), Label).Text
+        iscrystalreport = ConvertNullBoolean(CType(gridViewRow.FindControl("eiscrystalreport"), Label).Text)
+        showpagebreak = ConvertNullBoolean(CType(gridViewRow.FindControl("eshowpagebreak"), Label).Text)
+        showsortGroupGrid = ConvertNullBoolean(CType(gridViewRow.FindControl("eshowsortGroupGrid"), Label).Text)
+        showLabelCompany = ConvertNullBoolean(CType(gridViewRow.FindControl("eshowLabelCompany"), Label).Text)
+        DatasetDistinctFieldSelectused = ConvertNullBoolean(CType(gridViewRow.FindControl("elDatasetDistinctFieldSelectused"), Label).Text)
+
+
+
+    End Sub
+
+
+    Sub InsertCopySelect(i As Integer, gridViewRow As GridViewRow) ', rptid As String, rpptype As String, rptthemeid As String, rptname As String, rptsql As String, rptAcc As String, rptOra As String, conditions As String, foreignTablewhere As String, desactive As String, trier As String, donneafiltrer As String, ForcegroupBySQL As String, Groups As String, loopOverTable As String, loopOverField As String, loopoverfieldType As String, lastSqlexecute As String, usedforWeb As String, rptCategory As String, isReportBook As String, ReportBookLoopField As String, iscrystalreport As String, showpagebreak As String, showsortGroupGrid As String, showLabelCompany As String, DatasetDistinctFieldSelectused As String)
+        Dim maxrpid As Integer = GetMaxRptid()
+        msql = "insert into dbo.rptlists(rptid, rpttype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, desactive, trier, donneafiltrer, ForcegroupBySQL, Groups, loopOverTable, loopOverField, loopoverfieldType, lastSqlexecute, usedforWeb, rptCategory, isReportBook, ReportBookLoopField, iscrystalreport, showpagebreak, showsortGroupGrid, showLabelCompany, DatasetDistinctFieldSelectused) values(@rpdid, @rpttype, @rptthemeid, @rptname, @rptsql, @rptAcc, @rptOra, @conditions, @foreignTablewhere, @desactive, @trier, @donneafiltrer, @ForcegroupBySQL, @Groups, @loopOverTable, @loopOverField, @loopoverfieldType, @lastSqlexecute, @usedforWeb, @rptCategory, @isReportBook, @ReportBookLoopField, @iscrystalreport, @showpagebreak, @showsortGroupGrid, @showLabelCompany, @DatasetDistinctFieldSelectused)"
+        cmd = New SqlCommand(msql, cnt)
+
+
+        FillData(gridViewRow)
+
+        AddCParamSQLcmd(maxrpid.ToString(), rpttype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, _
+        desactive, trier, donneafiltrer, ForcegroupBySQL, Groups, _
+        loopOverTable, loopOverField, loopoverfieldType, lastSqlexecute, _
+        usedforWeb, rptCategory, isReportBook, ReportBookLoopField, _
+        iscrystalreport, showpagebreak, showsortGroupGrid, showLabelCompany, _
+        DatasetDistinctFieldSelectused)
+
+        Try
+            cnt.Open()
+            cmd.ExecuteNonQuery()
+            cnt.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
 
 
     Property CommandClick() As String
