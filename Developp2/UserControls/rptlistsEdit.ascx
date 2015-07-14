@@ -21,6 +21,8 @@
     <asp:ImageButton ID="BtnUpdate" runat="server" ImageUrl="~/Pictures/Update.PNG" />
     <asp:ImageButton ID="BtnUndo" runat="server" ImageUrl="~/Pictures/Undo.PNG" />
 
+    <asp:Label ID="LabelMode" runat="server" Text="Label"></asp:Label>
+
     <table id="Table2" runat="Server" border="1" cellpadding="1" cellspacing="2" rules="none" 
         style="width:60%; height: 1698px;" bgcolor="#669999" width="&lt;">
     <TR>

@@ -11,6 +11,8 @@ Public Class Rptlists
     Dim da As New SqlDataAdapter
 
 
+    Private _CommandClick As String
+
     Private _rptid As Integer
     Private _rpttype As String
     Private _rptthemeid As String
@@ -50,6 +52,90 @@ Public Class Rptlists
     Sub New()
 
     End Sub
+
+
+    Sub InserDataBooleanWithValueNull(Variabl As String, ValueVariabl As String)
+        cmd.Parameters.Add(Variabl, SqlDbType.Bit).Value = False
+        cmd.Parameters(Variabl).IsNullable = True
+        If ValueVariabl = "Null" Then
+            cmd.Parameters(Variabl).Value = DBNull.Value
+        Else
+            cmd.Parameters(Variabl).Value = ValueVariabl
+        End If
+
+    End Sub
+
+    Sub AddCParamSQLcmd(rpdid As String, rpttype As String, rptthemeid As String, rptname As String, rptsql As String, rptAcc As String, rptOra As String, conditions As String, foreignTablewhere As String, _
+                   Desactive As Boolean, trier As String, donneafiltrer As Boolean, ForcegroupBySQL As String, Groups As String, _
+                   loopOverTable As String, loopOverField As String, loopoverfieldType As String, lastSqlexecute As String, _
+                   usedforWeb As String, rptCategory As String, isReportBook As String, ReportBookLoopField As String, _
+                   iscrystalreport As String, showpagebreak As String, showsortGroupGrid As String, showLabelCompany As String, _
+                   DatasetDistinctFieldSelectused As String)
+        cmd.Parameters.Add("@rpdid", SqlDbType.Int, 4).Value = rpdid '00
+        cmd.Parameters.Add("@rpttype", SqlDbType.VarChar).Value = rpttype '01
+        cmd.Parameters.Add("@rptthemeid", SqlDbType.VarChar).Value = rptthemeid '02
+        cmd.Parameters.Add("@rptname", SqlDbType.VarChar).Value = rptname '03
+        cmd.Parameters.Add("@rptsql", SqlDbType.VarChar).Value = rptsql '04
+        cmd.Parameters.Add("@rptAcc", SqlDbType.VarChar).Value = rptAcc '05
+        cmd.Parameters.Add("@rptOra", SqlDbType.VarChar).Value = rptOra '06
+        cmd.Parameters.Add("@conditions", SqlDbType.VarChar).Value = conditions '07
+        cmd.Parameters.Add("@foreignTablewhere", SqlDbType.VarChar).Value = foreignTablewhere '08
+        cmd.Parameters.Add("@Desactive", SqlDbType.Bit).Value = Desactive '09 BOOLEAN
+        cmd.Parameters.Add("@trier", SqlDbType.VarChar).Value = trier '10
+        cmd.Parameters.Add("@donneafiltrer", SqlDbType.Bit).Value = donneafiltrer '11 BOOLEAN
+        cmd.Parameters.Add("@ForcegroupBySQL", SqlDbType.VarChar).Value = ForcegroupBySQL '11
+        InserDataBooleanWithValueNull("@Groups", Groups) 'cmd.Parameters.Add("@Groups", SqlDbType.Bit).Value = Groups.Text '12
+
+
+        cmd.Parameters.Add("@loopOverTable", SqlDbType.VarChar).Value = loopOverTable '13
+        cmd.Parameters.Add("@loopOverField", SqlDbType.VarChar).Value = loopOverField '14
+        cmd.Parameters.Add("@loopoverfieldType", SqlDbType.VarChar).Value = loopoverfieldType '15
+        cmd.Parameters.Add("@lastSqlexecute", SqlDbType.VarChar).Value = lastSqlexecute '16
+        InserDataBooleanWithValueNull("@usedforWeb", usedforWeb) 'cmd.Parameters.Add("@usedforWeb", SqlDbType.Bit).Value = usedforWeb.Text '17
+        cmd.Parameters.Add("@rptCategory", SqlDbType.VarChar).Value = rptCategory '17
+        InserDataBooleanWithValueNull("@isReportBook", isReportBook)
+        cmd.Parameters.Add("@ReportBookLoopField", SqlDbType.VarChar).Value = ReportBookLoopField '19
+        InserDataBooleanWithValueNull("@iscrystalreport", iscrystalreport) 'cmd.Parameters.Add("@iscrystalreport", SqlDbType.Bit).Value = False 'iscrystalreport.Text '20
+        InserDataBooleanWithValueNull("@showpagebreak", showpagebreak) 'cmd.Parameters.Add("@showpagebreak", SqlDbType.Bit).Value = False 'showpagebreak.Text '21
+        InserDataBooleanWithValueNull("@showsortGroupGrid", showsortGroupGrid) 'cmd.Parameters.Add("@showsortGroupGrid", SqlDbType.Bit).Value = False 'showsortGroupGrid.Text '22
+        InserDataBooleanWithValueNull("@showLabelCompany", showLabelCompany) 'cmd.Parameters.Add("@showLabelCompany", SqlDbType.Bit).Value = False 'showLabelCompany.Text '23
+        InserDataBooleanWithValueNull("@DatasetDistinctFieldSelectused", DatasetDistinctFieldSelectused) 'cmd.Parameters.Add("@DatasetDistinctFieldSelectused", SqlDbType.Bit).Value = False 'DatasetDistinctFieldSelectused.Text '24
+    End Sub
+
+
+    Public Sub UpdateData(rptid As Integer, rpptype As String, rptthemeid As String, rptname As String, rptsql As String, rptAcc As String, rptOra As String, conditions As String, foreignTablewhere As String, desactive As Boolean, trier As String, donneafiltrer As String, ForcegroupBySQL As String, Groups As String, loopOverTable As String, loopOverField As String, loopoverfieldType As String, lastSqlexecute As String, usedforWeb As String, rptCategory As String, isReportBook As String, ReportBookLoopField As String, iscrystalreport As String, showpagebreak As String, showsortGroupGrid As String, showLabelCompany As String, DatasetDistinctFieldSelectused As String)
+        msql = "update dbo.rptlists set  rptid=@rpdid, rpttype=@rpttype, rptthemeid=@rptthemeid, rptname=@rptname, rptsql=@rptsql, rptAcc=@rptAcc, rptOra=@rptOra, conditions=@conditions, foreignTablewhere=@foreignTablewhere, desactive=@desactive, trier=@trier, donneafiltrer=@donneafiltrer, ForcegroupBySQL=@ForcegroupBySQL, Groups=@Groups, loopOverTable=@loopOverTable, loopOverField=@loopOverField, loopoverfieldType=@loopoverfieldType, lastSqlexecute=@lastSqlexecute, usedforWeb=@usedforWeb, rptCategory=@rptCategory, isReportBook=@isReportBook, ReportBookLoopField=@ReportBookLoopField, iscrystalreport=@iscrystalreport, showpagebreak=@showpagebreak, showsortGroupGrid=@showsortGroupGrid, showLabelCompany=@showLabelCompany, DatasetDistinctFieldSelectused=@DatasetDistinctFieldSelectused where rptid=@rpdid"
+        cmd = New SqlCommand(msql, cnt)
+
+        AddCParamSQLcmd(rptid, rpttype, rptthemeid, rptname, rptsql, rptAcc, rptOra, conditions, foreignTablewhere, _
+           desactive, trier, donneafiltrer, ForcegroupBySQL, Groups, _
+           loopOverTable, loopOverField, loopoverfieldType, lastSqlexecute, _
+           usedforWeb, rptCategory, isReportBook, ReportBookLoopField, _
+           iscrystalreport, showpagebreak, showsortGroupGrid, showLabelCompany, _
+           DatasetDistinctFieldSelectused)
+        Try
+            cnt.Open()
+            cmd.ExecuteNonQuery()
+            cnt.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+
+    End Sub
+
+
+
+
+    Property CommandClick() As String
+        Get
+            Return _CommandClick
+        End Get
+        Set(value As String)
+            _CommandClick = value
+        End Set
+    End Property
+
 
     Public Sub FillData()
         msql = "select * from dbo.rptlists;"

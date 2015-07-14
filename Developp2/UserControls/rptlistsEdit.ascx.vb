@@ -1,6 +1,17 @@
-﻿
+﻿Imports System.Data.SqlClient
+Imports System.Data
+
 Partial Class UserControls_rptlistsEdit
     Inherits System.Web.UI.UserControl
+
+    Dim msql As String
+    Dim ds As New DataSet
+    Dim cmd As New SqlCommand
+    Dim cnt As New SqlConnection("data source=.\sqling051;initial catalog=reportsinterface;persist security info=True;user id=spark;workstation id=wnb-ing036;packet size=4096;password=SPARK2008")
+    Dim da As New SqlDataAdapter
+
+
+
 
     Public Sub FillData(ByVal gridViewRow As GridViewRow)
 
@@ -23,15 +34,15 @@ Partial Class UserControls_rptlistsEdit
         loopOverField = CType(gridViewRow.FindControl("LabelloopOverField"), Label).Text
         loopoverfieldType = CType(gridViewRow.FindControl("LabelloopoverfieldType"), Label).Text
         lastSqlexecute = CType(gridViewRow.FindControl("LabellastSqlexecute"), Label).Text
-        'usedforWeb = CType(gridViewRow.FindControl("eusedforWeb"), Label).Text
+        usedforWeb = ConvertNullBoolean(CType(gridViewRow.FindControl("eusedforWeb"), Label).Text)
         rptCategory = CType(gridViewRow.FindControl("LabelrptCategory"), Label).Text
-        'isReportBook = CType(gridViewRow.FindControl("eisReportBook"), Label).Text
+        isReportBook = ConvertNullBoolean(CType(gridViewRow.FindControl("eisReportBook"), Label).Text)
         ReportBookLoopField = CType(gridViewRow.FindControl("LabelReportBookLoopField"), Label).Text
-        'iscrystalreport = CType(gridViewRow.FindControl("eiscrystalreport"), Label).Text
-        'showpagebreak = CType(gridViewRow.FindControl("eshowpagebreak"), Label).Text
-        'showsortGroupGrid = CType(gridViewRow.FindControl("eshowsortGroupGrid"), Label).Text
-        'showLabelCompany = CType(gridViewRow.FindControl("eshowLabelCompany"), Label).Text
-        'DatasetDistinctFieldSelectused = CType(gridViewRow.FindControl("elDatasetDistinctFieldSelectused"), Label).Text
+        iscrystalreport = ConvertNullBoolean(CType(gridViewRow.FindControl("eiscrystalreport"), Label).Text)
+        showpagebreak = ConvertNullBoolean(CType(gridViewRow.FindControl("eshowpagebreak"), Label).Text)
+        showsortGroupGrid = ConvertNullBoolean(CType(gridViewRow.FindControl("eshowsortGroupGrid"), Label).Text)
+        showLabelCompany = ConvertNullBoolean(CType(gridViewRow.FindControl("eshowLabelCompany"), Label).Text)
+        DatasetDistinctFieldSelectused = ConvertNullBoolean(CType(gridViewRow.FindControl("elDatasetDistinctFieldSelectused"), Label).Text)
 
 
 
@@ -48,6 +59,14 @@ Partial Class UserControls_rptlistsEdit
             ConvertNullBoolean = value
         End If
     End Function
+    Property ModeEdit As String
+        Get
+            Return LabelMode.Text
+        End Get
+        Set(value As String)
+            LabelMode.Text = value
+        End Set
+    End Property
 
 
     Property rptid() As Integer
